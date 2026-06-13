@@ -4,7 +4,7 @@
   "private": true,
   "description": "Coast Internet Radio production website and private content editor",
   "dependencies": {
-    "@netlify/blobs": "^9.1.0"
+    "@netlify/blobs": "^10.7.9"
   },
   "devDependencies": {},
   "scripts": {
