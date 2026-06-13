@@ -1,8 +1,8 @@
 # Coast Internet Radio
 
-[![CI](https://github.com/jamieparr05/coast-internet-radio/actions/workflows/ci.yml/badge.svg)](https://github.com/jamieparr05/coast-internet-radio/actions/workflows/ci.yml)
-
 Production website package for Coast Internet Radio.
+
+Live site: [coastinternetradio.com](https://coastinternetradio.com/)
 
 ## Overview
 
