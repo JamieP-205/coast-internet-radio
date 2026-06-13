@@ -1,0 +1,25 @@
+Metadata issue fix
+==================
+
+The public website reads live song information from this Cloudflare Worker URL:
+https://coast-metadata.jamieparr05.workers.dev
+
+If the website shows the wrong current song/coming up next, update ONLY the metadata Worker with:
+workers-reference/cloudflare-worker-metadata-proxy.js
+
+Do not change the stream Worker.
+Do not change the Worker URL in station-config.js.
+
+Cloudflare Dashboard steps:
+1. Open Cloudflare Dashboard.
+2. Go to Workers & Pages.
+3. Open the existing coast-metadata Worker.
+4. Edit the worker.js code.
+5. Replace everything with the contents of workers-reference/cloudflare-worker-metadata-proxy.js.
+6. Save and Deploy.
+7. Test this URL:
+   https://coast-metadata.jamieparr05.workers.dev/debug
+8. The debug output should say:
+   DEBUG: Coast metadata worker V4 Basic Page Source
+
+The website does not need a Netlify redeploy after the Worker is updated, unless you also want the visible phone-number addition in the song request form.

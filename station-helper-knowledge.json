@@ -1,0 +1,2913 @@
+{
+  "version": "2026-05-14-listener-audio-final",
+  "intro": "I can help with listening live, audio problems, show times, requests, support and where else to listen.",
+  "quickActions": [
+    "listen_live",
+    "stream_help",
+    "silent_but_playing",
+    "listen_elsewhere",
+    "schedule",
+    "song_request",
+    "support_station"
+  ],
+  "fallback": {
+    "title": "I can help with common listener questions.",
+    "answer": "Try asking about no sound, the play button, phone playback, Bluetooth, show times, song requests, support, accessibility, or where else to listen.",
+    "related": [
+      "stream_help",
+      "listen_live",
+      "listen_elsewhere",
+      "schedule"
+    ]
+  },
+  "synonyms": {
+    "play": [
+      "start",
+      "listen",
+      "hear",
+      "stream",
+      "radio",
+      "music"
+    ],
+    "stream": [
+      "player",
+      "audio",
+      "broadcast",
+      "feed",
+      "station",
+      "live"
+    ],
+    "request": [
+      "ask",
+      "dedicate",
+      "dedication",
+      "message",
+      "text",
+      "song request",
+      "shoutout"
+    ],
+    "support": [
+      "donate",
+      "paypal",
+      "contribute",
+      "help"
+    ],
+    "schedule": [
+      "times",
+      "when",
+      "show",
+      "programme",
+      "program",
+      "live"
+    ],
+    "current": [
+      "old",
+      "original",
+      "existing",
+      "co uk",
+      "current site"
+    ],
+    "website": [
+      "site",
+      "webpage",
+      "page",
+      "link",
+      "url",
+      "domain"
+    ],
+    "phone": [
+      "mobile",
+      "iphone",
+      "android",
+      "samsung",
+      "tablet",
+      "ipad",
+      "lock screen",
+      "screen off",
+      "background",
+      "app",
+      "apps"
+    ],
+    "computer": [
+      "pc",
+      "laptop",
+      "desktop",
+      "windows",
+      "mac"
+    ],
+    "accessibility": [
+      "text",
+      "font",
+      "contrast",
+      "light",
+      "dark",
+      "theme",
+      "read"
+    ],
+    "alexa": [
+      "smart speaker",
+      "echo",
+      "amazon"
+    ],
+    "tunein": [
+      "tune in",
+      "radio app",
+      "directory"
+    ],
+    "listen": [
+      "hear",
+      "play",
+      "stream",
+      "radio",
+      "tune",
+      "tunein",
+      "open",
+      "start"
+    ],
+    "broken": [
+      "broke",
+      "not working",
+      "wont work",
+      "no sound",
+      "stopped",
+      "paused",
+      "silent",
+      "dead"
+    ],
+    "repeat": [
+      "replay",
+      "recorded",
+      "again",
+      "rerun"
+    ],
+    "elsewhere": [
+      "apps",
+      "directories",
+      "other websites",
+      "backup links",
+      "tunein",
+      "streema",
+      "radio garden",
+      "mytuner",
+      "online radio box",
+      "radio uk",
+      "direct stream",
+      "original website",
+      "old website",
+      "radio app",
+      "elswhere",
+      "elsewere",
+      "elsewhre"
+    ],
+    "audio": [
+      "sound",
+      "volume",
+      "speaker",
+      "speakers",
+      "headphones",
+      "earphones",
+      "bluetooth",
+      "mute",
+      "muted",
+      "silent",
+      "hear",
+      "hearing",
+      "noise"
+    ],
+    "buffering": [
+      "buffer",
+      "loading",
+      "lag",
+      "stutter",
+      "stuttering",
+      "cuts out",
+      "keeps cutting",
+      "dropout",
+      "freezing",
+      "reconnecting"
+    ],
+    "button": [
+      "tap",
+      "click",
+      "press",
+      "play button",
+      "triangle",
+      "control",
+      "player"
+    ],
+    "browser": [
+      "chrome",
+      "safari",
+      "edge",
+      "firefox",
+      "browser",
+      "tab",
+      "private browsing",
+      "incognito"
+    ],
+    "car": [
+      "car",
+      "bluetooth",
+      "vehicle",
+      "speaker",
+      "van"
+    ]
+  },
+  "intents": [
+    {
+      "id": "listen_live",
+      "title": "How do I listen live?",
+      "category": "Listening",
+      "priority": 120,
+      "keywords": [
+        "listen",
+        "live",
+        "play",
+        "radio",
+        "stream",
+        "music",
+        "hear",
+        "start",
+        "tune",
+        "tune-in",
+        "begin",
+        "open",
+        "press",
+        "wanna",
+        "want",
+        "now"
+      ],
+      "patterns": [
+        "how do i listen",
+        "listen live",
+        "play the radio",
+        "start the stream",
+        "play coast",
+        "listen to coast",
+        "where is the player",
+        "how to play",
+        "hear the station",
+        "turn on the radio",
+        "listen",
+        "i want to listen",
+        "i wanna listen",
+        "put it on",
+        "turn it on",
+        "lemme listen",
+        "let me listen",
+        "where do i listen",
+        "how do i tune in",
+        "tune in",
+        "tune into coast",
+        "start radio",
+        "begin listening",
+        "open the player",
+        "play it",
+        "play music",
+        "i wanna hear coast",
+        "make it play",
+        "press play",
+        "where is play",
+        "where is the play button",
+        "how to listen live",
+        "how can i listen now",
+        "listening",
+        "wanna listen",
+        "i want music",
+        "i want to hear it",
+        "let it play",
+        "play coast radio",
+        "listen now",
+        "tune in live"
+      ],
+      "answer": "Tap the Listen Live button near the top of the page. The browser needs one tap before it can start audio. If the built-in player does not start, use the Open Stream option in the listening section.",
+      "actions": [
+        {
+          "label": "Go to Listen Live",
+          "type": "scroll",
+          "target": "#listen"
+        }
+      ],
+      "related": [
+        "stream_help",
+        "volume_help",
+        "mobile_playback",
+        "open_stream"
+      ]
+    },
+    {
+      "id": "open_stream",
+      "title": "Can I open the direct stream?",
+      "category": "Listening",
+      "priority": 70,
+      "keywords": [
+        "open",
+        "direct",
+        "stream",
+        "external",
+        "browser",
+        "link"
+      ],
+      "patterns": [
+        "open stream",
+        "direct stream",
+        "stream link",
+        "open radio link",
+        "external player",
+        "direct player",
+        "direct audio",
+        "raw stream",
+        "audio link",
+        "stream url",
+        "open in audio player"
+      ],
+      "answer": "Yes. Open Listen Elsewhere and choose Direct audio stream. It opens the live audio feed directly, which can help if the normal website player does not suit your device.",
+      "actions": [
+        {
+          "label": "Open Listen Elsewhere",
+          "type": "click",
+          "target": "#open-stream"
+        }
+      ],
+      "related": [
+        "listen_live",
+        "stream_help",
+        "mobile_playback"
+      ]
+    },
+    {
+      "id": "stream_help",
+      "title": "The stream is not playing. What should I try?",
+      "category": "Player help",
+      "priority": 125,
+      "keywords": [
+        "not",
+        "working",
+        "broken",
+        "no",
+        "sound",
+        "silent",
+        "stopped",
+        "pause",
+        "buffer",
+        "loading",
+        "error",
+        "audio",
+        "mute",
+        "muted",
+        "buffering",
+        "button",
+        "phone",
+        "browser",
+        "bluetooth",
+        "no sound",
+        "cant hear",
+        "wont play",
+        "not playing",
+        "cuts out",
+        "fix",
+        "issue",
+        "problem",
+        "stuck",
+        "wokring",
+        "wrking",
+        "raido",
+        "sond"
+      ],
+      "patterns": [
+        "audio cut out",
+        "audio stopped",
+        "cannot hear",
+        "cant hear",
+        "it says playing but no sound",
+        "it wont play",
+        "music stopped",
+        "no sound",
+        "nothing happens",
+        "play button stopped",
+        "player broken",
+        "player not working",
+        "radio no work",
+        "radio not playing",
+        "stream crashed",
+        "stream not working",
+        "stream paused",
+        "volume slider stopped audio",
+        "cant hear anything",
+        "i cannot hear it",
+        "radio has no sound",
+        "audio not working",
+        "sound not working",
+        "player is silent",
+        "play button does nothing",
+        "i pressed play and nothing happened",
+        "stream wont play",
+        "radio wont start",
+        "music not playing",
+        "it says playing but i hear nothing",
+        "player is stuck",
+        "stream is loading",
+        "keeps buffering",
+        "keeps cutting out",
+        "audio cuts out",
+        "radio stopped playing",
+        "why is it silent",
+        "volume is up but no sound",
+        "the website player is not working",
+        "help me listen",
+        "cant get the radio on",
+        "stream isn't working",
+        "stream isnt working",
+        "strem not wrking",
+        "stream not wokring",
+        "stream won't play",
+        "stream wont start",
+        "stream not playing",
+        "audio not playing",
+        "audio wont play",
+        "no audio",
+        "no sond",
+        "nothing is playing",
+        "broken stream",
+        "stream broken",
+        "stream offline",
+        "radio not working",
+        "radio isn't working",
+        "raido not working",
+        "raido broken",
+        "i cant hear anything",
+        "i can't hear anything",
+        "i cant hear it",
+        "site not playing",
+        "site wont play",
+        "live not playing",
+        "live wont play",
+        "live not working",
+        "music not working",
+        "music wont start",
+        "music wont play",
+        "no music",
+        "silent",
+        "its silent",
+        "wont play",
+        "won't play",
+        "wont start",
+        "won't start",
+        "stuck",
+        "stuck on buffering",
+        "buffering forever",
+        "spinning",
+        "loading forever"
+      ],
+      "answer": "First press Listen Live once, then check your device volume, browser tab volume, Bluetooth/headphones, and whether the phone is muted. If it still stays silent, refresh the page and press Listen Live again. If the website player still does not work on that device, open Listen Elsewhere and try the Direct audio stream or Online Radio Box.",
+      "actions": [
+        {
+          "label": "Go to player",
+          "type": "scroll",
+          "target": "#listen"
+        }
+      ],
+      "related": [
+        "listen_live",
+        "listen_elsewhere",
+        "volume_help",
+        "mobile_playback"
+      ]
+    },
+    {
+      "id": "volume_help",
+      "title": "How do I change the volume?",
+      "category": "Player help",
+      "priority": 95,
+      "keywords": [
+        "volume",
+        "loud",
+        "quiet",
+        "sound",
+        "mute",
+        "slider",
+        "hear",
+        "louder",
+        "quieter",
+        "softer",
+        "vol",
+        "level"
+      ],
+      "patterns": [
+        "change volume",
+        "turn it up",
+        "turn it down",
+        "make it louder",
+        "make it quieter",
+        "volume slider",
+        "sound too low",
+        "sound too loud",
+        "muted",
+        "how do i turn it up",
+        "too quiet",
+        "too loud",
+        "change sound",
+        "sound level",
+        "speaker volume",
+        "headphones volume",
+        "volume",
+        "louder",
+        "quieter",
+        "softer",
+        "barely hear",
+        "barely hearing",
+        "can barely hear",
+        "i cant hear it",
+        "cant hear",
+        "cant hear properly",
+        "i cant hear",
+        "vol",
+        "volume up",
+        "volume down",
+        "wheres the volume",
+        "where is the volume slider",
+        "level",
+        "audio level",
+        "audio volume",
+        "low volume",
+        "high volume",
+        "max volume",
+        "low sound"
+      ],
+      "answer": "Use the volume slider in the Listen Live section, and also check your phone/computer volume. If you are using Bluetooth, headphones, car audio or a smart speaker, check that device volume too.",
+      "actions": [
+        {
+          "label": "Go to volume slider",
+          "type": "scroll",
+          "target": "#listen"
+        }
+      ],
+      "related": [
+        "stream_help",
+        "mobile_playback",
+        "listen_live"
+      ]
+    },
+    {
+      "id": "mobile_playback",
+      "title": "Can I keep listening while using other apps?",
+      "category": "Player help",
+      "priority": 100,
+      "keywords": [
+        "phone",
+        "mobile",
+        "background",
+        "lock",
+        "screen",
+        "app",
+        "tab",
+        "spotify",
+        "android",
+        "iphone",
+        "tablet",
+        "safari",
+        "chrome",
+        "ios",
+        "stops"
+      ],
+      "patterns": [
+        "play in background",
+        "listen with screen off",
+        "lock my phone",
+        "open another app",
+        "different tab",
+        "works like spotify",
+        "mobile background",
+        "phone stops playing",
+        "screen locked",
+        "can i lock my phone",
+        "will it play with screen off",
+        "can i leave the app",
+        "keeps stopping when i leave",
+        "stops when screen locks",
+        "stops when phone locks",
+        "does it work like spotify",
+        "can i use another app",
+        "phone keeps stopping",
+        "stops on phone",
+        "stops playing on phone",
+        "phone screen off",
+        "screen off stops",
+        "stops when screen off",
+        "stops in background",
+        "wont play in background",
+        "wont play on lock screen",
+        "doesnt play on lock screen",
+        "no background play",
+        "no background playback",
+        "mobile playback",
+        "stops on mobile",
+        "music stops on phone",
+        "audio stops mobile",
+        "android background",
+        "iphone background",
+        "ios background",
+        "lock screen play",
+        "playing in background"
+      ],
+      "answer": "On some phones the browser may pause the stream when you lock the screen, switch apps, or use battery saving mode. Keep the browser open if needed, or try Direct audio stream from Listen Elsewhere. This is normal phone/browser behaviour rather than the station being off air.",
+      "actions": [
+        {
+          "label": "Go to Listen Live",
+          "type": "scroll",
+          "target": "#listen"
+        }
+      ],
+      "related": [
+        "open_stream",
+        "stream_help",
+        "tunein_help"
+      ]
+    },
+    {
+      "id": "browser_help",
+      "title": "Which browser should I use?",
+      "category": "Player help",
+      "priority": 55,
+      "keywords": [
+        "browser",
+        "chrome",
+        "safari",
+        "edge",
+        "firefox",
+        "samsung",
+        "android",
+        "iphone"
+      ],
+      "patterns": [
+        "best browser",
+        "which browser",
+        "chrome",
+        "safari",
+        "samsung internet",
+        "firefox",
+        "edge",
+        "browser problem"
+      ],
+      "answer": "The site is designed for modern phone, tablet, laptop and desktop browsers. Chrome, Safari, Edge, Firefox and Samsung Internet should all work. If one browser blocks playback, try refreshing or opening the stream directly.",
+      "actions": [
+        {
+          "label": "Go to player",
+          "type": "scroll",
+          "target": "#listen"
+        }
+      ],
+      "related": [
+        "stream_help",
+        "mobile_playback",
+        "open_stream"
+      ]
+    },
+    {
+      "id": "schedule",
+      "title": "When is Jim Parr live?",
+      "category": "Shows",
+      "priority": 120,
+      "keywords": [
+        "jim",
+        "parr",
+        "live",
+        "show",
+        "schedule",
+        "time",
+        "times",
+        "when",
+        "programme",
+        "program",
+        "finish",
+        "end",
+        "over",
+        "on air time",
+        "starts",
+        "starting",
+        "tomorrow",
+        "today",
+        "broadcast",
+        "air"
+      ],
+      "patterns": [
+        "when is jim live",
+        "jim parr live",
+        "show times",
+        "what time is jim on",
+        "when is the live show",
+        "schedule",
+        "programme",
+        "program",
+        "radio times",
+        "sunday show",
+        "weekday show",
+        "what time does jim finish",
+        "what time does the show end",
+        "when does jim start",
+        "show finish time",
+        "show start time",
+        "show schedule",
+        "when is jim on",
+        "jim live",
+        "jim on air",
+        "is jim live",
+        "when does jim broadcast",
+        "when is the show",
+        "show schedule today",
+        "schedule today",
+        "what times are the shows",
+        "when are the shows",
+        "live show times",
+        "live show",
+        "live broadcast",
+        "broadcast times",
+        "broadcast schedule",
+        "is jim broadcasting",
+        "is jim on now",
+        "jim's show",
+        "jim show",
+        "jims show times",
+        "tomorrow's show",
+        "show tomorrow",
+        "is there a show today",
+        "is there a show on"
+      ],
+      "answer": "Jim’s usual live shows are Monday, Tuesday, Thursday and Friday from 10am to 12pm, plus Sunday from 10am to 1pm. Outside live shows, Coast Internet Radio continues with music around the clock.",
+      "actions": [
+        {
+          "label": "View schedule",
+          "type": "scroll",
+          "target": "#schedule"
+        }
+      ],
+      "related": [
+        "song_request",
+        "now_playing",
+        "repeat_show",
+        "listen_live"
+      ]
+    },
+    {
+      "id": "repeat_show",
+      "title": "Is there a repeat show?",
+      "category": "Shows",
+      "priority": 95,
+      "keywords": [
+        "7pm",
+        "again",
+        "evening",
+        "metadata",
+        "recorded",
+        "repeat",
+        "replay",
+        "rerun",
+        "show",
+        "thur",
+        "recording",
+        "prerecorded",
+        "pre-recorded",
+        "previously",
+        "earlier show"
+      ],
+      "patterns": [
+        "7pm show",
+        "evening repeat",
+        "is there a repeat",
+        "is this a repeat",
+        "recorded jim parr show",
+        "repeat show",
+        "replay",
+        "show again",
+        "thur repeat show",
+        "what is the repeat show",
+        "why does it say repeat show",
+        "is this a recording",
+        "is this prerecorded",
+        "is jim live or a repeat"
+      ],
+      "answer": "The website can show a repeat-show status when a scheduled evening repeat is detected. Check the programme status near Now Playing for the current broadcast context.",
+      "actions": [
+        {
+          "label": "Go to Now Playing",
+          "type": "scroll",
+          "target": "#now-playing-panel"
+        }
+      ],
+      "related": [
+        "schedule",
+        "now_playing",
+        "listen_live"
+      ]
+    },
+    {
+      "id": "twenty_four_hour_playlist",
+      "title": "Does the station play all day?",
+      "category": "Shows",
+      "priority": 70,
+      "keywords": [
+        "24",
+        "all",
+        "day",
+        "night",
+        "playlist",
+        "automatic",
+        "auto",
+        "always",
+        "nonstop"
+      ],
+      "patterns": [
+        "does it play all day",
+        "24 hours",
+        "all night",
+        "always on",
+        "non stop",
+        "playlist",
+        "automatic playlist",
+        "music around the clock"
+      ],
+      "answer": "Yes. Coast Internet Radio broadcasts around the clock, with live shows at selected times and music continuing outside those shows.",
+      "actions": [
+        {
+          "label": "Listen live",
+          "type": "scroll",
+          "target": "#listen"
+        }
+      ],
+      "related": [
+        "schedule",
+        "now_playing",
+        "listen_live"
+      ]
+    },
+    {
+      "id": "now_playing",
+      "title": "Where can I see what is playing?",
+      "category": "Now playing",
+      "priority": 105,
+      "keywords": [
+        "now",
+        "playing",
+        "song",
+        "artist",
+        "track",
+        "title",
+        "current",
+        "music",
+        "name",
+        "who",
+        "sings"
+      ],
+      "patterns": [
+        "what is playing",
+        "now playing",
+        "current song",
+        "song name",
+        "artist name",
+        "what track is this",
+        "what song is on",
+        "who is singing",
+        "song title",
+        "what song is this",
+        "whats playing",
+        "whats this song",
+        "what song",
+        "name of song",
+        "name of the song",
+        "name of this track",
+        "track name",
+        "track title",
+        "current track",
+        "playing now",
+        "playing right now",
+        "what is on",
+        "what is on right now",
+        "tell me the song",
+        "song title please",
+        "whose song is this",
+        "who sings this",
+        "who is this",
+        "who sings it",
+        "artist please",
+        "who is the artist"
+      ],
+      "answer": "The Now Playing section shows the current track, Coming Up Next and recent plays when that information is available from the station feed.",
+      "actions": [
+        {
+          "label": "Go to Now Playing",
+          "type": "scroll",
+          "target": "#now-playing-panel"
+        }
+      ],
+      "related": [
+        "coming_up",
+        "previously_played",
+        "metadata_delay",
+        "schedule"
+      ]
+    },
+    {
+      "id": "coming_up",
+      "title": "Where is Coming Up Next?",
+      "category": "Now playing",
+      "priority": 75,
+      "keywords": [
+        "coming",
+        "next",
+        "up",
+        "later",
+        "track",
+        "song",
+        "after",
+        "following",
+        "upcoming"
+      ],
+      "patterns": [
+        "coming up next",
+        "next song",
+        "what is next",
+        "coming up",
+        "what plays next",
+        "next track",
+        "whats next",
+        "what next",
+        "what comes next",
+        "next on",
+        "next up",
+        "after this",
+        "what is after this",
+        "after this song",
+        "following track",
+        "what song is next",
+        "next on coast"
+      ],
+      "answer": "Coming Up Next appears inside the Now Playing panel when the station feed provides it. During live shows, the display may change because songs can be selected manually.",
+      "actions": [
+        {
+          "label": "Go to Now Playing",
+          "type": "scroll",
+          "target": "#now-playing-panel"
+        }
+      ],
+      "related": [
+        "now_playing",
+        "previously_played",
+        "metadata_delay"
+      ]
+    },
+    {
+      "id": "previously_played",
+      "title": "Can I see recently played songs?",
+      "category": "Now playing",
+      "priority": 75,
+      "keywords": [
+        "previous",
+        "previously",
+        "played",
+        "recent",
+        "history",
+        "missed",
+        "songs",
+        "last",
+        "before",
+        "recently",
+        "earlier",
+        "just"
+      ],
+      "patterns": [
+        "previously played",
+        "recently played",
+        "what did i miss",
+        "song history",
+        "last song",
+        "previous song",
+        "recent songs",
+        "what was that song",
+        "song before",
+        "what played before",
+        "what was the last song",
+        "recent plays",
+        "last few songs",
+        "what was on",
+        "what just played",
+        "what was that"
+      ],
+      "answer": "Recently played songs appear in the Now Playing section when the station feed provides them. This helps you check tracks you may have missed.",
+      "actions": [
+        {
+          "label": "Go to Now Playing",
+          "type": "scroll",
+          "target": "#now-playing-panel"
+        }
+      ],
+      "related": [
+        "now_playing",
+        "coming_up",
+        "metadata_delay"
+      ]
+    },
+    {
+      "id": "metadata_delay",
+      "title": "Why does the song information look delayed?",
+      "category": "Now playing",
+      "priority": 68,
+      "keywords": [
+        "delay",
+        "wrong",
+        "old",
+        "stuck",
+        "refresh",
+        "metadata",
+        "song",
+        "info",
+        "update"
+      ],
+      "patterns": [
+        "song info wrong",
+        "now playing wrong",
+        "not updating",
+        "stuck song",
+        "old song",
+        "delay",
+        "metadata delay",
+        "refresh now playing"
+      ],
+      "answer": "Song information is pulled from the station feed and may take a short time to refresh. If it looks stuck, refresh the page. The live audio stream can still work even if track information is delayed.",
+      "actions": [
+        {
+          "label": "Go to Now Playing",
+          "type": "scroll",
+          "target": "#now-playing-panel"
+        }
+      ],
+      "related": [
+        "now_playing",
+        "stream_help",
+        "current_website"
+      ]
+    },
+    {
+      "id": "listener_count",
+      "title": "What does the listener number mean?",
+      "category": "Now playing",
+      "priority": 55,
+      "keywords": [
+        "listener",
+        "listeners",
+        "count",
+        "number",
+        "people",
+        "live"
+      ],
+      "patterns": [
+        "listener count",
+        "how many listening",
+        "what does listening mean",
+        "number listening",
+        "people listening"
+      ],
+      "answer": "The listener number is a live estimate from the stream status. It can change often and may not include every listening platform or radio directory.",
+      "actions": [
+        {
+          "label": "View status",
+          "type": "scroll",
+          "target": "#home"
+        }
+      ],
+      "related": [
+        "now_playing",
+        "listen_live"
+      ]
+    },
+    {
+      "id": "song_request",
+      "title": "How do I request a song?",
+      "category": "Requests",
+      "priority": 120,
+      "keywords": [
+        "request",
+        "song",
+        "dedication",
+        "message",
+        "text",
+        "sms",
+        "email",
+        "jim",
+        "reqest",
+        "reqeust",
+        "ask",
+        "submit",
+        "send",
+        "play",
+        "track",
+        "tune"
+      ],
+      "patterns": [
+        "request a song",
+        "song request",
+        "ask for a song",
+        "send jim a song",
+        "dedication",
+        "text a request",
+        "email a request",
+        "message the station",
+        "send a message",
+        "request song",
+        "request song please",
+        "reqest song",
+        "reqest a song",
+        "request a sond",
+        "song reqest",
+        "request a tune",
+        "request music",
+        "play this song",
+        "can you play",
+        "could you play",
+        "would you play",
+        "can you play this",
+        "any chance you can play",
+        "make a request",
+        "send a request",
+        "submit request",
+        "i want to request",
+        "i wanna request",
+        "wanna request a song",
+        "request form",
+        "where do i request",
+        "how do i request a song",
+        "ask for a track",
+        "request a track",
+        "play my song",
+        "can i request something"
+      ],
+      "answer": "Use the Request a Song button on the website. You can also text song requests or messages using the number shown in the request section.",
+      "actions": [
+        {
+          "label": "Open request form",
+          "type": "click",
+          "target": "#request-link"
+        }
+      ],
+      "related": [
+        "request_phone",
+        "contact_station",
+        "schedule",
+        "listen_live"
+      ]
+    },
+    {
+      "id": "request_phone",
+      "title": "Can I text the station?",
+      "category": "Requests",
+      "priority": 80,
+      "keywords": [
+        "text",
+        "sms",
+        "phone",
+        "number",
+        "message",
+        "request"
+      ],
+      "patterns": [
+        "text the station",
+        "sms request",
+        "phone number",
+        "request number",
+        "message number",
+        "send a text",
+        "what number"
+      ],
+      "answer": "Yes. Song requests and messages can be sent by text using the number shown in the request area of the website.",
+      "actions": [
+        {
+          "label": "Open request form",
+          "type": "click",
+          "target": "#request-link"
+        }
+      ],
+      "related": [
+        "song_request",
+        "contact_station",
+        "schedule"
+      ]
+    },
+    {
+      "id": "support_station",
+      "title": "How do I support the station?",
+      "category": "Support",
+      "priority": 115,
+      "keywords": [
+        "support",
+        "donate",
+        "donation",
+        "paypal",
+        "help",
+        "station",
+        "money",
+        "contribute",
+        "tip",
+        "fund",
+        "give"
+      ],
+      "patterns": [
+        "support the station",
+        "donate",
+        "paypal",
+        "make a donation",
+        "help the station",
+        "support coast",
+        "how can i help",
+        "contribute",
+        "donations",
+        "donating",
+        "support",
+        "support jim",
+        "give money",
+        "send money",
+        "tip jar",
+        "tip the station",
+        "buy jim a coffee",
+        "how to donate",
+        "how do i donate",
+        "where do i donate",
+        "donation link",
+        "paypal donate",
+        "paypal link",
+        "send a donation",
+        "contribution",
+        "fund the station",
+        "help coast",
+        "help out"
+      ],
+      "answer": "Use the Support the Station button. It takes you to the station support link so you can contribute securely through the donation page.",
+      "actions": [
+        {
+          "label": "Go to Support",
+          "type": "scroll",
+          "target": "#support"
+        }
+      ],
+      "related": [
+        "paypal_help",
+        "what_supports",
+        "contact_station"
+      ]
+    },
+    {
+      "id": "paypal_help",
+      "title": "Where is the PayPal link?",
+      "category": "Support",
+      "priority": 70,
+      "keywords": [
+        "paypal",
+        "pay",
+        "payment",
+        "donate",
+        "support",
+        "link"
+      ],
+      "patterns": [
+        "paypal link",
+        "pay pal",
+        "where is paypal",
+        "payment link",
+        "donation link",
+        "support link"
+      ],
+      "answer": "The PayPal support link is in the Support the Station section and also in the button near the top of the page.",
+      "actions": [
+        {
+          "label": "Go to Support",
+          "type": "scroll",
+          "target": "#support"
+        }
+      ],
+      "related": [
+        "support_station",
+        "what_supports"
+      ]
+    },
+    {
+      "id": "what_supports",
+      "title": "What does support help with?",
+      "category": "Support",
+      "priority": 50,
+      "keywords": [
+        "support",
+        "help",
+        "cost",
+        "costs",
+        "donation",
+        "station",
+        "broadcasting"
+      ],
+      "patterns": [
+        "what does support help with",
+        "where does donation go",
+        "why support",
+        "station costs",
+        "keep broadcasting"
+      ],
+      "answer": "Support helps keep the station online and broadcasting for listeners. The website simply provides the support link; the donation page handles the payment process.",
+      "actions": [
+        {
+          "label": "Go to Support",
+          "type": "scroll",
+          "target": "#support"
+        }
+      ],
+      "related": [
+        "support_station",
+        "paypal_help"
+      ]
+    },
+    {
+      "id": "contact_station",
+      "title": "How do I contact Coast Internet Radio?",
+      "category": "Contact",
+      "priority": 100,
+      "keywords": [
+        "contact",
+        "email",
+        "message",
+        "facebook",
+        "x",
+        "twitter",
+        "phone",
+        "station"
+      ],
+      "patterns": [
+        "contact",
+        "contact the station",
+        "email coast",
+        "facebook",
+        "twitter",
+        "x account",
+        "message coast",
+        "how do i get in touch"
+      ],
+      "answer": "Use the Contact links on the website for email, Facebook and X. Song requests can also be sent through the request form.",
+      "actions": [
+        {
+          "label": "Go to contact links",
+          "type": "scroll",
+          "target": "#contact"
+        }
+      ],
+      "related": [
+        "song_request",
+        "request_phone",
+        "social_links"
+      ]
+    },
+    {
+      "id": "social_links",
+      "title": "Where are the social links?",
+      "category": "Contact",
+      "priority": 55,
+      "keywords": [
+        "facebook",
+        "x",
+        "twitter",
+        "social",
+        "links",
+        "follow"
+      ],
+      "patterns": [
+        "facebook page",
+        "x page",
+        "twitter page",
+        "social links",
+        "follow coast",
+        "social media"
+      ],
+      "answer": "The social links are in the quick actions area and footer. They include Facebook and X where available.",
+      "actions": [
+        {
+          "label": "Find social links",
+          "type": "scroll",
+          "target": ".action-row"
+        }
+      ],
+      "related": [
+        "contact_station",
+        "song_request"
+      ]
+    },
+    {
+      "id": "current_website",
+      "title": "Where is the current Coast website?",
+      "category": "Website links",
+      "priority": 78,
+      "keywords": [
+        "current",
+        "original",
+        "old",
+        "existing",
+        "website",
+        "site",
+        "co.uk",
+        "review",
+        "current site",
+        "existing site",
+        "co uk",
+        "old site",
+        "original site"
+      ],
+      "patterns": [
+        "current website",
+        "original website",
+        "old website",
+        "existing site",
+        "co uk",
+        "co.uk",
+        "other website",
+        "website review",
+        "where is original site",
+        "current coast website",
+        "existing website",
+        "where is co uk site",
+        "old coast website",
+        "original coast website"
+      ],
+      "answer": "The current/original Coast Internet Radio website is still available while this updated site is being reviewed. Use the Current website button or the top banner if it is showing.",
+      "actions": [
+        {
+          "label": "Go to announcement",
+          "type": "scroll",
+          "target": "#managed-announcement-banner"
+        }
+      ],
+      "related": [
+        "listen_live",
+        "listen_elsewhere",
+        "website_review"
+      ]
+    },
+    {
+      "id": "website_review",
+      "title": "Is this the updated Coast website?",
+      "category": "Website links",
+      "priority": 70,
+      "keywords": [
+        "updated",
+        "new",
+        "review",
+        "website",
+        "site",
+        "current"
+      ],
+      "patterns": [
+        "is this new website",
+        "updated website",
+        "website being reviewed",
+        "what is this website",
+        "new site",
+        "review site"
+      ],
+      "answer": "Yes. This is the updated Coast Internet Radio website. It lets you listen live, request songs, check show times, use accessibility settings and open backup listening links.",
+      "actions": [
+        {
+          "label": "Go to homepage",
+          "type": "scroll",
+          "target": "#home"
+        }
+      ],
+      "related": [
+        "listen_live",
+        "current_website",
+        "listen_elsewhere"
+      ]
+    },
+    {
+      "id": "domain_question",
+      "title": "Which website address should I use?",
+      "category": "Website links",
+      "priority": 60,
+      "keywords": [
+        "domain",
+        "address",
+        "url",
+        "com",
+        "co.uk",
+        "link",
+        "website"
+      ],
+      "patterns": [
+        "website address",
+        "which domain",
+        "which link",
+        "coastinternetradio.com",
+        "coastinternetradio.co.uk",
+        "site address",
+        "url"
+      ],
+      "answer": "Use coastinternetradio.com for this updated website. The current/original .co.uk website may also remain available during the review period.",
+      "actions": [
+        {
+          "label": "Back to top",
+          "type": "scroll",
+          "target": "#home"
+        }
+      ],
+      "related": [
+        "current_website",
+        "listen_live"
+      ]
+    },
+    {
+      "id": "alexa_help",
+      "title": "Can I listen on Alexa or smart speakers?",
+      "category": "Listening platforms",
+      "priority": 70,
+      "keywords": [
+        "alexa",
+        "smart",
+        "speaker",
+        "echo",
+        "amazon",
+        "voice"
+      ],
+      "patterns": [
+        "alexa",
+        "listen on alexa",
+        "smart speaker",
+        "amazon echo",
+        "voice speaker",
+        "play on alexa"
+      ],
+      "answer": "Alexa and smart-speaker listings are normally handled through radio directories or the speaker service itself. This website provides a browser player, but it does not control external smart-speaker listings.",
+      "actions": [
+        {
+          "label": "Listen on website",
+          "type": "scroll",
+          "target": "#listen"
+        }
+      ],
+      "related": [
+        "tunein_help",
+        "listen_live",
+        "stream_help"
+      ]
+    },
+    {
+      "id": "tunein_help",
+      "title": "Can I listen through TuneIn or other radio apps?",
+      "category": "Listening platforms",
+      "priority": 70,
+      "keywords": [
+        "tunein",
+        "tune",
+        "app",
+        "radio",
+        "streema",
+        "mytuner",
+        "garden"
+      ],
+      "patterns": [
+        "tunein",
+        "tune in",
+        "radio app",
+        "listen in an app",
+        "streema",
+        "mytuner",
+        "radio garden",
+        "directory"
+      ],
+      "answer": "Coast Internet Radio may also appear on radio directory platforms. Use the website player for the clearest current listening option, or use any directory link provided on the site.",
+      "actions": [
+        {
+          "label": "Find listening options",
+          "type": "scroll",
+          "target": "#listen-options"
+        }
+      ],
+      "related": [
+        "listen_live",
+        "alexa_help",
+        "open_stream"
+      ]
+    },
+    {
+      "id": "where_based",
+      "title": "Where is Coast Internet Radio based?",
+      "category": "About",
+      "priority": 60,
+      "keywords": [
+        "where",
+        "based",
+        "newry",
+        "northern",
+        "ireland",
+        "location",
+        "from"
+      ],
+      "patterns": [
+        "where is coast based",
+        "where are you from",
+        "newry",
+        "northern ireland",
+        "location",
+        "based where"
+      ],
+      "answer": "Coast Internet Radio is live from Newry, Northern Ireland, and broadcasts online for listeners wherever they are.",
+      "actions": [
+        {
+          "label": "About the station",
+          "type": "scroll",
+          "target": "#about"
+        }
+      ],
+      "related": [
+        "about_jim",
+        "listen_live",
+        "schedule"
+      ]
+    },
+    {
+      "id": "about_jim",
+      "title": "Who is Jim Parr?",
+      "category": "About",
+      "priority": 85,
+      "keywords": [
+        "jim",
+        "parr",
+        "presenter",
+        "owner",
+        "host",
+        "who"
+      ],
+      "patterns": [
+        "who is jim",
+        "who is jim parr",
+        "presenter",
+        "station owner",
+        "about jim",
+        "host"
+      ],
+      "answer": "Jim Parr is the presenter and station owner behind Coast Internet Radio. The About section gives a quick overview of the station and Jim’s shows.",
+      "actions": [
+        {
+          "label": "About Jim",
+          "type": "scroll",
+          "target": "#about"
+        }
+      ],
+      "related": [
+        "schedule",
+        "song_request",
+        "where_based"
+      ]
+    },
+    {
+      "id": "music_style",
+      "title": "What music does Coast play?",
+      "category": "About",
+      "priority": 85,
+      "keywords": [
+        "music",
+        "country",
+        "irish",
+        "classic",
+        "hits",
+        "oldies",
+        "american"
+      ],
+      "patterns": [
+        "what music",
+        "what do you play",
+        "country music",
+        "irish country",
+        "classic hits",
+        "oldies",
+        "american country",
+        "music style"
+      ],
+      "answer": "Coast Internet Radio plays country, Irish country, American country, classic hits and golden oldies.",
+      "actions": [
+        {
+          "label": "Listen live",
+          "type": "scroll",
+          "target": "#listen"
+        }
+      ],
+      "related": [
+        "listen_live",
+        "schedule",
+        "now_playing"
+      ]
+    },
+    {
+      "id": "accessibility_settings",
+      "title": "How do I change text size or theme?",
+      "category": "Accessibility",
+      "priority": 110,
+      "keywords": [
+        "accessibility",
+        "text",
+        "size",
+        "font",
+        "contrast",
+        "theme",
+        "light",
+        "dark",
+        "read",
+        "aa"
+      ],
+      "patterns": [
+        "accessibility",
+        "text size",
+        "larger text",
+        "font size",
+        "light mode",
+        "dark mode",
+        "high contrast",
+        "easier to read",
+        "readability",
+        "aa button",
+        "settings"
+      ],
+      "answer": "Use the Aa button in the header to change text size, contrast, font style, theme and motion settings. Your choices are saved on this device.",
+      "actions": [
+        {
+          "label": "Open Aa settings",
+          "type": "click",
+          "target": "#a11y-toggle"
+        }
+      ],
+      "related": [
+        "light_mode",
+        "high_contrast",
+        "reduce_motion"
+      ]
+    },
+    {
+      "id": "light_mode",
+      "title": "Is there a light mode?",
+      "category": "Accessibility",
+      "priority": 70,
+      "keywords": [
+        "light",
+        "theme",
+        "white",
+        "bright",
+        "mode"
+      ],
+      "patterns": [
+        "light mode",
+        "light theme",
+        "white theme",
+        "make it lighter",
+        "bright mode"
+      ],
+      "answer": "Yes. Open the Aa settings and choose Light under Theme. You can switch back to Dark at any time.",
+      "actions": [
+        {
+          "label": "Open Aa settings",
+          "type": "click",
+          "target": "#a11y-toggle"
+        }
+      ],
+      "related": [
+        "accessibility_settings",
+        "high_contrast",
+        "reduce_motion"
+      ]
+    },
+    {
+      "id": "high_contrast",
+      "title": "Can I use high contrast?",
+      "category": "Accessibility",
+      "priority": 60,
+      "keywords": [
+        "contrast",
+        "high",
+        "clear",
+        "read",
+        "visibility"
+      ],
+      "patterns": [
+        "high contrast",
+        "more contrast",
+        "hard to read",
+        "make clearer",
+        "visibility"
+      ],
+      "answer": "Yes. Open the Aa settings and choose High contrast. This makes text and controls clearer for some readers.",
+      "actions": [
+        {
+          "label": "Open Aa settings",
+          "type": "click",
+          "target": "#a11y-toggle"
+        }
+      ],
+      "related": [
+        "accessibility_settings",
+        "light_mode"
+      ]
+    },
+    {
+      "id": "reduce_motion",
+      "title": "Can I reduce motion effects?",
+      "category": "Accessibility",
+      "priority": 50,
+      "keywords": [
+        "motion",
+        "animation",
+        "movement",
+        "reduce",
+        "effects"
+      ],
+      "patterns": [
+        "reduce motion",
+        "turn off animation",
+        "less movement",
+        "motion effects",
+        "animations"
+      ],
+      "answer": "Yes. Open the Aa settings and choose Reduce motion. This limits movement and animation effects where possible.",
+      "actions": [
+        {
+          "label": "Open Aa settings",
+          "type": "click",
+          "target": "#a11y-toggle"
+        }
+      ],
+      "related": [
+        "accessibility_settings",
+        "light_mode",
+        "high_contrast"
+      ]
+    },
+    {
+      "id": "privacy",
+      "title": "What privacy information is available?",
+      "category": "Website help",
+      "priority": 34,
+      "keywords": [
+        "privacy",
+        "data",
+        "cookies",
+        "tracking",
+        "analytics",
+        "settings"
+      ],
+      "patterns": [
+        "privacy",
+        "privacy policy",
+        "cookies",
+        "data",
+        "tracking",
+        "analytics",
+        "what data"
+      ],
+      "answer": "The Privacy page explains what the website uses and what is stored locally on your device, such as accessibility preferences.",
+      "actions": [
+        {
+          "label": "Open Privacy page",
+          "type": "link",
+          "url": "/privacy.html"
+        }
+      ],
+      "related": [
+        "terms",
+        "accessibility_settings"
+      ]
+    },
+    {
+      "id": "terms",
+      "title": "Where are the website terms?",
+      "category": "Website help",
+      "priority": 32,
+      "keywords": [
+        "terms",
+        "conditions",
+        "legal",
+        "cookies"
+      ],
+      "patterns": [
+        "terms",
+        "terms and conditions",
+        "legal",
+        "website terms",
+        "cookies page"
+      ],
+      "answer": "The Terms page explains basic website terms, external links and the live stream notice.",
+      "actions": [
+        {
+          "label": "Open Terms page",
+          "type": "link",
+          "url": "/terms.html"
+        }
+      ],
+      "related": [
+        "privacy",
+        "listen_live"
+      ]
+    },
+    {
+      "id": "report_problem",
+      "title": "How do I report a website problem?",
+      "category": "Website help",
+      "priority": 70,
+      "keywords": [
+        "problem",
+        "bug",
+        "broken",
+        "issue",
+        "report",
+        "website",
+        "help"
+      ],
+      "patterns": [
+        "report a problem",
+        "website problem",
+        "bug",
+        "something broken",
+        "issue with site",
+        "site not working"
+      ],
+      "answer": "If something does not look right, try refreshing the page first. If it still happens, contact Coast Internet Radio and explain what device you are using and what you were trying to do.",
+      "actions": [
+        {
+          "label": "Go to contact links",
+          "type": "scroll",
+          "target": "#contact"
+        }
+      ],
+      "related": [
+        "contact_station",
+        "stream_help",
+        "accessibility_settings"
+      ]
+    },
+    {
+      "id": "listen_elsewhere",
+      "title": "Where else can I listen?",
+      "category": "Listening options",
+      "priority": 130,
+      "keywords": [
+        "elsewhere",
+        "apps",
+        "directory",
+        "tunein",
+        "streema",
+        "radio garden",
+        "mytuner",
+        "online radio box",
+        "radio uk",
+        "backup",
+        "direct",
+        "audio",
+        "old website",
+        "original website",
+        "other ways",
+        "else",
+        "another way",
+        "another player",
+        "different player",
+        "not working",
+        "backup site"
+      ],
+      "patterns": [
+        "where else can i listen",
+        "other ways to listen",
+        "listen on apps",
+        "listen on tunein",
+        "open radio garden",
+        "external listening links",
+        "backup listen link",
+        "backup stream",
+        "direct audio stream",
+        "open audio stream",
+        "listen in another app",
+        "listen on another website",
+        "online radio box",
+        "old website link",
+        "original website link",
+        "what if tunein does not work",
+        "listen elsewhere",
+        "where else",
+        "try another way",
+        "not working here",
+        "listn elswhere",
+        "listen elswhere",
+        "listn elsewhere"
+      ],
+      "answer": "Use the Listen Elsewhere button near the quick actions. The currently useful options are This website, Direct audio stream, Online Radio Box and the Original website. Some directory links are hidden when they are not playing correctly.",
+      "actions": [
+        {
+          "label": "Open Listen Elsewhere",
+          "type": "click",
+          "target": "#open-stream"
+        }
+      ],
+      "related": [
+        "listen_live",
+        "stream_help",
+        "mobile_playback"
+      ]
+    },
+    {
+      "id": "repeat_metadata",
+      "title": "Why does it say repeat show?",
+      "category": "Now Playing",
+      "priority": 88,
+      "keywords": [
+        "repeat",
+        "show",
+        "replay",
+        "recorded",
+        "thur",
+        "filename",
+        "metadata"
+      ],
+      "patterns": [
+        "why does it say repeat show",
+        "what is repeat show",
+        "thur repeat show",
+        "song says repeat show",
+        "artist says coast internet radio",
+        "weird song info"
+      ],
+      "answer": "That means a recorded repeat show is currently on air. During that type of programme, the source may show the programme name instead of individual song titles. Normal song details return afterwards.",
+      "actions": [
+        {
+          "label": "See Now Playing",
+          "type": "scroll",
+          "target": "#now-playing-panel"
+        }
+      ],
+      "related": [
+        "now_playing",
+        "schedule"
+      ]
+    },
+    {
+      "id": "current_site_review",
+      "title": "Why is the current website still available?",
+      "category": "Website links",
+      "priority": 58,
+      "keywords": [
+        "current",
+        "old",
+        "original",
+        "website",
+        "review",
+        "co uk",
+        "available",
+        "still there"
+      ],
+      "patterns": [
+        "why is current website still available",
+        "why is old website still there",
+        "why is original site still linked",
+        "does this replace the old site",
+        "current website still showing"
+      ],
+      "answer": "The current website is still available while the updated website is being reviewed. This gives listeners another familiar place to listen during the changeover.",
+      "actions": [
+        {
+          "label": "Open current website",
+          "type": "link",
+          "url": "https://www.coastinternetradio.co.uk/"
+        }
+      ],
+      "related": [
+        "current_website",
+        "website_review",
+        "listen_live"
+      ]
+    },
+    {
+      "id": "is_jim_live_now",
+      "title": "Is Jim live now?",
+      "category": "Shows",
+      "priority": 92,
+      "keywords": [
+        "jim",
+        "live",
+        "now",
+        "today",
+        "on air",
+        "currently",
+        "presenter"
+      ],
+      "patterns": [
+        "is jim live now",
+        "is jim on now",
+        "is jim on today",
+        "who is on air now",
+        "is there a live show now",
+        "is jim broadcasting now"
+      ],
+      "answer": "Check the Now Playing box near the top of the page. When Jim is live, it changes to show that Jim Parr is live now. Jim’s usual live shows are weekday mornings and Sunday morning.",
+      "actions": [
+        {
+          "label": "See Now Playing",
+          "type": "scroll",
+          "target": "#now-playing-panel"
+        },
+        {
+          "label": "View schedule",
+          "type": "scroll",
+          "target": "#schedule"
+        }
+      ],
+      "related": [
+        "schedule",
+        "song_request",
+        "repeat_show"
+      ]
+    },
+    {
+      "id": "request_dedication",
+      "title": "Can I send a dedication or message?",
+      "category": "Requests",
+      "priority": 82,
+      "keywords": [
+        "dedication",
+        "birthday",
+        "anniversary",
+        "message",
+        "shoutout",
+        "mention",
+        "request"
+      ],
+      "patterns": [
+        "send a dedication",
+        "birthday dedication",
+        "anniversary message",
+        "send jim a message",
+        "can jim mention someone",
+        "shout out request",
+        "request a dedication"
+      ],
+      "answer": "Yes. Use Request a Song and include the dedication or message in the notes. You can also text the station using the request number shown on the website.",
+      "actions": [
+        {
+          "label": "Request a song",
+          "type": "click",
+          "target": "#request-link"
+        }
+      ],
+      "related": [
+        "song_request",
+        "request_phone",
+        "schedule"
+      ]
+    },
+    {
+      "id": "phone_tablet_help",
+      "title": "Does the website work on phones and tablets?",
+      "category": "Player help",
+      "priority": 76,
+      "keywords": [
+        "phone",
+        "tablet",
+        "mobile",
+        "ipad",
+        "android",
+        "iphone",
+        "samsung",
+        "device"
+      ],
+      "patterns": [
+        "does it work on phones",
+        "does it work on tablet",
+        "listen on iphone",
+        "listen on android",
+        "listen on ipad",
+        "works on mobile",
+        "phone player"
+      ],
+      "answer": "Yes. The website is designed for phones, tablets, laptops and desktops. On phones, keep the browser tab open if playback stops when switching apps or locking the screen.",
+      "actions": [
+        {
+          "label": "Go to player",
+          "type": "scroll",
+          "target": "#listen"
+        }
+      ],
+      "related": [
+        "mobile_playback",
+        "stream_help",
+        "listen_elsewhere"
+      ]
+    },
+    {
+      "id": "open_current_site",
+      "title": "Can I still use the current website?",
+      "category": "Website links",
+      "priority": 65,
+      "keywords": [
+        "current",
+        "old",
+        "original",
+        "co uk",
+        "website",
+        "still use",
+        "old site"
+      ],
+      "patterns": [
+        "can i still use the current website",
+        "can i use the old website",
+        "where is the old site",
+        "open old site",
+        "open co uk",
+        "current website link"
+      ],
+      "answer": "Yes. The current Coast Internet Radio website is still available during the review period.",
+      "actions": [
+        {
+          "label": "Open current website",
+          "type": "link",
+          "url": "https://www.coastinternetradio.co.uk/"
+        }
+      ],
+      "related": [
+        "listen_live",
+        "website_review",
+        "listen_elsewhere"
+      ]
+    },
+    {
+      "id": "player_keeps_stopping",
+      "title": "Why does the stream stop on my phone?",
+      "category": "Player help",
+      "priority": 86,
+      "keywords": [
+        "stops",
+        "stopping",
+        "phone",
+        "lock",
+        "background",
+        "screen",
+        "sleep",
+        "app",
+        "paused"
+      ],
+      "patterns": [
+        "why does stream stop on my phone",
+        "audio stops when i leave",
+        "stops when screen locks",
+        "radio pauses on mobile",
+        "music stops in background",
+        "stream keeps stopping"
+      ],
+      "answer": "Some phone browsers pause website audio when the screen locks, battery saver starts, or you switch apps. Keep the browser open, try another browser, or use Listen Elsewhere for a radio-app option.",
+      "actions": [
+        {
+          "label": "Listen elsewhere",
+          "type": "click",
+          "target": "#open-stream"
+        }
+      ],
+      "related": [
+        "mobile_playback",
+        "listen_elsewhere",
+        "browser_help"
+      ]
+    },
+    {
+      "id": "where_schedule",
+      "title": "Where are the show times?",
+      "category": "Shows",
+      "priority": 78,
+      "keywords": [
+        "schedule",
+        "times",
+        "show times",
+        "when",
+        "programme",
+        "program",
+        "jim",
+        "sunday"
+      ],
+      "patterns": [
+        "where are show times",
+        "where is the schedule",
+        "show schedule",
+        "programme times",
+        "what time are the shows",
+        "when are live shows"
+      ],
+      "answer": "The show times are in the Jim Parr Live section. Jim’s usual live shows are Monday, Tuesday, Thursday and Friday from 10am to 12pm, plus Sunday from 10am to 1pm.",
+      "actions": [
+        {
+          "label": "View schedule",
+          "type": "scroll",
+          "target": "#schedule"
+        }
+      ],
+      "related": [
+        "schedule",
+        "is_jim_live_now",
+        "repeat_show"
+      ]
+    },
+    {
+      "id": "silent_but_playing",
+      "title": "It looks like it is playing but I hear nothing.",
+      "category": "Audio help",
+      "priority": 110,
+      "keywords": [
+        "silent",
+        "playing",
+        "no sound",
+        "hear",
+        "muted",
+        "volume",
+        "audio"
+      ],
+      "patterns": [
+        "looks like playing but no sound",
+        "says playing but silent",
+        "play icon changed but no audio",
+        "button says pause but no sound",
+        "it is playing but i cant hear",
+        "no audio even though it is playing"
+      ],
+      "answer": "That usually means the browser started the player but the audio output is muted, blocked, or connected somewhere else. Check device volume, tab volume, Bluetooth/headphones, then pause and press Listen Live again. If it still happens, try Direct audio stream in Listen Elsewhere.",
+      "actions": [
+        {
+          "label": "Open Listen Elsewhere",
+          "type": "click",
+          "target": "#open-stream"
+        }
+      ],
+      "related": [
+        "stream_help",
+        "volume_help",
+        "listen_elsewhere"
+      ]
+    },
+    {
+      "id": "buffering_cutting_out",
+      "title": "The stream keeps buffering or cutting out.",
+      "category": "Audio help",
+      "priority": 104,
+      "keywords": [
+        "buffer",
+        "buffering",
+        "cutting",
+        "stuttering",
+        "loading",
+        "lag",
+        "wifi",
+        "data",
+        "connection"
+      ],
+      "patterns": [
+        "keeps buffering",
+        "keeps cutting out",
+        "audio keeps stopping",
+        "radio keeps loading",
+        "stream is jumpy",
+        "stream stutters",
+        "cuts in and out",
+        "bad connection",
+        "keeps reconnecting"
+      ],
+      "answer": "Buffering is usually caused by Wi‑Fi, mobile data, battery saving, or the browser pausing the stream. Try refreshing the page, press Listen Live again, switch Wi‑Fi/mobile data if possible, or use Direct audio stream from Listen Elsewhere.",
+      "actions": [
+        {
+          "label": "Open Listen Elsewhere",
+          "type": "click",
+          "target": "#open-stream"
+        }
+      ],
+      "related": [
+        "stream_help",
+        "mobile_playback",
+        "listen_elsewhere"
+      ]
+    },
+    {
+      "id": "bluetooth_car_help",
+      "title": "Can I listen through Bluetooth, headphones or in the car?",
+      "category": "Listening",
+      "priority": 82,
+      "keywords": [
+        "bluetooth",
+        "headphones",
+        "earphones",
+        "car",
+        "speaker",
+        "vehicle",
+        "audio"
+      ],
+      "patterns": [
+        "listen in car",
+        "play through bluetooth",
+        "play through headphones",
+        "connect to speaker",
+        "car bluetooth",
+        "radio in my car",
+        "sound coming from wrong device",
+        "headphones not working"
+      ],
+      "answer": "Yes. Start the stream on your phone first, then connect your phone to Bluetooth, headphones, a speaker, or your car. If sound comes from the wrong place, check your phone audio output/Bluetooth settings.",
+      "related": [
+        "listen_live",
+        "volume_help",
+        "stream_help"
+      ]
+    },
+    {
+      "id": "button_help",
+      "title": "What should I press to start the radio?",
+      "category": "Listening",
+      "priority": 100,
+      "keywords": [
+        "button",
+        "press",
+        "tap",
+        "click",
+        "start",
+        "play",
+        "triangle"
+      ],
+      "patterns": [
+        "what button do i press",
+        "where do i click",
+        "where is play",
+        "which button starts it",
+        "how do i start it",
+        "tap what",
+        "press what",
+        "big yellow button",
+        "triangle button"
+      ],
+      "answer": "Press the large yellow play button in the Listen Live section. Browsers need a real tap/click before they can start audio, so the station will not usually autoplay by itself.",
+      "actions": [
+        {
+          "label": "Go to Listen Live",
+          "type": "scroll",
+          "target": "#listen"
+        }
+      ],
+      "related": [
+        "listen_live",
+        "stream_help",
+        "volume_help"
+      ]
+    },
+    {
+      "id": "directory_links_not_working",
+      "title": "Why do some radio app links not work?",
+      "category": "Listening",
+      "priority": 72,
+      "keywords": [
+        "tunein",
+        "radio garden",
+        "streema",
+        "mytuner",
+        "radio uk",
+        "directory",
+        "not working",
+        "app"
+      ],
+      "patterns": [
+        "tunein not working",
+        "radio garden not working",
+        "streema not working",
+        "mytuner not working",
+        "radio uk not working",
+        "app link does not play",
+        "directory link not working",
+        "why are some links hidden"
+      ],
+      "answer": "Some third‑party radio directory pages can stop playing or use old station details. When that happens, they may be hidden from Listen Elsewhere until they are fixed. The main website player, Direct audio stream, Online Radio Box and Original website are the safer options right now.",
+      "actions": [
+        {
+          "label": "Open Listen Elsewhere",
+          "type": "click",
+          "target": "#open-stream"
+        }
+      ],
+      "related": [
+        "listen_elsewhere",
+        "stream_help",
+        "open_stream"
+      ]
+    },
+    {
+      "id": "is_jim_on_air",
+      "title": "Is Jim on air right now?",
+      "category": "Schedule",
+      "priority": 100,
+      "keywords": [
+        "live",
+        "now",
+        "currently",
+        "right now",
+        "on air",
+        "jim",
+        "broadcasting",
+        "presenting"
+      ],
+      "patterns": [
+        "is jim on air",
+        "is jim on now",
+        "is jim broadcasting",
+        "is jim live right now",
+        "is jim presenting",
+        "jim now",
+        "jim on right now",
+        "is he on",
+        "is he live",
+        "is he broadcasting",
+        "currently on air",
+        "on air now",
+        "presenting now"
+      ],
+      "answer": "Look at the radio status pill on the homepage. It shows \"Live show with Jim\" when Jim is broadcasting, \"Repeat show\" when an earlier show is being repeated, or \"24-hour music playlist\" outside show times. Jim's usual live shows are Monday, Tuesday, Thursday and Friday from 10am to 12pm, plus Sunday from 10am to 1pm.",
+      "related": [
+        "schedule",
+        "repeat_show",
+        "twenty_four_hour_playlist"
+      ]
+    },
+    {
+      "id": "audio_quality",
+      "title": "What's the audio quality?",
+      "category": "Listening",
+      "priority": 60,
+      "keywords": [
+        "quality",
+        "bitrate",
+        "kbps",
+        "sound quality",
+        "audio",
+        "format",
+        "stream quality"
+      ],
+      "patterns": [
+        "audio quality",
+        "sound quality",
+        "stream quality",
+        "bitrate",
+        "what bitrate",
+        "kbps",
+        "what quality is the stream",
+        "what format",
+        "is it hifi",
+        "is it hd"
+      ],
+      "answer": "The Coast Internet Radio stream is delivered at a standard internet-radio bitrate suitable for music playback. Audio quality depends on your connection and device, not the website. If audio sounds choppy, your connection may be slow — try the Listen Elsewhere options or refresh the page.",
+      "related": [
+        "stream_help",
+        "open_stream"
+      ]
+    },
+    {
+      "id": "share_station",
+      "title": "How can I share Coast with friends?",
+      "category": "Station",
+      "priority": 50,
+      "keywords": [
+        "share",
+        "tell",
+        "recommend",
+        "friend",
+        "spread",
+        "word"
+      ],
+      "patterns": [
+        "share coast",
+        "share the station",
+        "share with friends",
+        "tell a friend",
+        "recommend coast",
+        "spread the word",
+        "how do i share",
+        "share link"
+      ],
+      "answer": "Thanks for thinking of it. The website address is coastinternetradio.com — share that link with friends, on social media, by message, or by email. There's no special share button on the site, just copy the link.",
+      "related": [
+        "social_links",
+        "contact_station"
+      ]
+    },
+    {
+      "id": "language_translation",
+      "title": "Can I read this site in another language?",
+      "category": "Accessibility",
+      "priority": 55,
+      "keywords": [
+        "translate",
+        "language",
+        "translation",
+        "spanish",
+        "french",
+        "german",
+        "polish",
+        "english"
+      ],
+      "patterns": [
+        "translate",
+        "translate the page",
+        "translate this page",
+        "another language",
+        "different language",
+        "spanish version",
+        "language settings",
+        "change language",
+        "how to translate"
+      ],
+      "answer": "Open the accessibility settings (the icon in the top right of the page) and tap \"Translate this page\". This uses your device's built-in translation tools through Google Translate. The original English text stays the master version.",
+      "related": [
+        "accessibility_settings"
+      ]
+    },
+    {
+      "id": "feedback_form",
+      "title": "How do I send feedback?",
+      "category": "Station",
+      "priority": 75,
+      "keywords": [
+        "feedback",
+        "suggestion",
+        "complaint",
+        "compliment",
+        "message",
+        "tell"
+      ],
+      "patterns": [
+        "send feedback",
+        "feedback form",
+        "give feedback",
+        "leave feedback",
+        "write feedback",
+        "how do i give feedback",
+        "where do i leave feedback",
+        "make a suggestion",
+        "send a suggestion",
+        "tell jim something",
+        "message the station",
+        "send a message",
+        "complain",
+        "compliment",
+        "leave a comment",
+        "comments"
+      ],
+      "answer": "Tap the \"Feedback\" link at the bottom of the homepage. A small form will open. You can write what you want to say, choose what it's about (website, audio, song idea, accessibility, or general). Your name and contact details are optional — only add them if you'd like Jim to reply.",
+      "related": [
+        "contact_station",
+        "song_request"
+      ]
+    },
+    {
+      "id": "ad_free",
+      "title": "Does Coast have adverts?",
+      "category": "Station",
+      "priority": 45,
+      "keywords": [
+        "ads",
+        "adverts",
+        "advertising",
+        "commercials",
+        "ad free",
+        "no ads"
+      ],
+      "patterns": [
+        "any adverts",
+        "any ads",
+        "are there ads",
+        "are there adverts",
+        "advert free",
+        "ad free",
+        "no ads",
+        "no adverts",
+        "do you have commercials",
+        "any commercials"
+      ],
+      "answer": "Coast Internet Radio is an independent music station and does not run commercial radio adverts. Outside the live shows, music plays around the clock without ad breaks. The station is supported by listeners — there's a Donate option on the homepage if you'd like to help.",
+      "related": [
+        "support_station"
+      ]
+    },
+    {
+      "id": "cost_to_listen",
+      "title": "Is it free to listen?",
+      "category": "Station",
+      "priority": 70,
+      "keywords": [
+        "free",
+        "cost",
+        "price",
+        "paid",
+        "subscription",
+        "pay"
+      ],
+      "patterns": [
+        "is it free",
+        "is it free to listen",
+        "do i need to pay",
+        "how much does it cost",
+        "is there a subscription",
+        "is there a charge",
+        "cost to listen",
+        "free to listen",
+        "do i have to pay",
+        "any cost"
+      ],
+      "answer": "Yes, Coast Internet Radio is completely free to listen to. There's no subscription, no account, no paywall. The station is supported by Jim and by listener donations — if you'd like to help, there's a Donate option, but it's optional.",
+      "related": [
+        "support_station"
+      ]
+    },
+    {
+      "id": "play_pause",
+      "title": "How do I pause or resume?",
+      "category": "Listening",
+      "priority": 80,
+      "keywords": [
+        "pause",
+        "resume",
+        "stop",
+        "stop playing",
+        "start again"
+      ],
+      "patterns": [
+        "how do i pause",
+        "pause the radio",
+        "stop the radio",
+        "how to pause",
+        "pause button",
+        "stop button",
+        "resume",
+        "resume playing",
+        "start again",
+        "play again",
+        "unpause",
+        "un-pause"
+      ],
+      "answer": "The same large round button that started the stream also pauses it. Press it once to pause, press it again to resume. Your volume setting is kept when you pause and resume.",
+      "related": [
+        "listen_live",
+        "volume_help"
+      ]
+    },
+    {
+      "id": "what_genre",
+      "title": "What kind of music does Coast play?",
+      "category": "Music",
+      "priority": 65,
+      "keywords": [
+        "genre",
+        "music style",
+        "what music",
+        "kind of music",
+        "type of music"
+      ],
+      "patterns": [
+        "what genre",
+        "what kind of music",
+        "what type of music",
+        "music style",
+        "what sort of music",
+        "what music do you play",
+        "what does coast play",
+        "what music does coast play",
+        "what music plays here",
+        "is it country",
+        "is it rock",
+        "music selection"
+      ],
+      "answer": "Coast Internet Radio plays a friendly mix of music chosen by Jim, suited for everyday listening. It leans toward easy-listening, classic hits, and song selections Jim picks personally on his live shows. Outside live shows, an automated playlist continues with similar choices.",
+      "related": [
+        "music_style",
+        "twenty_four_hour_playlist"
+      ]
+    },
+    {
+      "id": "podcasts_archive",
+      "title": "Are old shows archived?",
+      "category": "Station",
+      "priority": 40,
+      "keywords": [
+        "podcast",
+        "archive",
+        "catch up",
+        "listen back",
+        "old shows",
+        "missed",
+        "recording"
+      ],
+      "patterns": [
+        "any podcasts",
+        "is there a podcast",
+        "podcast version",
+        "archive",
+        "show archive",
+        "catch up",
+        "listen back",
+        "missed the show",
+        "missed your show",
+        "i missed it",
+        "old shows",
+        "previous shows",
+        "recording",
+        "recordings"
+      ],
+      "answer": "There isn't a podcast or catch-up archive at the moment. If you miss a live show, the station continues with its automated music playlist between shows. Live shows are scheduled at the times shown on the homepage, so check the schedule for the next one.",
+      "related": [
+        "schedule",
+        "twenty_four_hour_playlist"
+      ]
+    },
+    {
+      "id": "cant_find_button",
+      "title": "I can't find a button or feature",
+      "category": "Help",
+      "priority": 50,
+      "keywords": [
+        "cant find",
+        "where is",
+        "missing",
+        "hidden",
+        "lost"
+      ],
+      "patterns": [
+        "cant find",
+        "can't find",
+        "where is the button",
+        "where do i find",
+        "where is",
+        "i cant see",
+        "i can't see",
+        "missing button",
+        "where do i click",
+        "lost the button",
+        "where is play",
+        "wheres play",
+        "where is the donate button",
+        "where is the request button"
+      ],
+      "answer": "Most controls are at the top of the homepage: the large Play/Listen Live button, and the Donate link in the header. Below that you'll find Now Playing, the schedule, and other sections. The Helper (the ? button in the corner) is always available. If something looks hidden, try scrolling, refreshing the page, or using the accessibility settings to increase text size.",
+      "related": [
+        "accessibility_settings",
+        "listen_live"
+      ]
+    },
+    {
+      "id": "open_in_new_tab",
+      "title": "Can I open the radio in a new tab?",
+      "category": "Listening",
+      "priority": 35,
+      "keywords": [
+        "new tab",
+        "background tab",
+        "separate tab",
+        "minimise",
+        "minimize"
+      ],
+      "patterns": [
+        "open in new tab",
+        "play in new tab",
+        "background tab",
+        "keep playing in another tab",
+        "minimise the player",
+        "minimize the player",
+        "small window",
+        "popout"
+      ],
+      "answer": "Open the homepage and start the stream as normal. The radio will continue playing in the background while you switch to other tabs in the same browser. On some phones, switching apps may pause audio depending on your operating system's rules.",
+      "related": [
+        "mobile_playback",
+        "open_stream"
+      ]
+    },
+    {
+      "id": "data_usage",
+      "title": "Will listening use a lot of data?",
+      "category": "Listening",
+      "priority": 40,
+      "keywords": [
+        "data",
+        "mobile data",
+        "wifi",
+        "usage",
+        "bandwidth",
+        "allowance"
+      ],
+      "patterns": [
+        "data usage",
+        "uses data",
+        "how much data",
+        "data allowance",
+        "uses my data",
+        "mobile data",
+        "use lots of data",
+        "bandwidth",
+        "is it heavy"
+      ],
+      "answer": "An internet radio stream uses roughly 30-60 MB per hour at typical bitrates. Over a long listening session on mobile data this can add up — if you're on a limited mobile data plan, listening on Wi-Fi is more economical. The website itself uses very little data once loaded.",
+      "related": [
+        "stream_help"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(self "https://www.paypal.com")
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-cACZ4nz4d+v53hbnFsGaFYBfDOjcVwI1lQAdmCTFyRs=' 'sha256-3jW/Z0BOy4qmuCm16NjEj+69AZ+ZumpVmDxr906HY0Q=' 'sha256-Agp7Qv1X8bzBb73YzHz2XnGkeXtwHqQhCLSNXcsMLmc=' 'sha256-1Vfaq4CVWuFJcy4kKN/tbHurXoZQkpmOzswNrcXGMK0=' 'sha256-+6woflAAqcgsQ0O4ytVssDuAB1nep6jA9K8uGxdcLIs=' 'sha256-wQ8ApmIFAorOUXz86C8oFD6yCaEa06ADdI0p9TWKzTI=' 'sha256-Oiy3u+bOg3y9kdYO/jgJWE3uaO2qW5pFAqwaJacSsNo='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; media-src 'self' https:; connect-src 'self' https:; frame-src https://www.paypal.com https://translate.google.com; object-src 'none'; base-uri 'self'; form-action 'self' https://paypal.me https://www.paypal.com https://coast-paypal-redirect.jamieparr05.workers.dev; manifest-src 'self'; frame-ancestors 'self'; upgrade-insecure-requests
+
+/index.html
+  Cache-Control: no-store, max-age=0, must-revalidate
+
+/script.js
+  Cache-Control: no-store, max-age=0, must-revalidate
+
+/managed-content.js
+  Cache-Control: no-store, max-age=0, must-revalidate
+
+/station-helper.js
+  Cache-Control: no-store, max-age=0, must-revalidate
+
+/listen-options.js
+  Cache-Control: no-store, max-age=0, must-revalidate
+
+/site-preferences.js
+  Cache-Control: no-store, max-age=0, must-revalidate
+
+/station-helper-knowledge.json
+  Cache-Control: no-store, max-age=0, must-revalidate
+  X-Robots-Tag: noindex, nofollow
+
+/live-ui.js
+  Cache-Control: no-store, max-age=0, must-revalidate
+
+/station-config.js
+  Cache-Control: no-store, max-age=0, must-revalidate
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/news.json
+  Cache-Control: no-store, max-age=0
+
+/now-playing.json
+  Cache-Control: no-store, max-age=0
+
+/*.html
+  Cache-Control: public, max-age=60
+
+/manifest.json
+  Content-Type: application/manifest+json
+  Cache-Control: public, max-age=3600
+
+/assets/icons/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/favicon.ico
+  Cache-Control: public, max-age=31536000, immutable
+
+/favicon.png
+  Cache-Control: public, max-age=31536000, immutable
+
+/apple-touch-icon.png
+  Cache-Control: public, max-age=31536000, immutable
+
+/workers-reference/*
+  X-Robots-Tag: noindex, nofollow
+
+/admin/*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-store, max-age=0, must-revalidate
+
+/metadata-test.html
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-store, max-age=0, must-revalidate
+
+/metadata-source-finder.html
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-store, max-age=0, must-revalidate
+
+/README.md
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-store, max-age=0
+
+/TESTING_CHECKLIST.md
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-store, max-age=0
+
+/CHANGELOG.md
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-store, max-age=0
+
+/tools/*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-store, max-age=0
+
+/src/*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-store, max-age=0

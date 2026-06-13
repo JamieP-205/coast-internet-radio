@@ -1,0 +1,12 @@
+Coast Internet Radio admin panel fix
+
+This deploy keeps the public website the same and fixes the admin save button.
+
+Important: this version passes the Netlify Blobs store name, site ID and token together, which is required for manual/drop deploys using @netlify/blobs v9.
+
+Required Netlify environment variables:
+ADMIN_USERNAME
+ADMIN_PASSWORD_HASH
+SESSION_SECRET
+COAST_BLOBS_SITE_ID
+COAST_BLOBS_TOKEN

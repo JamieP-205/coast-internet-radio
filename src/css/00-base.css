@@ -1,0 +1,230 @@
+/* Base variables, reset and accessibility defaults */
+/*
+ * Coast Internet Radio
+ * stylesheet
+ */
+
+/* Reset & root */
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --bg: #01070d;
+  --panel-1: rgba(8, 27, 40, 0.96);
+  --panel-2: rgba(3, 12, 19, 0.97);
+  --gold: #d58a18;
+  --gold-light: #ffd56c;
+  --gold-bright: #ffd66a;
+  --gold-dark: #bd7111;
+  --cream: #fff1dd;
+  --muted: #d3c8ba;
+  --line: rgba(213, 138, 24, 0.58);
+  --line-soft: rgba(213, 138, 24, 0.42);
+  --green: #48dc72;
+  --green-dark: #1f8a47;
+  --red: #ff6b6b;
+  --red-dark: #b63232;
+  --amber: #ffb84d;
+  --warn-bg: rgba(255, 95, 95, 0.12);
+  --warn-border: rgba(255, 95, 95, 0.35);
+  --warn-text: #ffd4d4;
+
+  --radius-lg: 18px;
+  --radius-md: 15px;
+  --radius-sm: 12px;
+  --shell-max: 1180px;
+  --shell-pad: 24px;
+
+  --font-serif: Georgia, "Times New Roman", Times, serif;
+  --font-script: "Brush Script MT", "Segoe Script", cursive;
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-emoji: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+
+  --base-font-size: 17px;
+  --motion: 1;
+}
+
+html[data-text="large"]    { --base-font-size: 19px; }
+html[data-text="x-large"]  { --base-font-size: 21px; }
+html[data-text="xx-large"] { --base-font-size: 23px; }
+
+html[data-text="large"] body,
+html[data-text="x-large"] body,
+html[data-text="xx-large"] body {
+  font-size: 1rem;
+}
+
+html[data-contrast="high"] {
+  --bg: #000;
+  --panel-1: #0a1218;
+  --panel-2: #050a0e;
+  --cream: #fff;
+  --muted: #f5ecd8;
+  --gold-light: #ffe082;
+  --gold: #ffb84d;
+  --line: rgba(255, 224, 130, 0.85);
+  --line-soft: rgba(255, 224, 130, 0.55);
+  --green: #6fff90;
+  --red: #ff8a8a;
+}
+
+html[data-contrast="high"] body { background: #000; }
+
+html[data-contrast="high"] .about-strip p,
+html[data-contrast="high"] .schedule-card p,
+html[data-contrast="high"] .support-panel p,
+html[data-contrast="high"] .news-body,
+html[data-contrast="high"] .news-date,
+html[data-contrast="high"] .info-page p {
+  color: #fff;
+}
+
+html[data-contrast="high"] .news-item {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 224, 130, 0.4);
+}
+
+html[data-contrast="high"] .player-note { color: #fff; }
+html[data-contrast="high"] .how-panel li { border-bottom-color: rgba(255, 255, 255, 0.3); }
+
+html[data-contrast="high"] .np-icon,
+html[data-contrast="high"] .a11y-options button {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+html[data-contrast="high"] a { text-decoration: underline; }
+
+html[data-theme="light"]:not([data-contrast="high"]) {
+  --bg: #f7efe2;
+  --panel-1: rgba(255, 250, 240, 0.98);
+  --panel-2: rgba(249, 239, 222, 0.98);
+  --cream: #20160d;
+  --muted: #6d5f50;
+  --line: rgba(171, 111, 24, 0.62);
+  --line-soft: rgba(171, 111, 24, 0.34);
+}
+
+html[data-theme="light"]:not([data-contrast="high"]) body {
+  background:
+    radial-gradient(circle at 45% -10%, rgba(213, 138, 24, 0.18), transparent 32rem),
+    linear-gradient(180deg, #fff8ee, #f7efe2 52%, #efe2cf);
+}
+
+html[data-theme="light"]:not([data-contrast="high"]) .site-header {
+  background: rgba(255, 248, 237, 0.94);
+}
+
+html[data-theme="light"]:not([data-contrast="high"]) .live-badge {
+  color: #fff1dd;
+}
+
+html[data-theme="light"]:not([data-contrast="high"]) .a11y-dialog,
+html[data-theme="light"]:not([data-contrast="high"]) .modal-dialog {
+  background: linear-gradient(180deg, #fff9ee, #f3e5cf);
+}
+
+
+html[data-font="dyslexic"] {
+  --font-body: "OpenDyslexic", "Comic Sans MS", "Verdana", sans-serif;
+  --font-serif: "OpenDyslexic", "Verdana", sans-serif;
+  --font-script: "OpenDyslexic", "Verdana", sans-serif;
+}
+
+html[data-font="dyslexic"] body {
+  letter-spacing: 0.02em;
+  line-height: 1.7;
+}
+
+html[data-motion="reduced"] { --motion: 0; }
+
+html {
+  scroll-behavior: smooth;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  font-size: var(--base-font-size);
+}
+
+body {
+  margin: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 45% -10%, rgba(32, 74, 99, 0.38), transparent 32rem),
+    var(--bg);
+  color: var(--cream);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.55;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  overflow-wrap: break-word;
+}
+
+main,
+section,
+article,
+.shell,
+.hero-words,
+.player-top > *,
+.np-row > *,
+.action-row > a,
+.action-row > button,
+.about-strip > *,
+.how-panel li > *,
+.footer-inner > * {
+  min-width: 0;
+}
+
+img { display: block; max-width: 100%; height: auto; }
+button, input, a { -webkit-tap-highlight-color: transparent; }
+button { font: inherit; cursor: pointer; }
+
+a {
+  color: var(--gold-light);
+  text-underline-offset: 0.22em;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 0;
+  box-shadow: 0 0 0 4px rgba(255, 213, 108, 0.55);
+  border-radius: var(--radius-sm);
+}
+
+.shell {
+  width: min(100% - var(--shell-pad), var(--shell-max));
+  margin-inline: auto;
+}
+
+/* Skip link & sr-only */
+.skip-link {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 999;
+  transform: translateY(-150%);
+  padding: 0.7rem 1rem;
+  border-radius: 999px;
+  background: var(--gold-light);
+  color: #111;
+  font-weight: 900;
+  text-decoration: none;
+  transition: transform calc(0.2s * var(--motion)) ease;
+}
+
+.skip-link:focus { transform: translateY(0); }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+

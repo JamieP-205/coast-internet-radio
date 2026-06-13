@@ -1,0 +1,1012 @@
+/* Now-playing, listener pill and live-show polish */
+/* Live listener count */
+.listener-panel {
+  margin-top: 1rem;
+  padding: 0.85rem 1rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.75rem;
+  align-items: center;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255, 213, 108, 0.22);
+  background: linear-gradient(180deg, rgba(255, 213, 108, 0.08), rgba(255, 255, 255, 0.035));
+}
+
+.listener-panel[hidden] { display: none; }
+
+.listener-panel strong {
+  display: block;
+  color: #fff;
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  line-height: 1.05;
+}
+
+.listener-panel p:last-child {
+  margin: 0;
+  max-width: 15rem;
+  color: var(--muted);
+  font-size: 0.88rem;
+  text-align: right;
+}
+
+@media (max-width: 520px) {
+  .listener-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .listener-panel p:last-child {
+    max-width: none;
+    text-align: left;
+  }
+}
+
+/* Layout polish: now-playing and listener count */
+.now-playing {
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid rgba(255, 213, 108, 0.16);
+  border-radius: var(--radius-md);
+  background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.018));
+}
+
+.now-playing .section-title {
+  padding-bottom: 0.7rem;
+  margin-bottom: 0.8rem;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.np-row {
+  grid-template-columns: auto minmax(8rem, auto) minmax(0, 1fr);
+  margin: 0.45rem 0;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: var(--radius-sm);
+  background: rgba(255,255,255,0.032);
+}
+
+.np-row strong {
+  color: rgba(255,244,223,0.9);
+}
+
+.np-row > span:last-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.extra-playlist {
+  padding-top: 0.85rem;
+  margin-top: 0.85rem;
+}
+
+#coming-up {
+  font-size: clamp(0.98rem, 1.8vw, 1.12rem);
+  line-height: 1.45;
+}
+
+#previous-list {
+  line-height: 1.45;
+}
+
+.listener-panel {
+  margin-top: 0.9rem;
+  padding: 0.7rem 0.85rem;
+  grid-template-columns: auto minmax(0, 1fr);
+  border-radius: 16px;
+}
+
+.listener-panel .mini-label {
+  margin-bottom: 0.18rem;
+  font-size: 0.68rem;
+}
+
+.listener-panel strong {
+  font-size: clamp(1.05rem, 2.1vw, 1.25rem);
+  letter-spacing: -0.01em;
+}
+
+.listener-panel p:last-child {
+  max-width: none;
+  justify-self: end;
+  font-size: 0.8rem;
+  color: rgba(243,226,196,0.72);
+}
+
+@media (max-width: 640px) {
+  .now-playing {
+    padding: 0.85rem;
+  }
+
+  .np-row {
+    grid-template-columns: 1fr;
+    gap: 0.18rem;
+    padding: 0.7rem 0.75rem;
+    border-bottom: 1px solid rgba(255,255,255,0.09);
+  }
+
+  .np-row .np-icon {
+    display: none;
+  }
+
+  .np-row strong {
+    font-size: 0.9rem;
+  }
+
+  .np-row > span:last-child {
+    font-size: 1.02rem;
+  }
+
+  .listener-panel {
+    grid-template-columns: 1fr auto;
+    gap: 0.6rem;
+    align-items: end;
+  }
+
+  .listener-panel p:last-child {
+    text-align: right;
+    align-self: center;
+  }
+}
+
+@media (max-width: 430px) {
+  .now-playing {
+    margin-inline: -0.1rem;
+  }
+
+  .listener-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .listener-panel p:last-child {
+    justify-self: start;
+    text-align: left;
+  }
+}
+
+/* Final public now-playing tidy-up */
+.programme-status {
+  margin: 0 0 0.85rem;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid rgba(255, 213, 108, 0.18);
+  border-radius: 16px;
+  background: rgba(255, 213, 108, 0.055);
+}
+.programme-status[hidden] { display: none; }
+.programme-status strong {
+  display: block;
+  color: var(--gold);
+  font-size: clamp(1rem, 1.7vw, 1.12rem);
+  line-height: 1.25;
+}
+.programme-status span {
+  display: block;
+  color: rgba(243, 226, 196, 0.76);
+  font-size: 0.88rem;
+  margin-top: 0.18rem;
+}
+.programme-status[data-state="live"] {
+  background: rgba(57, 177, 100, 0.10);
+  border-color: rgba(99, 220, 139, 0.28);
+}
+.programme-status[data-state="repeat"] {
+  background: rgba(247, 196, 83, 0.075);
+  border-color: rgba(247, 196, 83, 0.24);
+}
+.now-playing .np-row {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.28rem;
+  padding: 0.75rem 0.85rem;
+}
+.now-playing .np-row .np-icon { display: none; }
+.now-playing .np-row strong {
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(243, 226, 196, 0.78);
+}
+.now-playing .np-row > span:last-child {
+  color: var(--gold);
+  font-size: clamp(1.02rem, 2.4vw, 1.28rem);
+  line-height: 1.35;
+}
+.listener-panel {
+  margin-top: 0.85rem;
+  padding: 0.65rem 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.035);
+  border-color: rgba(255, 213, 108, 0.16);
+}
+.listener-panel > div {
+  min-width: 0;
+}
+.listener-panel strong {
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  line-height: 1.2;
+}
+.listener-panel p:last-child {
+  margin: 0;
+  color: rgba(243, 226, 196, 0.66);
+  font-size: 0.78rem;
+  text-align: right;
+  max-width: 12rem;
+}
+@media (max-width: 520px) {
+  .listener-panel {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .listener-panel p:last-child {
+    max-width: none;
+    text-align: left;
+  }
+}
+
+
+/* Final public Now Playing polish: clearer broadcast line, consistent cards */
+.broadcast-status {
+  margin: 0 0 0.85rem;
+  padding: 0.72rem 0.82rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.18rem;
+  border: 1px solid rgba(255, 213, 108, 0.18);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.032);
+}
+.broadcast-status[hidden] { display: none; }
+.broadcast-status .mini-label {
+  margin: 0;
+  color: var(--gold-light);
+  letter-spacing: 0.13em;
+}
+.broadcast-status strong {
+  display: block;
+  color: var(--cream);
+  font-size: clamp(1rem, 1.8vw, 1.12rem);
+  line-height: 1.25;
+}
+.broadcast-status span {
+  display: block;
+  color: rgba(243, 226, 196, 0.76);
+  font-size: 0.88rem;
+}
+.broadcast-status[data-state="live"] {
+  background: rgba(72, 220, 114, 0.08);
+  border-color: rgba(72, 220, 114, 0.28);
+}
+.broadcast-status[data-state="repeat"] {
+  background: rgba(255, 213, 108, 0.055);
+}
+.now-playing .np-row {
+  background: rgba(255,255,255,0.026);
+  border-color: rgba(255,255,255,0.10);
+}
+.now-playing .np-row strong {
+  color: rgba(255, 241, 221, 0.82);
+}
+.now-playing .np-row > span:last-child {
+  color: var(--gold-light);
+}
+.listener-panel {
+  padding: 0.58rem 0.72rem;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.028);
+}
+.listener-panel .mini-label {
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+}
+.listener-panel strong {
+  font-size: clamp(0.98rem, 1.7vw, 1.12rem);
+}
+.listener-panel p:last-child {
+  font-size: 0.76rem;
+}
+@media (min-width: 720px) {
+  .broadcast-status {
+    grid-template-columns: minmax(8rem, auto) minmax(0, 1fr);
+    align-items: center;
+    column-gap: 1rem;
+  }
+  .broadcast-status .mini-label {
+    grid-row: span 2;
+  }
+}
+@media (max-width: 520px) {
+  .now-playing {
+    padding: 0.95rem;
+  }
+  .broadcast-status {
+    padding: 0.7rem 0.76rem;
+  }
+  .listener-panel {
+    gap: 0.25rem;
+  }
+}
+
+/* 2026-05-13 UI priority pass: make first screen listener-focused and consistent */
+body.hide-now-playing #now-playing-panel,
+body.hide-coming-up #coming-up-row,
+body.hide-previous-played #previous-panel {
+  display: none !important;
+}
+
+/* Put listening first; keep the big branding image as supporting content lower down. */
+#listen.player-card {
+  margin-top: 1rem;
+  border-radius: 24px;
+}
+
+.player-top {
+  align-items: center;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid rgba(255, 213, 108, 0.22);
+}
+
+.play-copy h2 {
+  font-size: clamp(1.75rem, 4vw, 3.15rem);
+  letter-spacing: -0.035em;
+}
+
+.play-subtitle {
+  max-width: 35rem;
+}
+
+.now-playing {
+  margin-top: 0.95rem;
+  padding: clamp(0.9rem, 2.2vw, 1.15rem);
+  border: 1px solid rgba(255, 213, 108, 0.24);
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(8, 28, 42, 0.72), rgba(4, 13, 20, 0.78));
+}
+
+.now-playing-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.75rem;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255, 213, 108, 0.22);
+}
+
+.now-playing .section-title {
+  margin: 0 0 0.18rem;
+  padding: 0;
+  border: 0;
+}
+
+.now-playing-subtitle {
+  margin: 0;
+  color: rgba(255, 241, 221, 0.72);
+  font-size: 0.92rem;
+}
+
+.broadcast-status {
+  margin: 0 0 0.75rem;
+  padding: 0.62rem 0.75rem;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.25rem 0.85rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 213, 108, 0.18);
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.broadcast-status .mini-label {
+  grid-row: span 2;
+  margin: 0;
+  color: rgba(255, 213, 108, 0.92);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+}
+
+.broadcast-status strong {
+  color: var(--cream);
+  font-size: 0.98rem;
+  line-height: 1.2;
+}
+
+.broadcast-status span {
+  color: rgba(243, 226, 196, 0.7);
+  font-size: 0.82rem;
+}
+
+.track-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.now-playing .np-row {
+  margin: 0;
+  padding: 0.78rem 0.85rem;
+  min-height: 5.25rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-content: start;
+  gap: 0.32rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.105);
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.now-playing .np-row .np-icon { display: none; }
+.now-playing .np-row strong {
+  color: rgba(255, 241, 221, 0.72);
+  text-transform: uppercase;
+  letter-spacing: 0.11em;
+  font-size: 0.68rem;
+}
+.now-playing .np-row > span:last-child {
+  color: var(--gold-light);
+  font-size: clamp(1.05rem, 2.15vw, 1.28rem);
+  line-height: 1.28;
+}
+
+.extra-playlist.queue-grid {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  gap: 0.75rem;
+  border-top: 1px solid rgba(255, 213, 108, 0.2);
+}
+
+.queue-card {
+  margin: 0;
+  padding: 0.78rem 0.85rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.09);
+  background: rgba(255,255,255,0.025);
+}
+
+.queue-card .mini-label {
+  margin-bottom: 0.45rem;
+  color: var(--gold-light);
+}
+
+#coming-up {
+  display: block;
+  color: var(--cream);
+  font-size: 1rem;
+  line-height: 1.38;
+}
+
+#previous-list {
+  margin: 0;
+  padding-left: 1rem;
+  color: var(--muted);
+  line-height: 1.35;
+}
+
+.listener-panel {
+  flex: 0 0 auto;
+  min-width: 10.75rem;
+  max-width: 13rem;
+  margin: 0;
+  padding: 0.52rem 0.68rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.12rem;
+  border: 1px solid rgba(255, 213, 108, 0.18);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.035);
+  text-align: right;
+}
+
+.listener-panel[hidden] { display: none; }
+.listener-panel .mini-label {
+  margin: 0;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  color: rgba(255, 213, 108, 0.88);
+}
+.listener-panel strong {
+  font-size: clamp(0.95rem, 1.8vw, 1.08rem);
+  color: var(--cream);
+}
+.listener-panel p:last-child {
+  margin: 0;
+  max-width: none;
+  color: rgba(243, 226, 196, 0.58);
+  font-size: 0.72rem;
+  text-align: right;
+}
+
+.hero-card {
+  min-height: clamp(180px, 28vw, 300px);
+}
+
+@media (max-width: 720px) {
+  #listen.player-card {
+    border-radius: 20px;
+  }
+  .player-top {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+  .live-badge {
+    display: none;
+  }
+  .play-button {
+    width: clamp(76px, 22vw, 104px);
+  }
+  .play-copy h2 {
+    font-size: clamp(1.7rem, 8vw, 2.45rem);
+  }
+  .now-playing-head {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+  .listener-panel {
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    text-align: left;
+  }
+  .listener-panel p:last-child { text-align: left; }
+  .track-grid,
+  .extra-playlist.queue-grid {
+    grid-template-columns: 1fr;
+  }
+  .now-playing .np-row {
+    min-height: 0;
+  }
+  .broadcast-status {
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
+  }
+  .broadcast-status .mini-label {
+    grid-row: auto;
+  }
+  .hero-card {
+    margin-top: 1rem;
+    min-height: 170px;
+  }
+}
+
+@media (max-width: 430px) {
+  .now-playing {
+    padding: 0.8rem;
+    border-radius: 18px;
+  }
+  .queue-card,
+  .now-playing .np-row,
+  .broadcast-status {
+    padding: 0.68rem 0.72rem;
+  }
+}
+
+/* 2026-05-13 final listener-first clean-up
+   Keep the big station banner first and make the live metadata easier for older listeners to scan. */
+.hero-card {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  min-height: clamp(260px, 46vw, 520px);
+}
+
+#listen.player-card {
+  margin-top: 1rem;
+}
+
+.hero-card .status-pills {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.hero-card .listener-panel,
+.hero-card .listener-hero-pill {
+  display: inline-flex;
+  width: auto;
+  min-width: 0;
+  max-width: none;
+  margin: 0;
+  padding: 0.72rem 1rem;
+  align-items: center;
+  gap: 0.65rem;
+  border-radius: 999px;
+  text-align: left;
+  background: rgba(4, 32, 22, 0.78);
+  border: 1px solid rgba(80, 244, 133, 0.42);
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.18) inset;
+}
+
+.hero-card .listener-panel[hidden] { display: none !important; }
+.hero-card .listener-dot {
+  width: 0.72rem;
+  height: 0.72rem;
+  border-radius: 999px;
+  background: #4cff83;
+  box-shadow: 0 0 0 0.45rem rgba(76, 255, 131, 0.13);
+}
+.hero-card .listener-copy {
+  display: grid;
+  gap: 0.05rem;
+  line-height: 1.05;
+}
+.hero-card .listener-copy strong,
+.hero-card .listener-panel strong {
+  color: var(--cream);
+  font-size: clamp(0.98rem, 1.7vw, 1.2rem);
+}
+.hero-card .listener-copy span,
+.hero-card .listener-panel p:last-child {
+  color: rgba(243, 226, 196, 0.72);
+  font-size: 0.78rem;
+  text-align: left;
+}
+
+.now-playing {
+  padding: clamp(0.9rem, 2.4vw, 1.25rem);
+  border-color: rgba(255, 213, 108, 0.22);
+  background: linear-gradient(180deg, rgba(5, 23, 34, 0.82), rgba(3, 11, 18, 0.9));
+}
+.now-playing-head {
+  display: block;
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.75rem;
+}
+.now-playing-subtitle {
+  font-size: 0.95rem;
+}
+.broadcast-status {
+  margin-bottom: 0.75rem;
+  padding: 0.72rem 0.82rem;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.14rem;
+  background: rgba(255, 213, 108, 0.055);
+  border-color: rgba(255, 213, 108, 0.2);
+}
+.broadcast-status .mini-label,
+.queue-card .mini-label,
+.now-playing .np-row strong {
+  font-size: 0.68rem;
+  letter-spacing: 0.13em;
+}
+.broadcast-status strong {
+  color: var(--gold-light);
+  font-size: clamp(1rem, 2vw, 1.18rem);
+}
+.broadcast-status span {
+  font-size: 0.9rem;
+}
+.track-grid,
+.extra-playlist.queue-grid {
+  grid-template-columns: 1fr;
+  gap: 0.62rem;
+}
+.now-playing .np-row,
+.queue-card {
+  min-height: 0;
+  padding: 0.76rem 0.85rem;
+  border-radius: 15px;
+  background: rgba(255,255,255,0.032);
+  border: 1px solid rgba(255,255,255,0.09);
+}
+.now-playing .np-row > span:last-child,
+#coming-up {
+  color: var(--cream);
+  font-size: clamp(1.03rem, 2.4vw, 1.2rem);
+}
+#song-title,
+#artist-name {
+  color: var(--gold-light) !important;
+}
+.extra-playlist.queue-grid {
+  margin-top: 0.7rem;
+  padding-top: 0.7rem;
+}
+#previous-list {
+  padding-left: 1.1rem;
+  line-height: 1.45;
+}
+#previous-list li + li { margin-top: 0.25rem; }
+
+@media (min-width: 820px) {
+  .track-grid {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  }
+  .extra-playlist.queue-grid {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  }
+}
+
+@media (max-width: 720px) {
+  .hero-card {
+    min-height: 245px;
+    margin-top: 0.85rem;
+  }
+  .hero-card .listener-panel,
+  .hero-card .listener-hero-pill {
+    padding: 0.62rem 0.82rem;
+  }
+  #listen.player-card {
+    margin-top: 0.9rem;
+  }
+  .now-playing {
+    padding: 0.82rem;
+  }
+  .now-playing .np-row,
+  .queue-card,
+  .broadcast-status {
+    padding: 0.72rem 0.75rem;
+  }
+}
+
+
+/* Lighthouse stability reserve: keeps the player height steadier while live metadata updates. */
+#now-playing-panel { min-height: 22rem; }
+@media (max-width: 720px) {
+  #now-playing-panel { min-height: 30rem; }
+}
+
+
+/* 2026-05-14 header listener pill alignment
+   Keep the listener count beside the Radio is live pill and match its size. */
+.hero-card .status-pills {
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.hero-card .listener-panel,
+.hero-card .listener-hero-pill {
+  padding: 0.35rem 0.85rem;
+  gap: 0.55rem;
+  min-height: 0;
+  border-color: rgba(72, 220, 114, 0.4);
+  background: rgba(72, 220, 114, 0.12);
+  color: var(--green);
+}
+
+.hero-card .listener-dot {
+  width: 9px;
+  height: 9px;
+  flex: 0 0 9px;
+  box-shadow: none;
+}
+
+.hero-card .listener-copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.hero-card .listener-copy strong,
+.hero-card .listener-panel strong {
+  color: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.hero-card .listener-copy span,
+.hero-card .listener-panel p:last-child {
+  color: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.hero-card .listener-copy span:empty {
+  display: none;
+}
+
+@media (max-width: 420px) {
+  .hero-card .status-pills {
+    gap: 0.45rem;
+  }
+  .hero-card .status-pill,
+  .hero-card .listener-panel,
+  .hero-card .listener-hero-pill {
+    padding: 0.34rem 0.7rem;
+    font-size: 0.78rem;
+  }
+  .hero-card .listener-copy strong,
+  .hero-card .listener-panel strong {
+    font-size: 0.78rem;
+  }
+}
+
+
+/* 2026-05-14 listener pill size fix
+   Make the homepage listener pill match the Radio is live pill exactly,
+   with the dot beside the text rather than stacking above it. */
+.hero-card .listener-panel,
+.hero-card .listener-hero-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem 0.85rem;
+  gap: 0.55rem;
+  min-height: auto;
+}
+
+.hero-card .listener-dot {
+  width: 9px;
+  height: 9px;
+  flex: 0 0 9px;
+  display: inline-block;
+  align-self: center;
+}
+
+.hero-card #listener-count {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+  color: inherit;
+}
+
+@media (max-width: 420px) {
+  .hero-card .listener-panel,
+  .hero-card .listener-hero-pill {
+    padding: 0.34rem 0.7rem;
+  }
+
+  .hero-card #listener-count {
+    font-size: 0.78rem;
+  }
+}
+
+/* 2026-05-14 mobile listener pill final fix
+   Keep the homepage listener pill the same size as the Radio is live pill on mobile,
+   and force the green dot to stay beside the text rather than above it. */
+.hero-card #radio-pill,
+.hero-card #listener-panel {
+  flex: 0 0 auto;
+}
+
+.hero-card #listener-panel,
+.hero-card #listener-panel.listener-panel,
+.hero-card #listener-panel.listener-hero-pill {
+  display: inline-flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: center;
+  gap: 0.55rem !important;
+  width: auto !important;
+  min-width: auto !important;
+  max-width: none !important;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.hero-card #listener-panel .dot,
+.hero-card #listener-panel .listener-dot {
+  display: inline-block !important;
+  width: 9px !important;
+  height: 9px !important;
+  flex: 0 0 9px !important;
+  align-self: center !important;
+  margin: 0 !important;
+}
+
+.hero-card #listener-panel .label,
+.hero-card #listener-count {
+  display: inline !important;
+  white-space: nowrap !important;
+  line-height: 1 !important;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+@media (max-width: 480px) {
+  .hero-card .status-pills {
+    gap: 0.5rem;
+  }
+
+  .hero-card #listener-panel,
+  .hero-card #listener-panel.listener-panel,
+  .hero-card #listener-panel.listener-hero-pill {
+    padding: 0.35rem 0.85rem !important;
+  }
+
+  .hero-card #listener-panel .label,
+  .hero-card #listener-count {
+    font-size: 0.85rem !important;
+  }
+}
+
+/* 2026-05-14 live show display refinement
+   When Jim is live, avoid showing the awkward Artist/Song metadata cards
+   because the metadata source reports the programme as “Live / Now On Air”. */
+.now-playing.is-live-show .track-grid {
+  display: none !important;
+}
+
+.now-playing.is-live-show .broadcast-status {
+  border-color: rgba(111, 255, 151, 0.42);
+  background:
+    linear-gradient(135deg, rgba(18, 92, 57, 0.34), rgba(5, 26, 32, 0.88)),
+    rgba(5, 20, 25, 0.9);
+  box-shadow: inset 0 0 0 1px rgba(111, 255, 151, 0.08);
+}
+
+.now-playing.is-live-show .broadcast-status .mini-label {
+  color: #7dff9a;
+}
+
+.now-playing.is-live-show .broadcast-status strong {
+  color: #ffe39a;
+}
+
+.now-playing.is-live-show .extra-playlist {
+  margin-top: 1rem;
+}
+
+.now-playing.is-live-show #coming-up-row,
+.now-playing.is-live-show #previous-panel {
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.now-playing.is-live-show #coming-up-row .mini-label,
+.now-playing.is-live-show #previous-panel .mini-label {
+  color: #ffe08a;
+}
+
+@media (max-width: 560px) {
+  .now-playing.is-live-show .broadcast-status {
+    padding: 1.05rem;
+  }
+
+  .now-playing.is-live-show .broadcast-status strong {
+    font-size: 1.3rem;
+  }
+
+  .now-playing.is-live-show .broadcast-status span {
+    font-size: 0.98rem;
+  }
+}
+
+
+/* Repeat show display refinement: avoid showing repeat-show filenames as normal song metadata. */
+.now-playing.is-repeat-show .track-grid {
+  display: none !important;
+}
+
+.now-playing.is-repeat-show .broadcast-status {
+  border-color: rgba(255, 213, 108, 0.42);
+  background:
+    linear-gradient(135deg, rgba(123, 82, 18, 0.36), rgba(5, 26, 32, 0.88)),
+    rgba(5, 20, 25, 0.9);
+  box-shadow: inset 0 0 0 1px rgba(255, 213, 108, 0.08);
+}
+
+.now-playing.is-repeat-show .broadcast-status .mini-label {
+  color: #ffe08a;
+}
+
+.now-playing.is-repeat-show .broadcast-status strong {
+  color: #ffe39a;
+}
+
+.now-playing.is-repeat-show .extra-playlist {
+  margin-top: 1rem;
+}
+
+.now-playing.is-repeat-show #coming-up-row,
+.now-playing.is-repeat-show #previous-panel {
+  background: rgba(255, 255, 255, 0.035);
+}
+
+@media (max-width: 560px) {
+  .now-playing.is-repeat-show .broadcast-status {
+    padding: 1.05rem;
+  }
+  .now-playing.is-repeat-show .broadcast-status strong {
+    font-size: 1.3rem;
+  }
+  .now-playing.is-repeat-show .broadcast-status span {
+    font-size: 0.98rem;
+  }
+}

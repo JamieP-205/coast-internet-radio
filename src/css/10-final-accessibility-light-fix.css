@@ -1,0 +1,588 @@
+
+/* Final accessibility and light-mode stability pass */
+
+/* Keep large text useful without allowing controls to force horizontal scrolling. */
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+img,
+svg,
+video,
+canvas,
+iframe {
+  max-width: 100%;
+}
+
+/* The helper is a fixed UI component, so it uses its own safe scale instead of inheriting the page's largest reading size. */
+.station-helper,
+.station-helper * {
+  box-sizing: border-box;
+}
+
+.station-helper {
+  max-width: calc(100dvw - 16px);
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+html[data-text="large"] .station-helper,
+html[data-text="x-large"] .station-helper,
+html[data-text="xx-large"] .station-helper {
+  font-size: 16px;
+}
+
+.station-helper-panel {
+  max-width: calc(100dvw - 16px);
+  overflow-x: hidden;
+}
+
+.station-helper-header,
+.station-helper-title-wrap,
+.station-helper-body,
+.station-helper-messages,
+.station-helper-compose,
+.station-helper-search,
+.station-helper-suggestions,
+.station-helper-chip-list,
+.station-helper-row,
+.station-helper-bubble {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.station-helper-title-wrap h2,
+.station-helper-title-wrap p,
+.station-helper-bubble,
+.station-helper-bubble p,
+.station-helper-bubble strong,
+.station-helper-chip,
+.station-helper-related-button,
+.station-helper-action {
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.station-helper-chip-list {
+  flex-wrap: wrap;
+  overflow-x: hidden;
+  max-height: 7.5rem;
+  overflow-y: auto;
+  padding-right: 0.1rem;
+}
+
+.station-helper-chip {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: 100%;
+  white-space: normal;
+  text-align: left;
+}
+
+.station-helper-close {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+  .station-helper {
+    left: auto;
+    right: max(10px, env(safe-area-inset-right));
+    bottom: max(10px, env(safe-area-inset-bottom));
+    max-width: calc(100dvw - 20px);
+  }
+
+  .station-helper-panel {
+    position: fixed;
+    left: max(8px, env(safe-area-inset-left));
+    right: max(8px, env(safe-area-inset-right));
+    top: max(8px, env(safe-area-inset-top));
+    bottom: max(8px, env(safe-area-inset-bottom));
+    width: auto;
+    max-width: none;
+    height: auto;
+    max-height: none;
+    border-radius: 20px;
+  }
+
+  .station-helper-header {
+    gap: 0.55rem;
+    padding: 0.72rem 0.72rem;
+  }
+
+  .station-helper-title-wrap h2 {
+    font-size: 1.14rem;
+  }
+
+  .station-helper-title-wrap p {
+    font-size: 0.82rem;
+  }
+
+  .station-helper-close {
+    min-width: 3.25rem;
+    min-height: 2.35rem;
+    padding: 0.42rem 0.62rem;
+    font-size: 0.86rem;
+  }
+
+  .station-helper-messages {
+    padding: 0.72rem;
+  }
+
+  .station-helper-compose {
+    padding: 0.62rem;
+  }
+
+  .station-helper-bubble {
+    max-width: 90%;
+    padding: 0.7rem 0.76rem;
+  }
+
+  .station-helper-search {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .station-helper-search input {
+    min-height: 2.62rem;
+    padding: 0.6rem 0.78rem;
+  }
+
+  .station-helper-ask {
+    min-width: 3.7rem;
+    padding: 0.5rem 0.7rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .station-helper-search,
+  html[data-text="x-large"] .station-helper-search,
+  html[data-text="xx-large"] .station-helper-search {
+    grid-template-columns: 1fr;
+  }
+
+  .station-helper-ask {
+    width: 100%;
+  }
+
+  .station-helper-toggle-text {
+    display: inline;
+  }
+
+  .station-helper-toggle {
+    padding: 0.48rem 0.68rem 0.48rem 0.5rem;
+  }
+}
+
+html[data-text="xx-large"] .station-helper-chip {
+  max-width: 100%;
+}
+
+
+.station-helper-messages {
+  align-content: start;
+  scroll-padding-top: 0.5rem;
+}
+
+.station-helper-body {
+  min-height: 0;
+}
+
+.station-helper-messages::-webkit-scrollbar {
+  width: 10px;
+}
+
+.station-helper-messages::-webkit-scrollbar-thumb {
+  background: rgba(255, 213, 108, 0.22);
+  border-radius: 999px;
+}
+
+html[data-text="xx-large"] .station-helper-panel {
+  height: auto;
+  max-height: none;
+}
+
+/* Light mode coverage for request/song modal and accessibility dialog */
+html[data-theme="light"]:not([data-contrast="high"]) .modal-dialog,
+html[data-theme="light"]:not([data-contrast="high"]) .a11y-dialog {
+  background: linear-gradient(180deg, rgba(255, 252, 246, 0.99), rgba(247, 236, 219, 0.99)) !important;
+  color: #21160c !important;
+  border-color: rgba(143, 89, 14, 0.42) !important;
+}
+
+html[data-theme="light"]:not([data-contrast="high"]) .modal-dialog h2,
+html[data-theme="light"]:not([data-contrast="high"]) .a11y-dialog h2,
+html[data-theme="light"]:not([data-contrast="high"]) .form-row label,
+html[data-theme="light"]:not([data-contrast="high"]) .a11y-group legend,
+html[data-theme="light"]:not([data-contrast="high"]) .a11y-label {
+  color: #21160c !important;
+}
+
+html[data-theme="light"]:not([data-contrast="high"]) .modal-dialog p.help,
+html[data-theme="light"]:not([data-contrast="high"]) .a11y-dialog p.help,
+html[data-theme="light"]:not([data-contrast="high"]) .form-fallback,
+html[data-theme="light"]:not([data-contrast="high"]) .a11y-group p,
+html[data-theme="light"]:not([data-contrast="high"]) .a11y-note,
+html[data-theme="light"]:not([data-contrast="high"]) .request-phone-help {
+  color: #604f3c !important;
+}
+
+html[data-theme="light"]:not([data-contrast="high"]) .form-row input,
+html[data-theme="light"]:not([data-contrast="high"]) .form-row textarea,
+html[data-theme="light"]:not([data-contrast="high"]) .form-row select,
+html[data-theme="light"]:not([data-contrast="high"]) .a11y-choice,
+html[data-theme="light"]:not([data-contrast="high"]) .a11y-dialog select {
+  background: rgba(255, 255, 255, 0.86) !important;
+  color: #21160c !important;
+  border-color: rgba(143, 89, 14, 0.28) !important;
+}
+
+html[data-theme="light"]:not([data-contrast="high"]) .form-row input::placeholder,
+html[data-theme="light"]:not([data-contrast="high"]) .form-row textarea::placeholder {
+  color: rgba(33, 22, 12, 0.52) !important;
+}
+
+html[data-theme="light"]:not([data-contrast="high"]) .form-cancel,
+html[data-theme="light"]:not([data-contrast="high"]) .modal-close-x {
+  background: rgba(255, 255, 255, 0.78) !important;
+  color: #21160c !important;
+  border-color: rgba(143, 89, 14, 0.28) !important;
+}
+
+html[data-theme="light"]:not([data-contrast="high"]) .form-submit,
+html[data-theme="light"]:not([data-contrast="high"]) .a11y-choice.is-active,
+html[data-theme="light"]:not([data-contrast="high"]) .a11y-choice[aria-pressed="true"] {
+  color: #1d1002 !important;
+}
+
+html[data-theme="light"]:not([data-contrast="high"]) .request-phone-help a,
+html[data-theme="light"]:not([data-contrast="high"]) .form-fallback a,
+html[data-theme="light"]:not([data-contrast="high"]) .modal-dialog a,
+html[data-theme="light"]:not([data-contrast="high"]) .a11y-dialog a {
+  color: #8a5209 !important;
+}
+
+/* Light mode should be a readable light theme, not pale text over dark inherited cards. */
+html[data-theme="light"]:not([data-contrast="high"]) body {
+  color: #21160c;
+}
+
+html[data-theme="light"]:not([data-contrast="high"]) .announcement-banner,
+html[data-theme="light"]:not([data-contrast="high"]) .player-card,
+html[data-theme="light"]:not([data-contrast="high"]) .now-playing,
+html[data-theme="light"]:not([data-contrast="high"]) .about-strip,
+html[data-theme="light"]:not([data-contrast="high"]) .schedule-card,
+html[data-theme="light"]:not([data-contrast="high"]) .how-panel,
+html[data-theme="light"]:not([data-contrast="high"]) .support-panel,
+html[data-theme="light"]:not([data-contrast="high"]) .news-card,
+html[data-theme="light"]:not([data-contrast="high"]) .info-page {
+  background: linear-gradient(180deg, rgba(255, 252, 246, 0.99), rgba(247, 236, 219, 0.99)) !important;
+  color: #21160c !important;
+  border-color: rgba(143, 89, 14, 0.42) !important;
+}
+
+html[data-theme="light"]:not([data-contrast="high"]) .now-playing-head,
+html[data-theme="light"]:not([data-contrast="high"]) .now-playing .section-title,
+html[data-theme="light"]:not([data-contrast="high"]) .now-playing h2,
+html[data-theme="light"]:not([data-contrast="high"]) .player-card h2,
+html[data-theme="light"]:not([data-contrast="high"]) .schedule-card h2,
+html[data-theme="light"]:not([data-contrast="high"]) .about-strip h2,
+html[data-theme="light"]:not([data-contrast="high"]) .how-panel h2,
+html[data-theme="light"]:not([data-contrast="high"]) .support-panel h2,
+html[data-theme="light"]:not([data-contrast="high"]) .info-page h1,
+html[data-theme="light"]:not([data-contrast="high"]) .info-page h2 {
+  color: #21160c !important;
+}
+
+html[data-theme="light"]:not([data-contrast="high"]) .section-title,
+html[data-theme="light"]:not([data-contrast="high"]) .mini-label,
+html[data-theme="light"]:not([data-contrast="high"]) .schedule-days,
+html[data-theme="light"]:not([data-contrast="high"]) .now-playing .np-row strong,
+html[data-theme="light"]:not([data-contrast="high"]) .np-status-card .mini-label,
+html[data-theme="light"]:not([data-contrast="high"]) .np-track-card .mini-label,
+html[data-theme="light"]:not([data-contrast="high"]) .np-mini-card .mini-label,
+html[data-theme="light"]:not([data-contrast="high"]) .support-panel .script,
+html[data-theme="light"]:not([data-contrast="high"]) .support-panel .support-note {
+  color: #724507 !important;
+}
+
+html[data-theme="light"]:not([data-contrast="high"]) .now-playing-subtitle,
+html[data-theme="light"]:not([data-contrast="high"]) .play-subtitle,
+html[data-theme="light"]:not([data-contrast="high"]) .player-note,
+html[data-theme="light"]:not([data-contrast="high"]) .schedule-card p,
+html[data-theme="light"]:not([data-contrast="high"]) .about-strip p,
+html[data-theme="light"]:not([data-contrast="high"]) .how-panel p,
+html[data-theme="light"]:not([data-contrast="high"]) .support-panel p,
+html[data-theme="light"]:not([data-contrast="high"]) .info-page p,
+html[data-theme="light"]:not([data-contrast="high"]) .info-page li,
+html[data-theme="light"]:not([data-contrast="high"]) #previous-list,
+html[data-theme="light"]:not([data-contrast="high"]) #previous-list li {
+  color: #4e4032 !important;
+}
+
+html[data-theme="light"]:not([data-contrast="high"]) .np-status-card,
+html[data-theme="light"]:not([data-contrast="high"]) .np-track-card,
+html[data-theme="light"]:not([data-contrast="high"]) .np-mini-card,
+html[data-theme="light"]:not([data-contrast="high"]) .schedule-time,
+html[data-theme="light"]:not([data-contrast="high"]) .how-panel li,
+html[data-theme="light"]:not([data-contrast="high"]) .news-item {
+  background: rgba(255, 255, 255, 0.76) !important;
+  border-color: rgba(143, 89, 14, 0.24) !important;
+  color: #21160c !important;
+}
+
+html[data-theme="light"]:not([data-contrast="high"]) .now-playing .np-row > span:last-child,
+html[data-theme="light"]:not([data-contrast="high"]) #artist,
+html[data-theme="light"]:not([data-contrast="high"]) #title,
+html[data-theme="light"]:not([data-contrast="high"]) #coming-up {
+  color: #8a5209 !important;
+}
+
+html[data-theme="light"]:not([data-contrast="high"]) .site-footer,
+html[data-theme="light"]:not([data-contrast="high"]) .site-footer nav,
+html[data-theme="light"]:not([data-contrast="high"]) .licensed-by {
+  color: #3f3225 !important;
+}
+
+html[data-theme="light"]:not([data-contrast="high"]) .site-footer nav a,
+html[data-theme="light"]:not([data-contrast="high"]) .site-footer nav .footer-link-button {
+  color: #21160c !important;
+}
+
+/* Light-mode hero: swap to the dedicated light-mode hero image. */
+html[data-theme="light"]:not([data-contrast="high"]) .hero-card {
+  background:
+    linear-gradient(90deg,
+      rgba(255, 246, 226, 0.55) 0%,
+      rgba(255, 246, 226, 0.18) 35%,
+      rgba(255, 246, 226, 0.0) 60%),
+    url("assets/images/jim-hero-studio-light-v1.webp") 70% center / cover no-repeat;
+  border-color: rgba(171, 111, 24, 0.32);
+}
+
+html[data-theme="light"]:not([data-contrast="high"]) .hero-card::before {
+  background: linear-gradient(90deg,
+    rgba(255, 246, 226, 0.10) 0%,
+    rgba(255, 246, 226, 0.0) 40%,
+    rgba(8, 18, 32, 0.0) 65%,
+    rgba(8, 18, 32, 0.04) 100%);
+}
+
+html[data-theme="light"]:not([data-contrast="high"]) .hero-card h1,
+html[data-theme="light"]:not([data-contrast="high"]) .hero-card .script,
+html[data-theme="light"]:not([data-contrast="high"]) .hero-card .place {
+  color: #21160c !important;
+  text-shadow: none;
+}
+
+html[data-theme="light"]:not([data-contrast="high"]) .hero-card .script,
+html[data-theme="light"]:not([data-contrast="high"]) .hero-card .place {
+  color: #8b540d !important;
+}
+
+/* Light-mode hero on narrow phones: same image, top-down wash. */
+@media (max-width: 640px) {
+  html[data-theme="light"]:not([data-contrast="high"]) .hero-card {
+    background:
+      linear-gradient(180deg,
+        rgba(255, 246, 226, 0.45) 0%,
+        rgba(255, 246, 226, 0.15) 45%,
+        rgba(255, 246, 226, 0.0) 75%,
+        rgba(255, 246, 226, 0.0) 100%),
+      url("assets/images/jim-hero-studio-light-v1.webp") 70% center / cover no-repeat;
+  }
+}
+
+
+html[data-theme="light"]:not([data-contrast="high"]) .listen-option-card {
+  background: rgba(255, 255, 255, 0.76) !important;
+  color: #21160c !important;
+  border-color: rgba(143, 89, 14, 0.26) !important;
+}
+
+html[data-theme="light"]:not([data-contrast="high"]) .listen-option-copy strong {
+  color: #21160c !important;
+}
+
+html[data-theme="light"]:not([data-contrast="high"]) .listen-option-copy p {
+  color: #604f3c !important;
+}
+
+/* === 2026-05-15 polish: targeted gaps in light mode === */
+
+/* Volume slider row had no visible surface in light mode; on the cream page it
+   read as a bare strip. Subtle cream surface + warm accent. */
+html[data-theme="light"]:not([data-contrast="high"]) .volume-line {
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(171, 111, 24, 0.18);
+  border-radius: var(--radius-sm);
+  padding: 0.4rem 0.6rem;
+}
+
+html[data-theme="light"]:not([data-contrast="high"]) .volume-line input[type="range"] {
+  accent-color: #b56b0e;
+}
+
+/* Programme status banner (Jim live / repeat show / 24-hour playlist) had only
+   dark-mode styling. Give it a visible cream panel in light mode. */
+html[data-theme="light"]:not([data-contrast="high"]) .broadcast-status,
+html[data-theme="light"]:not([data-contrast="high"]) .programme-status {
+  background: rgba(255, 245, 220, 0.85) !important;
+  border: 1px solid rgba(171, 111, 24, 0.28) !important;
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 0.8rem;
+  color: #21160c !important;
+}
+
+html[data-theme="light"]:not([data-contrast="high"]) .broadcast-status strong,
+html[data-theme="light"]:not([data-contrast="high"]) .programme-status strong {
+  color: #21160c !important;
+}
+
+html[data-theme="light"]:not([data-contrast="high"]) .broadcast-status .mini-label,
+html[data-theme="light"]:not([data-contrast="high"]) .programme-status .mini-label {
+  color: #8b540d !important;
+}
+
+html[data-theme="light"]:not([data-contrast="high"]) .programme-status span {
+  color: #3f3225 !important;
+}
+
+/* Tiny-screen layout fix: LIVE badge column squashed the play-copy on phones
+   under 380px. Hide the badge entirely there (listeners know it's the live
+   stream — the badge is redundant at that width). */
+@media (max-width: 380px) {
+  .player-top {
+    grid-template-columns: auto 1fr;
+  }
+  .live-badge {
+    display: none;
+  }
+}
+
+/* === 2026-05-15 final: CLS / layout stability fixes ===
+   Lighthouse reported CLS 0.286. Sources are dynamic panels that go from
+   display:none to visible after the first metadata fetch and the first
+   managed-content load. We use two patterns:
+
+   1. For sibling-row elements (status pills) that should reserve a fixed
+      width slot, we replace display:none with visibility:hidden and
+      preserve the layout slot. The element remains semantically [hidden]
+      to assistive tech because aria-hidden is implied by visibility:hidden
+      in supporting screen readers.
+
+   2. For container panels whose vertical height grows on first load
+      (.now-playing, #previous-list), we set a min-height so subsequent
+      paints can only ADD content within the reserved height instead of
+      pushing the page.
+
+   CSS-only. Revert by removing this block. */
+
+/* Listener count pill in the hero status row.
+   When hidden, occupy the slot but stay invisible & non-interactive. */
+.status-pills .listener-panel[hidden] {
+  display: inline-flex;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Programme status banner inside the Now Playing panel. */
+#programme-status[hidden],
+.broadcast-status[hidden] {
+  display: grid;
+  visibility: hidden;
+  pointer-events: none;
+  min-height: 3.2rem;
+}
+
+/* Coming Up Next card. */
+.queue-card#coming-up-row[hidden] {
+  display: block;
+  visibility: hidden;
+  pointer-events: none;
+  min-height: 4rem;
+}
+
+/* Container reservations for the Now Playing panel and Previously Played
+   list. These keep the overall page height stable as the metadata Worker's
+   response is rendered into child slots. */
+.now-playing {
+  min-height: clamp(280px, 38vw, 360px);
+}
+
+#previous-list {
+  min-height: 8.5rem;
+}
+
+/* Reduce motion: prevent the Station Helper's animation-driven appearance
+   from contributing to first-paint shift on reduced-motion devices. */
+@media (prefers-reduced-motion: reduce) {
+  .station-helper-toggle,
+  .station-helper-window {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* === 2026-05-15 final v2: targeted CLS fix for hero-card + player-card ===
+   Lighthouse identified two shifting sections at Moto G4 width:
+   - .hero-card  contribution 0.174
+   - .player-card contribution 0.111
+
+   Root cause analysis:
+   1. .hero-card grows when #listener-panel un-hides because the previous
+      rule .hero-card .listener-panel[hidden] { display: none !important }
+      in 07-now-playing-polish.css line 621 wins specificity over any non-
+      important override. The status-pills row goes from 1 pill to 2 pills,
+      sometimes wrapping to 2 lines on narrow phones, growing the card.
+   2. .player-card shift is largely caused by the hero growing above it.
+      Defence-in-depth: explicit min-height on the player card.
+
+   Fix: same-specificity-or-higher !important override that keeps the
+   listener-panel slot reserved as visibility:hidden when [hidden]; and
+   a larger, more accurate min-height on .hero-card and .player-card at
+   mobile widths so the cards do not grow once data arrives. */
+
+/* (1) Hero status-pills: reserve the listener-pill slot from first paint.
+       Higher specificity than 07-now-playing-polish.css line 621, and
+       !important to match its !important.
+       Note: visibility:hidden keeps a CSS slot but also removes the element
+       from the accessibility tree, so this stays semantically equivalent to
+       the [hidden] attribute for assistive tech. */
+.hero-card .status-pills .listener-panel[hidden] {
+  display: inline-flex !important;
+  visibility: hidden;
+  pointer-events: none;
+  min-width: 7.5rem;
+}
+
+/* When the listener-panel becomes visible, keep the same min-width so the
+   label change from "Checking…" to "N listening" does not change pill
+   width and re-flow the status row. */
+.hero-card .status-pills .listener-panel {
+  min-width: 7.5rem;
+  justify-content: flex-start;
+}
+
+/* (2) Removed: the .hero-card / .player-card min-height rules from the
+   previous failed attempt. Lighthouse confirmed those elements were not
+   growing in place — they were being displaced by a banner injected
+   above them in the DOM. Reserving height inside the cards did nothing.
+   Real fix is rendered in HTML (see static announcement banner in
+   index.html and the corresponding JS update in managed-content.js). */
+
+/* Light-mode tweaks for the consent banner. */
+html[data-theme="light"]:not([data-contrast="high"]) .consent-banner {
+  background: rgba(255, 252, 242, 0.98) !important;
+  color: #21160c !important;
+  border-color: rgba(143, 89, 14, 0.5) !important;
+}
+html[data-theme="light"]:not([data-contrast="high"]) .consent-banner-title {
+  color: #7a4f04 !important;
+}
+html[data-theme="light"]:not([data-contrast="high"]) .consent-banner-actions .secondary-button {
+  background: rgba(255, 255, 255, 0.85) !important;
+  color: #21160c !important;
+  border-color: rgba(143, 89, 14, 0.4) !important;
+}

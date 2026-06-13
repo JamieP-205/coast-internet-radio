@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Website Analytics | Coast Internet Radio</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#02070d">
+  <meta name="color-scheme" content="dark light">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <script src="/site-preferences.js?v=20260514-final-a11y-light"></script>
+  <link rel="stylesheet" href="/admin/admin.css?v=20260516-analytics-feedback">
+</head>
+<body class="history-page">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="admin-topbar">
+    <div class="admin-shell admin-topbar-inner">
+      <a class="admin-brand" href="/admin/" aria-label="Back to station admin">
+        <img src="/assets/images/coast-round-logo-192-v2.webp" alt="" width="56" height="56">
+        <span class="admin-brand-text"><strong>Coast Internet Radio</strong><span>Private website analytics</span></span>
+      </a>
+      <a class="admin-link-button" href="/admin/">Back to admin</a>
+    </div>
+  </header>
+
+  <nav class="admin-section-nav" aria-label="Admin sections">
+    <div class="admin-shell admin-section-nav-inner">
+      <a href="/admin/">Station admin</a>
+      <a href="/admin/history.html">Song history</a>
+      <a href="/admin/analytics.html" aria-current="page">Site analytics</a>
+      <a href="/admin/feedback.html">Visitor feedback</a>
+    </div>
+  </nav>
+
+  <main id="main" class="admin-shell admin-wrap history-dashboard">
+    <section class="dashboard-hero history-hero-clean">
+      <div>
+        <p class="eyebrow">Anonymous website analytics</p>
+        <h1>How people are using the website</h1>
+        <p class="intro">Simple anonymous counts of what visitors do on the website.</p>
+      </div>
+      <div class="hero-actions compact-actions">
+        <button class="secondary-button" id="refresh-btn" type="button">Refresh</button>
+        <button class="secondary-button" id="download-json-btn" type="button">Download JSON</button>
+      </div>
+    </section>
+
+    <section class="history-filter-card" aria-label="Date range">
+      <div class="quick-chip-row" role="group" aria-label="Quick date pick">
+        <button type="button" class="quick-chip is-active" data-range="1">Today</button>
+        <button type="button" class="quick-chip" data-range="2">Yesterday</button>
+        <button type="button" class="quick-chip" data-range="7">Last 7 days</button>
+        <button type="button" class="quick-chip" data-range="31">Last 31 days</button>
+        <button type="button" class="quick-chip" data-range="90">Last 90 days</button>
+      </div>
+    </section>
+
+    <div id="analytics-status" class="status-box" role="status" aria-live="polite">Loading analytics…</div>
+
+    <section class="edit-card important-card" id="insights-card" hidden>
+      <h2>Plain-English summary</h2>
+      <ul class="plain-english-list" id="insights-list"></ul>
+    </section>
+
+    <section class="edit-card details-card history-section-card" id="issues-card" hidden>
+      <h2>Possible issues</h2>
+      <ul class="plain-english-list" id="issues-list"></ul>
+    </section>
+
+    <section class="edit-card details-card history-section-card" id="headline-card" hidden>
+      <h2>Key numbers</h2>
+      <div class="rules-grid summary-grid summary-grid-clean" id="headline-grid"></div>
+    </section>
+
+    <section class="edit-card details-card history-section-card" id="playback-card" hidden>
+      <h2>Playback funnel</h2>
+      <div class="analytics-funnel" id="playback-funnel"></div>
+    </section>
+
+    <section class="edit-card details-card history-section-card" id="helper-card" hidden>
+      <h2>Station Helper effectiveness</h2>
+      <div class="analytics-funnel" id="helper-funnel"></div>
+    </section>
+
+    <section class="edit-card details-card history-section-card" id="request-card" hidden>
+      <h2>Request a Song funnel</h2>
+      <div class="analytics-funnel" id="request-funnel"></div>
+    </section>
+
+    <section class="edit-card details-card history-section-card" id="feedback-card" hidden>
+      <h2>Feedback funnel</h2>
+      <div class="analytics-funnel" id="feedback-funnel"></div>
+      <p class="help-text"><a href="/admin/feedback.html">Open the Visitor Feedback page →</a></p>
+    </section>
+
+    <section class="edit-card details-card history-section-card" id="audience-card" hidden>
+      <h2>Audience signals</h2>
+      <p class="help-text">Approximate, anonymous patterns. Groups smaller than three visitors are shown as "Fewer than 3" to avoid singling anyone out.</p>
+      <div class="analytics-audience-grid" id="audience-grid"></div>
+    </section>
+
+    <section class="edit-card details-card history-section-card" id="hourly-card" hidden>
+      <h2>Visits by hour of day</h2>
+      <div class="analytics-bars" id="hourly-bars" aria-hidden="true"></div>
+      <details class="sr-table-details">
+        <summary>Show as table</summary>
+        <table class="analytics-bar-table">
+          <thead><tr><th scope="col">Hour</th><th scope="col">Visits</th></tr></thead>
+          <tbody id="hourly-table"></tbody>
+        </table>
+      </details>
+    </section>
+
+    <section class="edit-card details-card history-section-card" id="elsewhere-card" hidden>
+      <h2>Listen Elsewhere clicks</h2>
+      <div class="compact-list" id="elsewhere-list"></div>
+    </section>
+
+    <details class="edit-card details-card help-dropdown">
+      <summary><span class="summary-copy"><strong>Recent anonymous activity</strong><em>Last 100 events, debug only.</em></span></summary>
+      <ul class="compact-list" id="recent-list"></ul>
+    </details>
+
+    <details class="edit-card details-card help-dropdown">
+      <summary><span class="summary-copy"><strong>Raw JSON</strong><em>For debugging only.</em></span></summary>
+      <pre class="raw-json" id="raw-json"></pre>
+    </details>
+  </main>
+
+  <script>
+    (() => {
+      "use strict";
+      let latestExport = null;
+      let currentRange = 1;
+      const $ = (id) => document.getElementById(id);
+
+      async function getJson(url) {
+        const res = await fetch(url, { credentials: "same-origin", cache: "no-store", headers: { "Accept": "application/json" } });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || data.ok === false) throw new Error(data.error || (res.status === 401 ? "Session expired. Please sign in again." : "Request failed."));
+        return data;
+      }
+
+      function setStatus(message, type = "") {
+        const el = $("analytics-status");
+        el.textContent = message;
+        el.className = "status-box" + (type ? " " + type : "");
+      }
+
+      function clearChildren(el) {
+        while (el.firstChild) el.removeChild(el.firstChild);
+      }
+
+      function tile(label, value) {
+        const div = document.createElement("div");
+        const strong = document.createElement("strong");
+        const span = document.createElement("span");
+        strong.textContent = label;
+        span.textContent = String(value);
+        div.append(strong, span);
+        return div;
+      }
+
+      function plainList(targetId, items) {
+        const el = $(targetId);
+        clearChildren(el);
+        items.forEach((line) => {
+          const li = document.createElement("li");
+          if (typeof line === "string") li.textContent = line;
+          else { li.textContent = line.message; if (line.level === "warn") li.classList.add("is-warn"); }
+          el.appendChild(li);
+        });
+      }
+
+      function funnelRow(targetEl, label, value, total, suffix = "") {
+        const row = document.createElement("div");
+        row.className = "analytics-funnel-row";
+        const labelEl = document.createElement("span");
+        labelEl.className = "analytics-funnel-label";
+        labelEl.textContent = label;
+        const bar = document.createElement("span");
+        bar.className = "analytics-funnel-bar";
+        bar.setAttribute("aria-hidden", "true");
+        const pct = total ? Math.round((value / total) * 100) : 0;
+        bar.style.width = (total ? Math.max(2, pct) : 0) + "%";
+        const num = document.createElement("span");
+        num.className = "analytics-funnel-number";
+        num.textContent = String(value) + (suffix ? " " + suffix : "");
+        row.append(labelEl, bar, num);
+        targetEl.appendChild(row);
+      }
+
+      function renderPlayback(events, breakdowns) {
+        const card = $("playback-card");
+        const total = events.play_click || 0;
+        if (total === 0) { card.hidden = true; return; }
+        card.hidden = false;
+        const el = $("playback-funnel");
+        clearChildren(el);
+        funnelRow(el, "Pressed Play", total, total);
+        funnelRow(el, "Started OK", events.play_success || 0, total);
+        funnelRow(el, "Pause clicked", events.pause_click || 0, total);
+        funnelRow(el, "Failed", events.play_error || 0, total);
+        const errors = breakdowns["play_error.error_code"];
+        if (errors) {
+          const reasons = Object.keys(errors).map((k) => k + ": " + errors[k]).join(" · ");
+          const p = document.createElement("p");
+          p.className = "help-text";
+          p.textContent = "Failure reasons — " + reasons;
+          el.appendChild(p);
+        }
+      }
+
+      function renderHelper(events, breakdowns) {
+        const card = $("helper-card");
+        const total = events.helper_open || 0;
+        if (total === 0) { card.hidden = true; return; }
+        card.hidden = false;
+        const el = $("helper-funnel");
+        clearChildren(el);
+        funnelRow(el, "Helper opened", total, total);
+        funnelRow(el, "Question matched", events.helper_intent || 0, total);
+        funnelRow(el, "No useful answer", events.helper_no_result || 0, total);
+        const intents = breakdowns["helper_intent.intent_id"];
+        if (intents) {
+          const top = Object.keys(intents).map((k) => ({ k: k, n: intents[k] })).sort((a, b) => b.n - a.n).slice(0, 5);
+          const p = document.createElement("p");
+          p.className = "help-text";
+          p.textContent = "Most-asked: " + top.map((x) => x.k + " (" + x.n + ")").join(" · ");
+          el.appendChild(p);
+        }
+      }
+
+      function renderRequest(events) {
+        const card = $("request-card");
+        const total = events.request_form_open || 0;
+        if (total === 0) { card.hidden = true; return; }
+        card.hidden = false;
+        const el = $("request-funnel");
+        clearChildren(el);
+        funnelRow(el, "Form opened", total, total);
+        funnelRow(el, "Submit attempts", events.request_form_submit || 0, total);
+      }
+
+      function renderFeedback(events) {
+        const card = $("feedback-card");
+        const opens = events.feedback_open || 0;
+        if (opens === 0 && (events.feedback_submit || 0) === 0) { card.hidden = true; return; }
+        card.hidden = false;
+        const el = $("feedback-funnel");
+        clearChildren(el);
+        funnelRow(el, "Form opened", opens, Math.max(opens, 1));
+        funnelRow(el, "Submitted", events.feedback_submit || 0, Math.max(opens, 1));
+        funnelRow(el, "Sent OK", events.feedback_success || 0, Math.max(opens, 1));
+        funnelRow(el, "Errored", events.feedback_error || 0, Math.max(opens, 1));
+      }
+
+      function renderHeadline(events, breakdowns) {
+        const card = $("headline-card");
+        const grid = $("headline-grid");
+        clearChildren(grid);
+        grid.appendChild(tile("Page visits", events.page_view || 0));
+        grid.appendChild(tile("Sessions", events.session_start || 0));
+        // Returning vs new visitors (only meaningful when consent=yes was chosen).
+        const returning = breakdowns["session_start.is_returning"] || {};
+        const consent = breakdowns["session_start.consent"] || {};
+        const newVisitors = returning["false"] || 0;
+        const returningVisitors = returning["true"] || 0;
+        if (returningVisitors > 0 || newVisitors > 0) {
+          grid.appendChild(tile("New visitors", newVisitors));
+          grid.appendChild(tile("Returning visitors", returningVisitors));
+        }
+        if ((consent.unset || 0) > 0 || (consent.no || 0) > 0 || (consent.yes || 0) > 0) {
+          grid.appendChild(tile("Counted (consent yes)", consent.yes || 0));
+          grid.appendChild(tile("Anonymous only", (consent.no || 0) + (consent.unset || 0)));
+        }
+        grid.appendChild(tile("Play clicks", events.play_click || 0));
+        grid.appendChild(tile("Play started OK", events.play_success || 0));
+        grid.appendChild(tile("Play failures", events.play_error || 0));
+        grid.appendChild(tile("Helper opens", events.helper_open || 0));
+        grid.appendChild(tile("Requests submitted", events.request_form_submit || 0));
+        grid.appendChild(tile("Feedback sent", events.feedback_success || 0));
+        grid.appendChild(tile("Support clicks", events.donate_click || 0));
+        const themes = breakdowns["page_view.theme"] || {};
+        grid.appendChild(tile("Dark theme", themes.dark || 0));
+        grid.appendChild(tile("Light theme", themes.light || 0));
+        const viewports = breakdowns["session_start.viewport_bucket"] || {};
+        const mobileTotal = (viewports.mobile || 0) + (viewports.narrow || 0);
+        grid.appendChild(tile("Mobile / narrow", mobileTotal));
+        grid.appendChild(tile("Desktop / tablet", (viewports.desktop || 0) + (viewports.tablet || 0)));
+        card.hidden = false;
+      }
+
+      function renderAudience(breakdowns) {
+        const card = $("audience-card");
+        const grid = $("audience-grid");
+        clearChildren(grid);
+        function block(title, map) {
+          if (!map || Object.keys(map).length === 0) return;
+          const section = document.createElement("section");
+          const h3 = document.createElement("h3");
+          h3.textContent = title;
+          section.appendChild(h3);
+          const ul = document.createElement("ul");
+          ul.className = "compact-list";
+          Object.keys(map).sort((a, b) => map[b] - map[a]).forEach((k) => {
+            const li = document.createElement("li");
+            const lab = document.createElement("span"); lab.textContent = k;
+            const n = document.createElement("strong"); n.textContent = String(map[k]);
+            li.append(lab, n);
+            ul.appendChild(li);
+          });
+          section.appendChild(ul);
+          grid.appendChild(section);
+        }
+        block("Device type", breakdowns["session_start.viewport_bucket"]);
+        block("Browser language", breakdowns["session_start.lang_short"]);
+        block("Timezone region", breakdowns["session_start.timezone_region"]);
+        block("How they arrived", breakdowns["page_view.referrer_type"]);
+        block("Session duration", breakdowns["session_end.duration_bucket"]);
+        card.hidden = grid.childElementCount === 0;
+      }
+
+      function renderHourly(hourly) {
+        const card = $("hourly-card");
+        const arr = hourly && hourly.page_view;
+        if (!Array.isArray(arr)) { card.hidden = true; return; }
+        const max = arr.reduce((m, n) => Math.max(m, n), 0);
+        if (max === 0) { card.hidden = true; return; }
+        const bars = $("hourly-bars");
+        const table = $("hourly-table");
+        clearChildren(bars);
+        clearChildren(table);
+        for (let h = 0; h < 24; h++) {
+          const wrap = document.createElement("div");
+          wrap.className = "analytics-bar-row";
+          const label = document.createElement("span");
+          label.className = "analytics-bar-label";
+          label.textContent = String(h).padStart(2, "0") + ":00";
+          const bar = document.createElement("span");
+          bar.className = "analytics-bar";
+          bar.style.width = (arr[h] / max * 100) + "%";
+          const num = document.createElement("span");
+          num.className = "analytics-bar-number";
+          num.textContent = String(arr[h]);
+          wrap.append(label, bar, num);
+          bars.appendChild(wrap);
+
+          const tr = document.createElement("tr");
+          const td1 = document.createElement("td"); td1.textContent = String(h).padStart(2, "0") + ":00";
+          const td2 = document.createElement("td"); td2.textContent = String(arr[h]);
+          tr.append(td1, td2);
+          table.appendChild(tr);
+        }
+        card.hidden = false;
+      }
+
+      function renderElsewhere(breakdowns) {
+        const card = $("elsewhere-card");
+        const map = breakdowns["listen_elsewhere_click.option_id"];
+        if (!map) { card.hidden = true; return; }
+        const ul = $("elsewhere-list");
+        clearChildren(ul);
+        Object.keys(map).sort((a, b) => map[b] - map[a]).forEach((k) => {
+          const li = document.createElement("li");
+          const a = document.createElement("span"); a.textContent = k;
+          const n = document.createElement("strong"); n.textContent = String(map[k]);
+          li.append(a, n);
+          ul.appendChild(li);
+        });
+        card.hidden = false;
+      }
+
+      function renderRecent(recent) {
+        const ul = $("recent-list");
+        clearChildren(ul);
+        recent.slice().reverse().slice(0, 100).forEach((ev) => {
+          const li = document.createElement("li");
+          const when = document.createElement("span");
+          when.textContent = ev.at ? new Date(ev.at).toLocaleString("en-GB") : "";
+          const name = document.createElement("strong");
+          name.textContent = ev.name || "";
+          li.append(when, name);
+          if (ev.fields && typeof ev.fields === "object") {
+            const fields = document.createElement("span");
+            fields.textContent = Object.keys(ev.fields).map((k) => k + "=" + ev.fields[k]).join(" ");
+            li.appendChild(fields);
+          }
+          ul.appendChild(li);
+        });
+      }
+
+      function renderRaw(data) {
+        $("raw-json").textContent = JSON.stringify(data, null, 2);
+      }
+
+      async function load() {
+        setStatus("Loading analytics…");
+        try {
+          const data = await getJson("/.netlify/functions/admin-site-analytics?days=" + encodeURIComponent(currentRange));
+          latestExport = data;
+          const events = (data.summary && data.summary.events) || {};
+          const breakdowns = (data.summary && data.summary.breakdowns) || {};
+          const hourly = (data.summary && data.summary.hourly) || {};
+
+          plainList("insights-list", data.insights || []);
+          $("insights-card").hidden = !(data.insights && data.insights.length);
+
+          plainList("issues-list", data.issues || []);
+          $("issues-card").hidden = !(data.issues && data.issues.length);
+
+          renderHeadline(events, breakdowns);
+          renderPlayback(events, breakdowns);
+          renderHelper(events, breakdowns);
+          renderRequest(events);
+          renderFeedback(events);
+          renderAudience(breakdowns);
+          renderHourly(hourly);
+          renderElsewhere(breakdowns);
+          renderRecent(data.recent || []);
+          renderRaw(data);
+
+          const totalEvents = Object.values(events).reduce((s, n) => s + (Number(n) || 0), 0);
+          if (totalEvents === 0) setStatus("No analytics data yet for this range. Once visitors arrive, data will appear here.");
+          else setStatus("Loaded " + totalEvents + " anonymous events. Updated " + new Date().toLocaleString("en-GB") + ".", "ok");
+        } catch (err) {
+          setStatus(err.message || "Could not load analytics.", "err");
+        }
+      }
+
+      $("refresh-btn").addEventListener("click", load);
+      $("download-json-btn").addEventListener("click", () => {
+        if (!latestExport) return;
+        const blob = new Blob([JSON.stringify(latestExport, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "coast-site-analytics-" + new Date().toISOString().slice(0, 10) + ".json";
+        a.click();
+        URL.revokeObjectURL(url);
+      });
+
+      document.querySelectorAll("[data-range]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll("[data-range]").forEach((b) => b.classList.remove("is-active"));
+          btn.classList.add("is-active");
+          currentRange = Number(btn.dataset.range) || 1;
+          load();
+        });
+      });
+
+      load();
+    })();
+  </script>
+</body>
+</html>

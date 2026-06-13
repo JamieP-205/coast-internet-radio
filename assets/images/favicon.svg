@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Coast Internet Radio">
+  <rect width="120" height="120" rx="28" fill="#111827"/>
+  <circle cx="60" cy="60" r="42" fill="#facc15" opacity=".95"/>
+  <path d="M29 67c8-12 18-18 31-18s23 6 31 18" fill="none" stroke="#111827" stroke-width="9" stroke-linecap="round"/>
+  <circle cx="60" cy="60" r="8" fill="#111827"/>
+  <path d="M44 35h32" stroke="#111827" stroke-width="8" stroke-linecap="round"/>
+</svg>
