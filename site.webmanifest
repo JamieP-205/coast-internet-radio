@@ -1,0 +1,15 @@
+{
+  "name": "Coast Internet Radio",
+  "short_name": "Coast Radio",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#090b10",
+  "theme_color": "#111827",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

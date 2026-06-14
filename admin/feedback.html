@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Visitor Feedback | Coast Internet Radio</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#02070d">
+  <meta name="color-scheme" content="dark light">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <script src="/site-preferences.js?v=20260514-final-a11y-light"></script>
+  <link rel="stylesheet" href="/admin/admin.css?v=20260516-analytics-feedback">
+</head>
+<body class="history-page">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="admin-topbar">
+    <div class="admin-shell admin-topbar-inner">
+      <a class="admin-brand" href="/admin/" aria-label="Back to station admin">
+        <img src="/assets/images/coast-round-logo-192-v2.webp" alt="" width="56" height="56">
+        <span class="admin-brand-text"><strong>Coast Internet Radio</strong><span>Private visitor feedback</span></span>
+      </a>
+      <a class="admin-link-button" href="/admin/">Back to admin</a>
+    </div>
+  </header>
+
+  <nav class="admin-section-nav" aria-label="Admin sections">
+    <div class="admin-shell admin-section-nav-inner">
+      <a href="/admin/">Station admin</a>
+      <a href="/admin/history.html">Song history</a>
+      <a href="/admin/analytics.html">Site analytics</a>
+      <a href="/admin/feedback.html" aria-current="page">Visitor feedback</a>
+    </div>
+  </nav>
+
+  <main id="main" class="admin-shell admin-wrap history-dashboard">
+    <section class="dashboard-hero history-hero-clean">
+      <div>
+        <p class="eyebrow">Visitor messages</p>
+        <h1>Feedback from listeners</h1>
+        <p class="intro">Messages sent through the public feedback form. Stored separately from anonymous analytics. Optional names and contact details are only here so Jim can reply if he wants to.</p>
+      </div>
+      <div class="hero-actions compact-actions">
+        <button class="secondary-button" id="refresh-btn" type="button">Refresh</button>
+      </div>
+    </section>
+
+    <section class="history-filter-card" aria-label="Feedback filters">
+      <label>
+        <span>Date range</span>
+        <select id="days-select">
+          <option value="7">Last 7 days</option>
+          <option value="31" selected>Last 31 days</option>
+          <option value="90">Last 90 days</option>
+          <option value="180">Last 180 days</option>
+        </select>
+      </label>
+      <label>
+        <span>Type</span>
+        <select id="type-select">
+          <option value="">All types</option>
+          <option value="general">General</option>
+          <option value="website">Website problem</option>
+          <option value="audio">Audio/listening</option>
+          <option value="song">Song suggestion</option>
+          <option value="accessibility">Accessibility</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+      <label>
+        <span>Status</span>
+        <select id="status-select">
+          <option value="">All</option>
+          <option value="unread">Unread</option>
+          <option value="read">Read</option>
+          <option value="archived">Archived</option>
+        </select>
+      </label>
+      <label>
+        <span>Search messages</span>
+        <input id="search-input" type="search" placeholder="Find words in messages">
+      </label>
+    </section>
+
+    <section class="edit-card details-card history-section-card" id="summary-card" hidden>
+      <h2>Quick summary</h2>
+      <div class="rules-grid summary-grid summary-grid-clean" id="summary-grid"></div>
+    </section>
+
+    <div id="feedback-status" class="status-box" role="status" aria-live="polite">Loading feedback…</div>
+
+    <section class="edit-card details-card history-section-card" id="list-card" hidden>
+      <h2>Messages</h2>
+      <div id="feedback-list" class="feedback-list"></div>
+    </section>
+  </main>
+
+  <script>
+    (() => {
+      "use strict";
+      let csrf = "";
+      const $ = (id) => document.getElementById(id);
+
+      async function api(url, opts = {}) {
+        const res = await fetch(url, Object.assign({ credentials: "same-origin", cache: "no-store", headers: { "Accept": "application/json" } }, opts));
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || data.ok === false) throw new Error(data.error || (res.status === 401 ? "Session expired. Please sign in again." : "Request failed."));
+        return data;
+      }
+
+      function setStatus(message, type = "") {
+        const el = $("feedback-status");
+        el.textContent = message;
+        el.className = "status-box" + (type ? " " + type : "");
+      }
+
+      function tile(label, value) {
+        const div = document.createElement("div");
+        const strong = document.createElement("strong");
+        const span = document.createElement("span");
+        strong.textContent = label;
+        span.textContent = String(value);
+        div.append(strong, span);
+        return div;
+      }
+
+      function clearChildren(el) { while (el.firstChild) el.removeChild(el.firstChild); }
+
+      function typeLabel(t) {
+        return ({
+          general: "General feedback",
+          website: "Website problem",
+          audio: "Audio/listening problem",
+          song: "Song suggestion",
+          accessibility: "Accessibility/readability",
+          other: "Other"
+        })[t] || t;
+      }
+
+      function renderSummary(summary) {
+        const card = $("summary-card");
+        const grid = $("summary-grid");
+        clearChildren(grid);
+        grid.appendChild(tile("New today", summary.today || 0));
+        grid.appendChild(tile("Unread", summary.unread || 0));
+        grid.appendChild(tile("Total in range", summary.total || 0));
+        grid.appendChild(tile("Website problems", (summary.byType && summary.byType.website) || 0));
+        grid.appendChild(tile("Audio problems", (summary.byType && summary.byType.audio) || 0));
+        grid.appendChild(tile("Song suggestions", (summary.byType && summary.byType.song) || 0));
+        card.hidden = false;
+      }
+
+      function actionButton(label, action, item) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "secondary-button feedback-action";
+        btn.textContent = label;
+        btn.addEventListener("click", () => doAction(item, action, btn));
+        return btn;
+      }
+
+      async function doAction(item, action, button) {
+        // Two-step confirm for destructive actions: first click arms the button,
+        // second click within 5s executes. No native confirm() dialog.
+        if (action === "delete" && !button.dataset.armed) {
+          button.dataset.armed = "1";
+          const originalText = button.textContent;
+          button.textContent = "Click again to confirm delete";
+          button.classList.add("is-armed");
+          const reset = () => {
+            delete button.dataset.armed;
+            button.textContent = originalText;
+            button.classList.remove("is-armed");
+          };
+          const timer = setTimeout(reset, 5000);
+          button.addEventListener("blur", () => { clearTimeout(timer); reset(); }, { once: true });
+          return;
+        }
+        button.disabled = true;
+        try {
+          await api("/.netlify/functions/admin-feedback", {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "X-CSRF-Token": csrf },
+            body: JSON.stringify({ id: item.id, date: item.date, action: action })
+          });
+          await load();
+        } catch (err) {
+          setStatus(err.message || "Action failed.", "err");
+          button.disabled = false;
+          delete button.dataset.armed;
+        }
+      }
+
+      function feedbackCard(item) {
+        const card = document.createElement("article");
+        card.className = "feedback-card is-" + (item.status || "unread");
+
+        const head = document.createElement("header");
+        head.className = "feedback-card-head";
+
+        const chip = document.createElement("span");
+        chip.className = "feedback-chip";
+        chip.textContent = typeLabel(item.type);
+        head.appendChild(chip);
+
+        const time = document.createElement("time");
+        time.dateTime = item.at;
+        time.textContent = item.at ? new Date(item.at).toLocaleString("en-GB") : "";
+        head.appendChild(time);
+
+        const statusChip = document.createElement("span");
+        statusChip.className = "feedback-status-chip is-" + (item.status || "unread");
+        statusChip.textContent = item.status || "unread";
+        head.appendChild(statusChip);
+
+        card.appendChild(head);
+
+        const message = document.createElement("p");
+        message.className = "feedback-message";
+        message.textContent = item.message || "";
+        card.appendChild(message);
+
+        if (item.name || item.contact) {
+          const meta = document.createElement("p");
+          meta.className = "feedback-meta";
+          const parts = [];
+          if (item.name) parts.push("From: " + item.name);
+          if (item.contact) parts.push("Contact: " + item.contact);
+          meta.textContent = parts.join(" — ");
+          card.appendChild(meta);
+        }
+
+        if (item.path) {
+          const path = document.createElement("p");
+          path.className = "feedback-path";
+          path.textContent = "Submitted from: " + item.path;
+          card.appendChild(path);
+        }
+
+        const actions = document.createElement("div");
+        actions.className = "feedback-actions";
+        if (item.status === "unread") actions.appendChild(actionButton("Mark as read", "mark_read", item));
+        else actions.appendChild(actionButton("Mark unread", "mark_unread", item));
+        if (item.status !== "archived") actions.appendChild(actionButton("Archive", "archive", item));
+        actions.appendChild(actionButton("Delete", "delete", item));
+        card.appendChild(actions);
+
+        return card;
+      }
+
+      function renderList(items) {
+        const card = $("list-card");
+        const list = $("feedback-list");
+        clearChildren(list);
+        if (!items.length) {
+          const empty = document.createElement("p");
+          empty.className = "help-text";
+          empty.textContent = "No feedback in this filter yet.";
+          list.appendChild(empty);
+        } else {
+          items.forEach((it) => list.appendChild(feedbackCard(it)));
+        }
+        card.hidden = false;
+      }
+
+      async function ensureSession() {
+        const sess = await api("/.netlify/functions/admin-session");
+        if (!sess.authenticated) throw new Error("Session expired. Please sign in again.");
+        csrf = sess.csrf || "";
+      }
+
+      async function load() {
+        setStatus("Loading feedback…");
+        try {
+          await ensureSession();
+          const params = new URLSearchParams();
+          params.set("days", $("days-select").value);
+          if ($("type-select").value) params.set("type", $("type-select").value);
+          if ($("status-select").value) params.set("status", $("status-select").value);
+          if ($("search-input").value.trim()) params.set("search", $("search-input").value.trim());
+          const data = await api("/.netlify/functions/admin-feedback?" + params.toString());
+          renderSummary(data.summary || {});
+          renderList(data.items || []);
+          setStatus("Loaded " + (data.items || []).length + " messages. Updated " + new Date().toLocaleString("en-GB") + ".", "ok");
+        } catch (err) {
+          setStatus(err.message || "Could not load feedback.", "err");
+        }
+      }
+
+      $("refresh-btn").addEventListener("click", load);
+      $("days-select").addEventListener("change", load);
+      $("type-select").addEventListener("change", load);
+      $("status-select").addEventListener("change", load);
+      let searchTimer = null;
+      $("search-input").addEventListener("input", () => {
+        clearTimeout(searchTimer);
+        searchTimer = setTimeout(load, 300);
+      });
+
+      load();
+    })();
+  </script>
+</body>
+</html>

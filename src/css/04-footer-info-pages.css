@@ -1,0 +1,206 @@
+/* Footer, licence logos and static information pages */
+/* Footer */
+.site-footer {
+  margin-top: 1rem;
+  padding: 1.2rem 0 2rem;
+}
+
+.footer-inner {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 1rem;
+  align-items: center;
+}
+
+.footer-mark {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: #fff;
+}
+
+.footer-mark img {
+  width: clamp(56px, 8vw, 74px);
+  height: clamp(56px, 8vw, 74px);
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.socials a {
+  width: 48px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #102337;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 900;
+  font-size: 1.15rem;
+  line-height: 1;
+  font-family: var(--font-body);
+  transition: background calc(0.2s * var(--motion)) ease,
+              transform calc(0.15s * var(--motion)) ease;
+}
+
+.socials a[href^="mailto:"] {
+  font-size: 1.3rem;
+  font-weight: 400;
+}
+
+.socials a:hover {
+  background: #1a3654;
+  transform: translateY(-2px);
+}
+
+.site-footer nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.site-footer nav a {
+  color: var(--cream);
+  text-decoration: none;
+}
+
+.site-footer nav a:hover { color: var(--gold-light); }
+
+.site-footer nav .footer-link-button {
+  color: var(--cream);
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  cursor: pointer;
+  text-decoration: none;
+}
+.site-footer nav .footer-link-button:hover,
+.site-footer nav .footer-link-button:focus-visible {
+  color: var(--gold-light);
+  text-decoration: underline;
+}
+
+.site-footer nav a:not(:last-child)::after,
+.site-footer nav .footer-link-button:not(:last-child)::after {
+  content: "";
+  display: inline-block;
+  height: 1.1rem;
+  width: 1px;
+  background: var(--gold);
+  margin-left: 0.85rem;
+  vertical-align: middle;
+}
+
+.site-footer p {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--muted);
+  margin: 0.85rem 0 0;
+  font-size: 0.92rem;
+}
+
+/* Real PRS / PPL logo area */
+.licensed-by {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  margin-top: 0.9rem;
+  font-size: 0.9rem;
+  color: rgba(243, 226, 196, 0.62);
+}
+
+.licensed-label {
+  letter-spacing: 0.02em;
+}
+
+.licensed-logo-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0.25rem 0.45rem;
+  border-radius: 12px;
+  background: transparent;
+  text-decoration: none;
+  opacity: 0.95;
+  transition: opacity calc(0.2s * var(--motion)) ease, transform calc(0.15s * var(--motion)) ease;
+}
+
+.licensed-logo-link:hover {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+.licensed-logo {
+  display: block;
+  height: 42px;
+  width: auto;
+  max-width: 132px;
+  object-fit: contain;
+}
+
+.licensed-logo-prs {
+  height: 42px;
+}
+
+.licensed-logo-ppl {
+  height: 42px;
+}
+
+/* Static info pages */
+.info-page {
+  margin-top: 1.5rem;
+  padding: clamp(1.2rem, 3vw, 2rem);
+  background: linear-gradient(180deg, var(--panel-1), var(--panel-2));
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+}
+
+.info-page h1 {
+  font-family: var(--font-serif);
+  margin: 0.4rem 0 1rem;
+  font-size: clamp(1.7rem, 4vw, 2.4rem);
+}
+
+.info-page h2 {
+  font-family: var(--font-serif);
+  margin: 1.4rem 0 0.4rem;
+  font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+  color: var(--gold-light);
+}
+
+.info-page p {
+  margin: 0.7rem 0;
+  line-height: 1.6;
+}
+
+.info-page ul {
+  padding-left: 1.4rem;
+  line-height: 1.6;
+}
+
+.info-page .back-link {
+  display: inline-block;
+  margin-top: 1.4rem;
+  padding: 0.7rem 1.2rem;
+  background: linear-gradient(180deg, var(--gold-bright), var(--gold-dark));
+  color: #fff;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 700;
+}
+

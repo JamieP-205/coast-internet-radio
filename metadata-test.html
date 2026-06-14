@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Stream Metadata Test | Coast Internet Radio</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="section" style="max-width: 920px; margin: 0 auto; padding: 32px 18px;">
+    <div class="section-header">
+      <p class="eyebrow">Private technical check</p>
+      <h1>Stream Metadata Test</h1>
+      <p>This page checks whether the live audio stream is sending song title data directly. It does not change the website.</p>
+    </div>
+
+    <div class="card" style="padding: 20px; margin: 18px 0;">
+      <h2 id="statusTitle">Running test...</h2>
+      <p id="statusText">Checking the live stream. This may take around 10 seconds.</p>
+    </div>
+
+    <div class="card" style="padding: 20px; margin: 18px 0;">
+      <h2>Result details</h2>
+      <pre id="resultBox" style="white-space: pre-wrap; overflow-wrap: anywhere; font-size: 0.9rem;">Loading...</pre>
+    </div>
+
+    <p><a class="btn btn-secondary" href="/">Back to homepage</a></p>
+  </main>
+  <script src="/metadata-test.js" defer></script>
+</body>
+</html>

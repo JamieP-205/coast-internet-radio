@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Station Admin | Coast Internet Radio</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#02070d">
+  <meta name="color-scheme" content="dark light">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script src="/site-preferences.js?v=20260514-final-a11y-light"></script>
+  <link rel="stylesheet" href="/admin/admin.css?v=20260514-final-a11y-light">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="admin-topbar">
+    <div class="admin-shell admin-topbar-inner">
+      <a class="admin-brand" href="/" aria-label="Coast Internet Radio homepage">
+        <img src="/assets/images/coast-round-logo-192-v2.webp" alt="" width="56" height="56">
+        <span class="admin-brand-text"><strong>Coast Internet Radio</strong><span>Private content editor</span></span>
+      </a>
+      <a class="admin-link-button" href="/">Back to website</a>
+    </div>
+  </header>
+
+  <nav class="admin-section-nav" aria-label="Admin sections" id="admin-section-nav" hidden>
+    <div class="admin-shell admin-section-nav-inner">
+      <a href="/admin/" aria-current="page">Station admin</a>
+      <a href="/admin/history.html">Song history</a>
+      <a href="/admin/analytics.html">Site analytics</a>
+      <a href="/admin/feedback.html">Visitor feedback</a>
+    </div>
+  </nav>
+
+  <main id="main" class="admin-shell admin-wrap">
+    <section class="login-card" id="login-card">
+      <div class="login-panel">
+        <p class="eyebrow">Private station area</p>
+        <h1>Station Admin</h1>
+        <p class="intro">Sign in to make simple website updates. This page is for everyday content only, not technical settings.</p>
+        <form id="login-form" autocomplete="on" class="admin-login-form">
+          <div class="field">
+            <label for="username">Username</label>
+            <input id="username" name="username" autocomplete="username" required>
+          </div>
+          <div class="field">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" autocomplete="current-password" required>
+          </div>
+          <p class="help-text">This device will stay signed in for a while unless you press Sign out or clear the browser history.</p>
+          <button class="primary-button" type="submit" id="login-btn">Sign in</button>
+        </form>
+        <div id="login-status" class="status-box" hidden></div>
+      </div>
+    </section>
+
+    <section id="dashboard" hidden>
+      <section class="dashboard-hero">
+        <div>
+          <p class="eyebrow">Website content editor</p>
+          <h1>Station Admin</h1>
+          <p class="intro">Most of the website is already set up. Only change a detail here when it has actually changed or when a temporary public message is needed.</p>
+        </div>
+        <div class="hero-actions">
+          <button class="secondary-button" id="logout-btn" type="button">Sign out</button>
+        </div>
+      </section>
+
+      <section class="rules-card" aria-label="Before editing">
+        <h2>Before changing anything</h2>
+        <div class="rules-grid">
+          <div><strong>Already filled in</strong><span>The details shown in the boxes are already the current website details. Do not retype them just to check.</span></div>
+          <div><strong>Only change real updates</strong><span>Examples: a new phone number, new email, new support link, temporary announcement, or one proper news update.</span></div>
+          <div><strong>Leave alone if unsure</strong><span>If a link or number already works, leave it. Guessing can send listeners to the wrong place.</span></div>
+          <div><strong>Technical settings are separate</strong><span>This page does not change the live stream source, player code, metadata helper, Netlify, Cloudflare, domains, TuneIn, or directory listings.</span></div>
+        </div>
+      </section>
+
+      <form id="content-form" class="admin-form-card">
+        <nav class="admin-tabbar" aria-label="Admin sections">
+          <button type="button" class="admin-tab is-active" data-admin-tab="main" aria-selected="true">Main updates</button>
+          <button type="button" class="admin-tab" data-admin-tab="display" aria-selected="false">Display</button>
+          <button type="button" class="admin-tab" data-admin-tab="links" aria-selected="false">Links</button>
+          <button type="button" class="admin-tab" data-admin-tab="wording" aria-selected="false">Wording</button>
+        </nav>
+
+        <div class="admin-tab-panel is-active" data-admin-panel="main">
+          <section class="edit-card important-card">
+            <div class="card-heading">
+              <div>
+                <p class="card-kicker">Common update</p>
+                <h2>Temporary homepage announcement</h2>
+                <p>Use this when there is a short message listeners should see at the top of the homepage. This is normally switched off.</p>
+              </div>
+              <label class="toggle-row" for="announcement-enabled">
+                <span>Show banner</span>
+                <input type="checkbox" id="announcement-enabled">
+                <i class="toggle-switch" aria-hidden="true"></i>
+              </label>
+            </div>
+            <div class="notice good"><strong>Leave this off</strong> if there is no temporary message. The homepage will look cleaner.</div>
+            <div class="field">
+              <label for="announcement-text">Announcement text</label>
+              <textarea id="announcement-text" maxlength="240" placeholder="Example: We are live now - thanks for listening."></textarea>
+              <small>Only appears if Show banner is switched on. Keep it short.</small>
+            </div>
+            <div class="two-col">
+              <div class="field">
+                <label for="announcement-link-label">Optional button text</label>
+                <input id="announcement-link-label" maxlength="40" placeholder="Listen live">
+                <small>Usually leave as Listen live.</small>
+              </div>
+              <div class="field">
+                <label for="announcement-link-url">Optional button link</label>
+                <input id="announcement-link-url" inputmode="url" placeholder="https://coastinternetradio.com">
+                <small>Only use a safe public website link.</small>
+              </div>
+            </div>
+          </section>
+
+          <section class="edit-card important-card">
+            <div class="card-heading">
+              <div>
+                <p class="card-kicker">Common update</p>
+                <h2>Important News box</h2>
+                <p>Use this for one clear station update on the homepage. This is normally switched off unless there is real news.</p>
+              </div>
+              <label class="toggle-row" for="news-active">
+                <span>Show news</span>
+                <input type="checkbox" id="news-active">
+                <i class="toggle-switch" aria-hidden="true"></i>
+              </label>
+            </div>
+            <div class="notice good"><strong>Leave this off</strong> if there is no proper update. Do not use it for random short posts.</div>
+            <div class="field">
+              <label for="news-title">News title</label>
+              <input id="news-title" maxlength="120" placeholder="Example: Coast Internet Radio website now live">
+            </div>
+            <div class="field short-field">
+              <label for="news-date">Date text</label>
+              <input id="news-date" maxlength="60" placeholder="13 May 2026">
+            </div>
+            <div class="field">
+              <label for="news-body">News message</label>
+              <textarea id="news-body" maxlength="1000" placeholder="Write the update here."></textarea>
+              <small>This is public. Do not paste passwords, private links, or technical details.</small>
+            </div>
+            <div class="two-col">
+              <div class="field">
+                <label for="news-link-label">Optional link text</label>
+                <input id="news-link-label" maxlength="50" placeholder="Read more">
+                <small>Leave blank if no button is needed.</small>
+              </div>
+              <div class="field">
+                <label for="news-link">Optional link</label>
+                <input id="news-link" inputmode="url" placeholder="https://...">
+                <small>Only paste a normal public https:// link.</small>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div class="admin-tab-panel" data-admin-panel="display" hidden>
+          <section class="edit-card important-card">
+            <div class="card-heading">
+              <div>
+                <p class="card-kicker">Optional display</p>
+                <h2>Now playing display</h2>
+                <p>Choose what listeners see in the Now Playing box. These switches only change what is displayed; they do not alter the live stream, playlist, or radio service.</p>
+              </div>
+            </div>
+            <div class="display-toggle-grid" role="group" aria-label="Homepage now-playing display options">
+              <label class="toggle-row" for="stats-show-now-playing"><span>Show Now Playing box</span><input type="checkbox" id="stats-show-now-playing"><i class="toggle-switch" aria-hidden="true"></i></label>
+              <label class="toggle-row" for="stats-show-coming-up"><span>Show Coming Up Next</span><input type="checkbox" id="stats-show-coming-up"><i class="toggle-switch" aria-hidden="true"></i></label>
+              <label class="toggle-row" for="stats-show-previous"><span>Show Previously Played</span><input type="checkbox" id="stats-show-previous"><i class="toggle-switch" aria-hidden="true"></i></label>
+              <label class="toggle-row" for="stats-show-listeners"><span>Show listener count</span><input type="checkbox" id="stats-show-listeners"><i class="toggle-switch" aria-hidden="true"></i></label>
+            </div>
+            <div class="notice good"><strong>Safe to change.</strong> These are display controls only. The private history still records song and listener data even if listener numbers are hidden from the public homepage.</div>
+            <p class="help-text">The site saves song and listener snapshots automatically in the background, building a private history over time without leaving a page open.</p>
+          </section>
+        </div>
+
+        <div class="admin-tab-panel" data-admin-panel="links" hidden>
+          <details class="edit-card details-card">
+            <summary><span><strong>Contact details, social links and support links</strong><em>Already set up. Open only if a number, email, or link has actually changed.</em></span></summary>
+            <div class="notice warn"><strong>Do not refill this section.</strong> The current details are already loaded in the boxes. Only change a box if you know the exact replacement.</div>
+            <div class="two-col">
+              <div class="field"><label for="phone-display">Request phone number shown on site</label><input id="phone-display" maxlength="40" placeholder="07935 889228"><small>Current public number. Change only if the request number changes.</small></div>
+              <div class="field"><label for="phone-href">Phone action link</label><input id="phone-href" placeholder="sms:+447935889228"><small>Use sms:+44... for texts or tel:+44... for calls. Leave alone unless the number changes.</small></div>
+              <div class="field"><label for="email">Station email</label><input id="email" inputmode="email" maxlength="120" placeholder="coastradio@hotmail.com"><small>Change only if the station email changes.</small></div>
+              <div class="field"><label for="facebook-url">Facebook link</label><input id="facebook-url" inputmode="url" placeholder="https://www.facebook.com/..."><small>Leave alone unless the station Facebook page changes.</small></div>
+              <div class="field"><label for="x-url">X link</label><input id="x-url" inputmode="url" placeholder="https://x.com/coast_radio"><small>Leave alone unless the X account changes.</small></div>
+              <div class="field"><label for="paypal-url">PayPal/support link</label><input id="paypal-url" inputmode="url" placeholder="https://..."><small>Only paste the official support or donation link. Leave alone if it works.</small></div>
+              <div class="field"><label for="tunein-url">Main backup listen link</label><input id="tunein-url" inputmode="url" placeholder="https://tunein.com/..."><small>This is kept for compatibility. The public popup below is controlled by the list underneath.</small></div>
+            </div>
+
+            <section class="listen-admin-card" aria-label="Other listening links">
+              <div class="card-heading compact-heading">
+                <div>
+                  <p class="card-kicker">Backup listening links</p>
+                  <h2>Other ways to listen</h2>
+                  <p>Choose which listening options appear in the public Listen Elsewhere popup. Broken directory links are kept here but hidden until they are fixed.</p>
+                </div>
+              </div>
+              <div id="listen-links-admin" class="listen-links-admin"></div>
+            </section>
+          </details>
+        </div>
+
+        <div class="admin-tab-panel" data-admin-panel="wording" hidden>
+          <details class="edit-card details-card" open>
+            <summary><span><strong>Small homepage wording</strong><em>Already set up. Open only if the wording on the homepage needs changed.</em></span></summary>
+            <div class="two-col">
+              <div class="field"><label for="play-subtitle">Small text under Play button</label><input id="play-subtitle" maxlength="90" placeholder="Country, Irish country & classic hits"><small>Leave unless the station description changes.</small></div>
+              <div class="field"><label for="support-message">Support box message</label><textarea id="support-message" maxlength="220" placeholder="Your support keeps the music playing and helps us keep broadcasting."></textarea><small>Leave unless you want different wording in the support box.</small></div>
+            </div>
+          </details>
+        </div>
+
+        <div id="save-status" class="status-box" hidden></div>
+        <div class="sticky-actions">
+          <small id="dirty-note">No unsaved changes.</small>
+          <button class="primary-button" type="submit" id="save-btn">Save website changes</button>
+          <a class="secondary-button" href="/" target="_blank" rel="noopener noreferrer">Preview website</a>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    (() => {
+      "use strict";
+      let csrf = "";
+      let dirty = false;
+      const $ = (id) => document.getElementById(id);
+
+      const LISTEN_LINK_DEFAULTS = [
+        { id: "this-site", label: "This website" },
+        { id: "direct-stream", label: "Direct audio stream" },
+        { id: "online-radio-box", label: "Online Radio Box" },
+        { id: "current-site", label: "Original website" },
+        { id: "tunein", label: "TuneIn" },
+        { id: "radio-uk", label: "Radio UK / eRadio" },
+        { id: "mytuner", label: "myTuner" },
+        { id: "streema", label: "Streema" },
+        { id: "radio-garden", label: "Radio Garden" },
+        { id: "live-online-radio", label: "Live Online Radio" }
+      ];
+      const loginCard = $("login-card");
+      const dashboard = $("dashboard");
+      const loginStatus = $("login-status");
+      const saveStatus = $("save-status");
+      const dirtyNote = $("dirty-note");
+
+      function status(el, message, type = "") {
+        if (!el) return;
+        el.hidden = !message;
+        el.textContent = message || "";
+        el.className = "status-box" + (type ? " " + type : "");
+      }
+
+      async function api(path, options = {}) {
+        const res = await fetch(path, {
+          credentials: "same-origin",
+          cache: "no-store",
+          headers: { "Content-Type": "application/json", ...(options.headers || {}) },
+          ...options
+        });
+        let data = {};
+        try { data = await res.json(); } catch {}
+        if (!res.ok || data.ok === false) {
+          const msg = data.detail ? `${data.error || "Something went wrong."} Details: ${data.detail}` : (data.error || "Something went wrong.");
+          throw new Error(msg);
+        }
+        return data;
+      }
+
+      function setDirty(value) {
+        dirty = !!value;
+        if (dirtyNote) dirtyNote.textContent = dirty ? "You have unsaved changes." : "No unsaved changes.";
+      }
+      function showDashboard() {
+        loginCard.hidden = true;
+        dashboard.hidden = false;
+        const nav = document.getElementById("admin-section-nav");
+        if (nav) nav.hidden = false;
+      }
+      function showLogin() {
+        dashboard.hidden = true;
+        loginCard.hidden = false;
+        const nav = document.getElementById("admin-section-nav");
+        if (nav) nav.hidden = true;
+      }
+      function val(id, value) { const el = $(id); if (el) el.value = value || ""; }
+      function checked(id, value) { const el = $(id); if (el) el.checked = !!value; }
+      function checkedDefault(id, value, fallback) { const el = $(id); if (el) el.checked = value === undefined ? !!fallback : !!value; }
+
+
+      function listenControlId(id, field) {
+        return `listen-${id}-${field}`;
+      }
+
+      function updateListenSummary(id) {
+        const visible = !!$(listenControlId(id, "visible"))?.checked;
+        const status = $(listenControlId(id, "status"))?.value || "untested";
+        const label = $(listenControlId(id, "label"))?.value || id;
+        const summary = $(listenControlId(id, "summary"));
+        if (!summary) return;
+        const statusText = status === "working" ? "Available" : status === "issue" ? "Not working" : "Untested";
+        summary.textContent = `${visible ? "Shown" : "Hidden"} • ${statusText}`;
+        summary.dataset.status = status;
+        summary.dataset.visible = visible ? "true" : "false";
+        const title = $(listenControlId(id, "summary-title"));
+        if (title) title.textContent = label;
+        const note = $(listenControlId(id, "summary-note"));
+        if (note) note.textContent = visible ? "Shown in the public Listen Elsewhere popup." : "Hidden from listeners until enabled.";
+      }
+
+      function renderListenLinkControls() {
+        const wrap = $("listen-links-admin");
+        if (!wrap || wrap.childElementCount) return;
+        LISTEN_LINK_DEFAULTS.forEach((item, index) => {
+          const row = document.createElement("details");
+          row.className = "listen-admin-row";
+          row.dataset.listenId = item.id;
+          row.innerHTML = `
+            <summary class="listen-admin-summary">
+              <span class="listen-admin-head">
+                <span><strong id="${listenControlId(item.id, "summary-title")}">${item.label}</strong><em id="${listenControlId(item.id, "summary-note")}">Hidden from listeners until enabled.</em></span>
+              </span>
+              <span class="listen-admin-summary-status" id="${listenControlId(item.id, "summary")}">Hidden • Needs update</span>
+            </summary>
+            <div class="listen-admin-fields">
+              <label class="toggle-row compact-toggle" for="${listenControlId(item.id, "visible")}">
+                <span>Show to listeners</span>
+                <input type="checkbox" id="${listenControlId(item.id, "visible")}">
+                <i class="toggle-switch" aria-hidden="true"></i>
+              </label>
+              <div class="field">
+                <label for="${listenControlId(item.id, "status")}">Status</label>
+                <select id="${listenControlId(item.id, "status")}">
+                  <option value="working">Available</option>
+                  <option value="untested">Untested</option>
+                  <option value="issue">Not working</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="${listenControlId(item.id, "label")}">Name shown</label>
+                <input id="${listenControlId(item.id, "label")}" maxlength="60">
+              </div>
+              <div class="field listen-url-field">
+                <label for="${listenControlId(item.id, "url")}">Website link</label>
+                <input id="${listenControlId(item.id, "url")}" inputmode="url" placeholder="https://...">
+              </div>
+              <div class="field listen-desc-field">
+                <label for="${listenControlId(item.id, "description")}">Short note shown underneath</label>
+                <input id="${listenControlId(item.id, "description")}" maxlength="180">
+              </div>
+            </div>`;
+          wrap.appendChild(row);
+          ["visible", "label", "status", "url", "description"].forEach((field) => {
+            $(listenControlId(item.id, field))?.addEventListener("input", () => updateListenSummary(item.id));
+            $(listenControlId(item.id, field))?.addEventListener("change", () => updateListenSummary(item.id));
+          });
+        });
+      }
+
+      function readListenLinks() {
+        renderListenLinkControls();
+        return LISTEN_LINK_DEFAULTS.map((item) => ({
+          id: item.id,
+          visible: !!$(listenControlId(item.id, "visible"))?.checked,
+          label: $(listenControlId(item.id, "label"))?.value || item.label,
+          url: $(listenControlId(item.id, "url"))?.value || "",
+          status: $(listenControlId(item.id, "status"))?.value || "untested",
+          description: $(listenControlId(item.id, "description"))?.value || ""
+        }));
+      }
+
+      function fillListenLinks(links = []) {
+        renderListenLinkControls();
+        const byId = new Map(Array.isArray(links) ? links.map((item) => [item.id, item]) : []);
+        LISTEN_LINK_DEFAULTS.forEach((fallback) => {
+          const item = byId.get(fallback.id) || {};
+          checkedDefault(listenControlId(fallback.id, "visible"), item.visible, true);
+          val(listenControlId(fallback.id, "label"), item.label || fallback.label);
+          val(listenControlId(fallback.id, "url"), item.url || "");
+          val(listenControlId(fallback.id, "status"), item.status || "untested");
+          val(listenControlId(fallback.id, "description"), item.description || "");
+          updateListenSummary(fallback.id);
+        });
+      }
+
+      function readForm() {
+        return {
+          announcement: {
+            enabled: $("announcement-enabled").checked,
+            text: $("announcement-text").value,
+            linkLabel: $("announcement-link-label").value,
+            linkUrl: $("announcement-link-url").value
+          },
+          news: {
+            active: $("news-active").checked,
+            title: $("news-title").value,
+            date: $("news-date").value,
+            body: $("news-body").value,
+            linkLabel: $("news-link-label").value,
+            link: $("news-link").value
+          },
+          contact: {
+            requestPhoneDisplay: $("phone-display").value,
+            requestPhoneHref: $("phone-href").value,
+            email: $("email").value,
+            facebookUrl: $("facebook-url").value,
+            xUrl: $("x-url").value,
+            paypalUrl: $("paypal-url").value,
+            tuneInUrl: $("tunein-url").value
+          },
+          listenLinks: readListenLinks(),
+          homepage: {
+            playSubtitle: $("play-subtitle").value,
+            supportMessage: $("support-message").value
+          },
+          stats: {
+            showNowPlaying: $("stats-show-now-playing").checked,
+            showComingUp: $("stats-show-coming-up").checked,
+            showPrevious: $("stats-show-previous").checked,
+            showListeners: $("stats-show-listeners").checked
+          }
+        };
+      }
+
+      function fillForm(content = {}) {
+        checked("announcement-enabled", content.announcement?.enabled);
+        val("announcement-text", content.announcement?.text);
+        val("announcement-link-label", content.announcement?.linkLabel);
+        val("announcement-link-url", content.announcement?.linkUrl);
+        checked("news-active", content.news?.active);
+        val("news-title", content.news?.title);
+        val("news-date", content.news?.date);
+        val("news-body", content.news?.body);
+        val("news-link-label", content.news?.linkLabel);
+        val("news-link", content.news?.link);
+        val("phone-display", content.contact?.requestPhoneDisplay);
+        val("phone-href", content.contact?.requestPhoneHref);
+        val("email", content.contact?.email);
+        val("facebook-url", content.contact?.facebookUrl);
+        val("x-url", content.contact?.xUrl);
+        val("paypal-url", content.contact?.paypalUrl);
+        val("tunein-url", content.contact?.tuneInUrl);
+        fillListenLinks(content.listenLinks);
+        val("play-subtitle", content.homepage?.playSubtitle);
+        val("support-message", content.homepage?.supportMessage);
+        checkedDefault("stats-show-now-playing", content.stats?.showNowPlaying, true);
+        checkedDefault("stats-show-coming-up", content.stats?.showComingUp, true);
+        checkedDefault("stats-show-previous", content.stats?.showPrevious, true);
+        checked("stats-show-listeners", content.stats?.showListeners);
+        setDirty(false);
+      }
+
+      async function loadContent() {
+        const data = await api("/.netlify/functions/admin-content");
+        fillForm(data.content || {});
+      }
+
+      async function checkSession() {
+        try {
+          const data = await api("/.netlify/functions/admin-session");
+          if (data.authenticated) {
+            csrf = data.csrf;
+            showDashboard();
+            await loadContent();
+          } else {
+            showLogin();
+          }
+        } catch {
+          showLogin();
+        }
+      }
+
+      $("login-form").addEventListener("submit", async (event) => {
+        event.preventDefault();
+        status(loginStatus, "Signing in...");
+        $("login-btn").disabled = true;
+        try {
+          const data = await api("/.netlify/functions/admin-login", {
+            method: "POST",
+            body: JSON.stringify({ username: $("username").value, password: $("password").value })
+          });
+          csrf = data.csrf;
+          status(loginStatus, "");
+          showDashboard();
+          await loadContent();
+        } catch (error) {
+          status(loginStatus, error.message, "err");
+        } finally {
+          $("login-btn").disabled = false;
+        }
+      });
+
+      function setActiveAdminTab(name) {
+        document.querySelectorAll("[data-admin-tab]").forEach((btn) => {
+          const active = btn.dataset.adminTab === name;
+          btn.classList.toggle("is-active", active);
+          btn.setAttribute("aria-selected", active ? "true" : "false");
+        });
+        document.querySelectorAll("[data-admin-panel]").forEach((panel) => {
+          const active = panel.dataset.adminPanel === name;
+          panel.hidden = !active;
+          panel.classList.toggle("is-active", active);
+        });
+      }
+
+      document.querySelectorAll("[data-admin-tab]").forEach((btn) => {
+        btn.addEventListener("click", () => setActiveAdminTab(btn.dataset.adminTab));
+      });
+
+      $("content-form").addEventListener("input", () => setDirty(true));
+      $("content-form").addEventListener("change", () => setDirty(true));
+
+      $("content-form").addEventListener("submit", async (event) => {
+        event.preventDefault();
+        status(saveStatus, "Saving changes...");
+        $("save-btn").disabled = true;
+        try {
+          const data = await api("/.netlify/functions/admin-content", {
+            method: "POST",
+            headers: { "X-CSRF-Token": csrf },
+            body: JSON.stringify({ content: readForm() })
+          });
+          fillForm(data.content);
+          status(saveStatus, "Saved. Open Preview website and refresh the homepage to check it looks right.", "ok");
+        } catch (error) {
+          status(saveStatus, error.message, "err");
+        } finally {
+          $("save-btn").disabled = false;
+        }
+      });
+
+      $("logout-btn").addEventListener("click", async () => {
+        try { await api("/.netlify/functions/admin-logout", { method: "POST", body: "{}" }); } catch {}
+        csrf = "";
+        setDirty(false);
+        showLogin();
+      });
+
+      window.addEventListener("beforeunload", (event) => {
+        if (!dirty) return;
+        event.preventDefault();
+        event.returnValue = "";
+      });
+
+      renderListenLinkControls();
+      checkSession();
+    })();
+  </script>
+</body>
+</html>

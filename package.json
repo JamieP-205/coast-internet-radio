@@ -1,0 +1,16 @@
+{
+  "name": "coast-internet-radio-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Coast Internet Radio production website and private content editor",
+  "dependencies": {
+    "@netlify/blobs": "^10.7.9"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "build": "npm run build:css",
+    "build:css": "node tools/build-css.js",
+    "check": "npm run build:css && node tools/check-deploy-structure.js && node tools/check-js-syntax.js && node tools/check-site.js",
+    "test": "npm run check"
+  }
+}

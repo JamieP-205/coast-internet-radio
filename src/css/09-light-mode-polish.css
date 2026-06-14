@@ -1,0 +1,86 @@
+/* Light mode readability polish across public pages */
+html[data-theme="light"]:not([data-contrast="high"]) .player-card,
+html[data-theme="light"]:not([data-contrast="high"]) .about-strip,
+html[data-theme="light"]:not([data-contrast="high"]) .schedule-card,
+html[data-theme="light"]:not([data-contrast="high"]) .how-panel,
+html[data-theme="light"]:not([data-contrast="high"]) .support-panel,
+html[data-theme="light"]:not([data-contrast="high"]) .news-card,
+html[data-theme="light"]:not([data-contrast="high"]) .info-page,
+html[data-theme="light"]:not([data-contrast="high"]) .action-row > a,
+html[data-theme="light"]:not([data-contrast="high"]) .action-row > .action-button {
+  background: linear-gradient(180deg, rgba(255, 251, 244, 0.98), rgba(247, 235, 216, 0.98));
+  color: #21160c;
+  border-color: rgba(171, 111, 24, 0.42);
+  box-shadow: 0 16px 42px rgba(85, 55, 20, 0.18);
+}
+
+html[data-theme="light"]:not([data-contrast="high"]) .player-card h2,
+html[data-theme="light"]:not([data-contrast="high"]) .schedule-card h2,
+html[data-theme="light"]:not([data-contrast="high"]) .about-strip h2,
+html[data-theme="light"]:not([data-contrast="high"]) .how-panel h2,
+html[data-theme="light"]:not([data-contrast="high"]) .support-panel h2,
+html[data-theme="light"]:not([data-contrast="high"]) .info-page h1,
+html[data-theme="light"]:not([data-contrast="high"]) .info-page h2,
+html[data-theme="light"]:not([data-contrast="high"]) .action-row strong,
+html[data-theme="light"]:not([data-contrast="high"]) .footer-mark,
+html[data-theme="light"]:not([data-contrast="high"]) .site-footer nav a {
+  color: #21160c;
+}
+
+html[data-theme="light"]:not([data-contrast="high"]) .section-title,
+html[data-theme="light"]:not([data-contrast="high"]) .mini-label,
+html[data-theme="light"]:not([data-contrast="high"]) .schedule-days,
+html[data-theme="light"]:not([data-contrast="high"]) .news-item h3,
+html[data-theme="light"]:not([data-contrast="high"]) .info-page h2,
+html[data-theme="light"]:not([data-contrast="high"]) .np-row > span:last-child,
+html[data-theme="light"]:not([data-contrast="high"]) #coming-up {
+  color: #8b540d;
+}
+
+html[data-theme="light"]:not([data-contrast="high"]) .play-subtitle,
+html[data-theme="light"]:not([data-contrast="high"]) .player-note,
+html[data-theme="light"]:not([data-contrast="high"]) .schedule-card p,
+html[data-theme="light"]:not([data-contrast="high"]) .about-strip p,
+html[data-theme="light"]:not([data-contrast="high"]) .how-panel p,
+html[data-theme="light"]:not([data-contrast="high"]) .support-panel p,
+html[data-theme="light"]:not([data-contrast="high"]) .news-date,
+html[data-theme="light"]:not([data-contrast="high"]) .news-body,
+html[data-theme="light"]:not([data-contrast="high"]) .action-row .action-sub,
+html[data-theme="light"]:not([data-contrast="high"]) .site-footer p,
+html[data-theme="light"]:not([data-contrast="high"]) .licensed-by,
+html[data-theme="light"]:not([data-contrast="high"]) #previous-list,
+html[data-theme="light"]:not([data-contrast="high"]) .info-page p,
+html[data-theme="light"]:not([data-contrast="high"]) .info-page li {
+  color: #604f3c;
+}
+
+html[data-theme="light"]:not([data-contrast="high"]) .np-row strong,
+html[data-theme="light"]:not([data-contrast="high"]) .schedule-time strong,
+html[data-theme="light"]:not([data-contrast="high"]) .notice strong {
+  color: #21160c;
+}
+
+html[data-theme="light"]:not([data-contrast="high"]) .schedule-time,
+html[data-theme="light"]:not([data-contrast="high"]) .news-item,
+html[data-theme="light"]:not([data-contrast="high"]) .np-icon,
+html[data-theme="light"]:not([data-contrast="high"]) .np-status-card,
+html[data-theme="light"]:not([data-contrast="high"]) .np-track-card,
+html[data-theme="light"]:not([data-contrast="high"]) .np-mini-card,
+html[data-theme="light"]:not([data-contrast="high"]) .how-panel li {
+  background: rgba(255, 255, 255, 0.64);
+  border-color: rgba(171, 111, 24, 0.24);
+}
+
+html[data-theme="light"]:not([data-contrast="high"]) .site-footer .socials a {
+  background: #21160c;
+  color: #fff8ec;
+}
+
+html[data-theme="light"]:not([data-contrast="high"]) .info-page .back-link {
+  color: #1a1006;
+}
+
+html[data-theme="light"]:not([data-contrast="high"]) .support-panel .script,
+html[data-theme="light"]:not([data-contrast="high"]) .support-panel .support-note {
+  color: #8b540d;
+}

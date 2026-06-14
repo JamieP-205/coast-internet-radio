@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Playlist & Listener History | Coast Internet Radio</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#02070d">
+  <meta name="color-scheme" content="dark light">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <script src="/site-preferences.js?v=20260514-final-a11y-light"></script>
+  <link rel="stylesheet" href="/admin/admin.css?v=20260514-final-a11y-light">
+</head>
+<body class="history-page">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="admin-topbar">
+    <div class="admin-shell admin-topbar-inner">
+      <a class="admin-brand" href="/admin/" aria-label="Back to station admin">
+        <img src="/assets/images/coast-round-logo-192-v2.webp" alt="" width="56" height="56">
+        <span class="admin-brand-text"><strong>Coast Internet Radio</strong><span>Private playlist history</span></span>
+      </a>
+      <a class="admin-link-button" href="/admin/">Back to admin</a>
+    </div>
+  </header>
+
+  <nav class="admin-section-nav" aria-label="Admin sections">
+    <div class="admin-shell admin-section-nav-inner">
+      <a href="/admin/">Station admin</a>
+      <a href="/admin/history.html" aria-current="page">Song history</a>
+      <a href="/admin/analytics.html">Site analytics</a>
+      <a href="/admin/feedback.html">Visitor feedback</a>
+    </div>
+  </nav>
+
+  <main id="main" class="admin-shell admin-wrap history-dashboard">
+    <section class="dashboard-hero history-hero-clean">
+      <div>
+        <p class="eyebrow">Private station records</p>
+        <h1>Playlist &amp; listener history</h1>
+        <p class="intro">This page shows what the website has saved automatically: songs, artists, times, listener counts and broadcast periods. It does not change the public website.</p>
+      </div>
+      <div class="hero-actions compact-actions">
+        <button class="secondary-button" id="refresh-btn" type="button">Refresh</button>
+        <button class="secondary-button" id="download-json-btn" type="button">Download JSON</button>
+        <button class="secondary-button" id="download-csv-btn" type="button">Download CSV</button>
+      </div>
+    </section>
+
+    <nav class="history-tabbar history-tabbar-top" aria-label="Playlist history sections">
+      <button type="button" class="history-tab is-active" data-history-tab="overview" aria-selected="true">Overview</button>
+      <button type="button" class="history-tab" data-history-tab="songs" aria-selected="false">Songs</button>
+      <button type="button" class="history-tab" data-history-tab="listeners" aria-selected="false">Listeners</button>
+      <button type="button" class="history-tab" data-history-tab="raw" aria-selected="false">Raw log</button>
+    </nav>
+
+    <section class="history-filter-card" aria-label="History filters">
+      <div class="quick-chip-row" role="group" aria-label="Quick date pick">
+        <button type="button" class="quick-chip" data-history-range="1">Today</button>
+        <button type="button" class="quick-chip" data-history-range="2">Yesterday</button>
+        <button type="button" class="quick-chip is-active" data-history-range="7">Last 7 days</button>
+        <button type="button" class="quick-chip" data-history-range="14">Last 14 days</button>
+        <button type="button" class="quick-chip" data-history-range="31">Last 31 days</button>
+      </div>
+      <label>
+        <span>Show saved records from</span>
+        <select id="days-select">
+          <option value="7" selected>Last 7 days</option>
+          <option value="14">Last 14 days</option>
+          <option value="21">Last 21 days</option>
+          <option value="31">Last 31 days</option>
+          <option value="42">Last 42 days</option>
+        </select>
+      </label>
+      <label>
+        <span>Search songs or artists</span>
+        <input id="search-input" type="search" placeholder="Example: Shania Twain">
+      </label>
+    </section>
+
+    <div class="history-tab-panel is-active" data-history-panel="overview">
+      <section class="edit-card important-card" id="insights-card" hidden>
+        <h2>At a glance</h2>
+        <div class="rules-grid summary-grid summary-grid-clean" id="insights-grid"></div>
+      </section>
+
+      <section class="edit-card details-card history-section-card" id="metadata-health-card" hidden>
+        <h2>Metadata health</h2>
+        <p class="metadata-health-status" id="metadata-health-status"></p>
+        <p class="help-text" id="metadata-health-note"></p>
+      </section>
+
+      <section class="edit-card details-card history-section-card" id="insight-prose-card" hidden>
+        <h2>Plain-English insights</h2>
+        <ul class="plain-english-list" id="insight-prose-list"></ul>
+      </section>
+
+      <section class="edit-card details-card history-section-card">
+        <h2>Latest saved snapshot</h2>
+        <p class="card-kicker" id="latest-title">Loading…</p>
+        <p id="latest-meta">Checking the latest saved record.</p>
+        <dl class="latest-grid latest-grid-clean" id="latest-grid"></dl>
+        <div id="history-status" class="status-box">Loading history…</div>
+      </section>
+
+      <section class="edit-card details-card history-section-card">
+        <h2>Quick summary</h2>
+        <p class="help-text">A simple count of what has been saved in the selected date range.</p>
+        <div class="rules-grid summary-grid summary-grid-clean" id="summary-grid"></div>
+      </section>
+
+      <details class="edit-card details-card help-dropdown">
+        <summary><span class="summary-copy"><strong>What does this page save?</strong><em>Open for a plain-English explanation.</em></span></summary>
+        <div class="rules-grid explain-grid">
+          <div><strong>Current song</strong><span>Artist, title and duration/time shown when available.</span></div>
+          <div><strong>Coming up next</strong><span>The next track shown by the StationPlaylist page.</span></div>
+          <div><strong>Previous songs</strong><span>The recent tracks shown at the time each snapshot was saved.</span></div>
+          <div><strong>Listeners</strong><span>Current and peak listener counts from the stream server.</span></div>
+          <div><strong>Broadcast status</strong><span>Marks normal playlist, Jim live-show time or the 7pm repeat-show window.</span></div>
+        </div>
+        <p class="help-text">The background collector runs on Netlify. Nobody needs to keep this page open.</p>
+      </details>
+    </div>
+
+    <div class="history-tab-panel" data-history-panel="songs" hidden>
+      <section class="edit-card details-card history-section-card">
+        <h2>Detected song plays</h2>
+        <p class="help-text">Best view for checking whether the station repeats the same songs at similar times.</p>
+        <div id="plays-list" class="history-list clean-history-list"></div>
+      </section>
+
+      <details class="edit-card details-card help-dropdown" open>
+        <summary><span class="summary-copy"><strong>Top songs and artists</strong><em>Most repeated songs and artists in the selected range.</em></span></summary>
+        <div class="history-two-col clean-two-col">
+          <section>
+            <h3>Top songs</h3>
+            <div id="top-songs" class="compact-list"></div>
+          </section>
+          <section>
+            <h3>Top artists</h3>
+            <div id="top-artists" class="compact-list"></div>
+          </section>
+        </div>
+      </details>
+    </div>
+
+    <div class="history-tab-panel" data-history-panel="listeners" hidden>
+      <section class="edit-card details-card history-section-card">
+        <h2>Listener patterns</h2>
+        <p class="help-text">Private listener figures only. These help show which days and times are busiest.</p>
+        <div class="history-two-col listener-patterns clean-two-col">
+          <section>
+            <h3>Busiest days</h3>
+            <div id="listener-days" class="compact-list"></div>
+          </section>
+          <section>
+            <h3>Busiest hours</h3>
+            <div id="listener-hours" class="compact-list"></div>
+          </section>
+        </div>
+      </section>
+    </div>
+
+    <div class="history-tab-panel" data-history-panel="raw" hidden>
+      <details class="edit-card details-card help-dropdown" open>
+        <summary><span class="summary-copy"><strong>Raw snapshot log</strong><em>Minute-by-minute records for deeper checking.</em></span></summary>
+        <div id="snapshots-list" class="history-list clean-history-list"></div>
+      </details>
+    </div>
+  </main>
+
+  <script>
+    (() => {
+      "use strict";
+      let latestExport = null;
+      const $ = (id) => document.getElementById(id);
+
+      async function getJson(url) {
+        const res = await fetch(url, { credentials: "same-origin", cache: "no-store", headers: { "Accept": "application/json" } });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || data.ok === false) throw new Error(data.error || "Request failed.");
+        return data;
+      }
+
+      function setStatus(message, type = "") {
+        const el = $("history-status");
+        el.textContent = message;
+        el.className = "status-box" + (type ? " " + type : "");
+      }
+
+      function clean(value, fallback = "") {
+        const text = String(value ?? "").trim();
+        return text || fallback;
+      }
+
+      function dateTime(value) {
+        if (!value) return "Unknown time";
+        const d = new Date(value);
+        if (Number.isNaN(d.getTime())) return String(value);
+        return d.toLocaleString("en-GB", { weekday: "short", day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" });
+      }
+
+      function card(label, value) {
+        const div = document.createElement("div");
+        const strong = document.createElement("strong");
+        const span = document.createElement("span");
+        strong.textContent = label;
+        span.textContent = value;
+        div.append(strong, span);
+        return div;
+      }
+
+      function latestItem(label, value) {
+        const dt = document.createElement("dt");
+        const dd = document.createElement("dd");
+        dt.textContent = label;
+        dd.textContent = clean(value, "Not available");
+        return [dt, dd];
+      }
+
+      function trackLabel(item) {
+        if (!item) return "Unknown track";
+        const artist = clean(item.artist);
+        const title = clean(item.title || item.current);
+        if (artist && title) return `${artist} - ${title}`;
+        return title || clean(item.current, "Unknown track");
+      }
+
+      function statusLabel(value) {
+        const text = clean(value, "Status not recorded");
+        const lower = text.toLowerCase();
+        if (lower.includes("jim")) return "Jim live show";
+        if (lower.includes("repeat")) return "7pm repeat show";
+        if (lower.includes("automation") || lower.includes("normal") || lower.includes("24-hour") || lower.includes("playlist")) return "24-hour music playlist";
+        return text;
+      }
+
+      function playMatches(item, query) {
+        if (!query) return true;
+        const haystack = [item.current, item.artist, item.title, item.comingUpAtStart, item.duration].join(" ").toLowerCase();
+        return haystack.includes(query.toLowerCase());
+      }
+
+      function renderLatest(latest) {
+        $("latest-title").textContent = latest?.current || "No song record yet";
+        $("latest-meta").textContent = latest?.at
+          ? `${dateTime(latest.at)} • ${latest.listeners ?? "?"} listeners`
+          : "No saved snapshots yet.";
+        const grid = $("latest-grid");
+        const rows = [
+          latestItem("Artist", latest?.artist),
+          latestItem("Song title", latest?.title),
+          latestItem("Time shown", latest?.duration),
+          latestItem("Coming up next", latest?.comingUp),
+          latestItem("Listeners now", latest?.listeners ?? ""),
+          latestItem("Peak listeners", latest?.listenerPeak ?? ""),
+          latestItem("Broadcast status", statusLabel(latest?.showContext || latest?.programmeContext?.label)),
+          latestItem("Local time saved", [latest?.localWeekday, latest?.localDate, latest?.localTime].filter(Boolean).join(" "))
+        ];
+        grid.replaceChildren(...rows.flat());
+      }
+
+      function renderSummary(summary = {}) {
+        const grid = $("summary-grid");
+        grid.replaceChildren(
+          card("Raw snapshots", String(summary.totalSnapshots || 0)),
+          card("Detected plays", String(summary.detectedPlays || 0)),
+          card("Unique songs", String(summary.uniqueSongs || 0)),
+          card("Unique artists", String(summary.uniqueArtists || 0)),
+          card("Jim live show records", String(summary.jimLivePlays || 0)),
+          card("7pm repeat-show records", String(summary.repeatWindowPlays || 0)),
+          card("Peak listeners", summary.peakListeners === null || summary.peakListeners === undefined ? "Not known" : String(summary.peakListeners)),
+          card("Average listeners", summary.averageListeners === null || summary.averageListeners === undefined ? "Not known" : String(summary.averageListeners)),
+          card("Busiest day", summary.busiestDay ? `${summary.busiestDay.label} • peak ${summary.busiestDay.peak}` : "Not known"),
+          card("Busiest hour", summary.busiestHour ? `${summary.busiestHour.label} • peak ${summary.busiestHour.peak}` : "Not known")
+        );
+      }
+
+      function renderListenerBucketList(id, items) {
+        const wrap = $(id);
+        wrap.replaceChildren();
+        if (!items || !items.length) {
+          const empty = document.createElement("p");
+          empty.className = "help-text";
+          empty.textContent = "No listener records yet.";
+          wrap.appendChild(empty);
+          return;
+        }
+        items.slice(0, 10).forEach((item) => {
+          const row = document.createElement("div");
+          row.className = "compact-row listener-row";
+          const name = document.createElement("strong");
+          const count = document.createElement("span");
+          name.textContent = item.label || item.key || "Unknown time";
+          count.textContent = `Peak ${item.peak ?? "?"} • avg ${item.average ?? "?"}`;
+          row.append(name, count);
+          wrap.appendChild(row);
+        });
+      }
+
+      function renderCompactList(id, items, type) {
+        const wrap = $(id);
+        wrap.replaceChildren();
+        if (!items || !items.length) {
+          const empty = document.createElement("p");
+          empty.className = "help-text";
+          empty.textContent = "No records yet.";
+          wrap.appendChild(empty);
+          return;
+        }
+        items.slice(0, 20).forEach((item) => {
+          const row = document.createElement("div");
+          row.className = "compact-row";
+          const name = document.createElement("strong");
+          const count = document.createElement("span");
+          name.textContent = type === "artist" ? item.artist : item.song;
+          count.textContent = `${item.count} play${item.count === 1 ? "" : "s"}`;
+          row.append(name, count);
+          wrap.appendChild(row);
+        });
+      }
+
+      function renderPlays(data) {
+        const query = clean($("search-input").value).toLowerCase();
+        const list = $("plays-list");
+        list.replaceChildren();
+        const plays = (data.plays || []).filter((item) => playMatches(item, query));
+        if (!plays.length) {
+          const empty = document.createElement("p");
+          empty.className = "help-text";
+          empty.textContent = "No matching song plays found yet.";
+          list.appendChild(empty);
+          return;
+        }
+        plays.slice(0, 300).forEach((item) => {
+          const row = document.createElement("article");
+          row.className = "history-row play-row";
+          const title = document.createElement("strong");
+          const meta = document.createElement("span");
+          const extra = document.createElement("span");
+          title.textContent = trackLabel(item);
+          meta.textContent = `${dateTime(item.startedAt)} • ${statusLabel(item.showContext || item.programmeContext?.label)} • ${item.listenersAtStart ?? "?"} listeners${item.duration ? ` • time shown ${item.duration}` : ""}`;
+          extra.textContent = item.comingUpAtStart ? `Coming up next at that time: ${item.comingUpAtStart}` : "No coming-up record saved for this play.";
+          row.append(title, meta, extra);
+          list.appendChild(row);
+        });
+      }
+
+      function renderSnapshots(data) {
+        const list = $("snapshots-list");
+        list.replaceChildren();
+        const snapshots = data.snapshots || [];
+        if (!snapshots.length) {
+          const empty = document.createElement("p");
+          empty.className = "help-text";
+          empty.textContent = "No raw snapshots found yet.";
+          list.appendChild(empty);
+          return;
+        }
+        snapshots.slice(0, 300).forEach((item) => {
+          const row = document.createElement("article");
+          row.className = "history-row";
+          const title = document.createElement("strong");
+          const meta = document.createElement("span");
+          const prev = document.createElement("span");
+          title.textContent = item.current || "Unknown track";
+          meta.textContent = `${dateTime(item.at)} • ${statusLabel(item.showContext || item.programmeContext?.label)} • ${item.listeners ?? "?"} listeners${item.duration ? ` • time shown ${item.duration}` : ""}`;
+          prev.textContent = item.previous?.length ? `Previous listed then: ${item.previous.slice(0, 3).join(" | ")}` : "No previous-song list saved.";
+          row.append(title, meta, prev);
+          list.appendChild(row);
+        });
+      }
+
+      function render(data) {
+        latestExport = data;
+        renderLatest(data.latest || {});
+        renderSummary(data.summary || {});
+        renderInsightTiles(data);
+        renderMetadataHealth(data);
+        renderInsightProse(data);
+        renderListenerBucketList("listener-days", data.summary?.listenerByDay || []);
+        renderListenerBucketList("listener-hours", data.summary?.listenerByHour || []);
+        renderCompactList("top-songs", data.summary?.topSongs || [], "song");
+        renderCompactList("top-artists", data.summary?.topArtists || [], "artist");
+        renderPlays(data);
+        renderSnapshots(data);
+      }
+
+      function insightTile(label, value) {
+        const div = document.createElement("div");
+        const strong = document.createElement("strong");
+        const span = document.createElement("span");
+        strong.textContent = label;
+        span.textContent = String(value);
+        div.append(strong, span);
+        return div;
+      }
+
+      function renderInsightTiles(data) {
+        const grid = $("insights-grid");
+        const card = $("insights-card");
+        if (!grid || !card) return;
+        while (grid.firstChild) grid.removeChild(grid.firstChild);
+        const s = data.summary || {};
+        const todayKey = new Date().toISOString().slice(0, 10);
+        const todayCount = (data.plays || []).filter((p) => (p.date || (p.startedAt || "").slice(0, 10)) === todayKey).length;
+        grid.appendChild(insightTile("Tracks logged today", todayCount));
+        grid.appendChild(insightTile("Tracks in range", s.detectedPlays || 0));
+        grid.appendChild(insightTile("Unique artists", s.uniqueArtists || 0));
+        const peak = s.peakListeners == null ? "—" : String(s.peakListeners);
+        grid.appendChild(insightTile("Peak listeners", peak));
+        const topSong = s.topSongs && s.topSongs[0] ? s.topSongs[0].song : "—";
+        grid.appendChild(insightTile("Most played track", topSong));
+        const topArtist = s.topArtists && s.topArtists[0] ? s.topArtists[0].artist : "—";
+        grid.appendChild(insightTile("Most played artist", topArtist));
+        card.hidden = false;
+      }
+
+      function renderMetadataHealth(data) {
+        const card = $("metadata-health-card");
+        const status = $("metadata-health-status");
+        const note = $("metadata-health-note");
+        if (!card || !status || !note) return;
+        const latestAt = data.latest && data.latest.at ? new Date(data.latest.at).getTime() : 0;
+        if (!latestAt) {
+          status.textContent = "Status: Unknown";
+          status.className = "metadata-health-status is-unknown";
+          note.textContent = "No saved snapshots found in the selected range.";
+          card.hidden = false;
+          return;
+        }
+        const minutesAgo = Math.round((Date.now() - latestAt) / 60000);
+        let level = "healthy";
+        let label = "Healthy";
+        let message = "Metadata has updated normally. Last update was " + minutesAgo + " minute" + (minutesAgo === 1 ? "" : "s") + " ago.";
+        if (minutesAgo > 30) {
+          level = "stale";
+          label = "Stale";
+          message = "Last update was " + minutesAgo + " minutes ago. The song page on the old website may have stopped responding.";
+        }
+        if (minutesAgo > 120) {
+          level = "broken";
+          label = "Broken";
+          message = "No update for over " + Math.round(minutesAgo / 60) + " hours. The metadata source may be down.";
+        }
+        status.textContent = "Status: " + label;
+        status.className = "metadata-health-status is-" + level;
+        note.textContent = message;
+        card.hidden = false;
+      }
+
+      function renderInsightProse(data) {
+        const card = $("insight-prose-card");
+        const list = $("insight-prose-list");
+        if (!card || !list) return;
+        while (list.firstChild) list.removeChild(list.firstChild);
+        const s = data.summary || {};
+        const lines = [];
+        if (s.busiestHour && s.busiestHour.label) {
+          lines.push("The busiest listening hour was " + s.busiestHour.label + " with up to " + (s.busiestHour.peak ?? "—") + " listeners.");
+        }
+        if (s.topArtists && s.topArtists[0]) {
+          lines.push(s.topArtists[0].artist + " appeared " + s.topArtists[0].count + " times in this range — the most of any artist.");
+        }
+        if (s.topSongs && s.topSongs[0]) {
+          lines.push("The most-played track was " + s.topSongs[0].song + " (" + s.topSongs[0].count + " plays).");
+        }
+        if (typeof s.jimLivePlays === "number" || typeof s.repeatWindowPlays === "number") {
+          lines.push("Jim's live shows logged " + (s.jimLivePlays || 0) + " song changes; the 7 pm repeat window logged " + (s.repeatWindowPlays || 0) + ".");
+        }
+        if (!lines.length) { card.hidden = true; return; }
+        lines.forEach((line) => {
+          const li = document.createElement("li");
+          li.textContent = line;
+          list.appendChild(li);
+        });
+        card.hidden = false;
+      }
+
+      let currentQuickRange = null;  // null = use the days-select directly
+
+      function todayYesterdayKey(offset) {
+        const d = new Date();
+        d.setUTCDate(d.getUTCDate() + offset);
+        return d.toISOString().slice(0, 10);
+      }
+
+      async function collectAndLoad() {
+        try {
+          setStatus("Loading saved history…");
+          // For Today / Yesterday chips, fetch the smallest sensible window
+          // (last 2 days) so we have enough data to filter client-side.
+          let days = $("days-select").value || "7";
+          if (currentQuickRange === "today") days = "2";
+          else if (currentQuickRange === "yesterday") days = "3";
+          const query = clean($("search-input").value);
+          const data = await getJson(`/.netlify/functions/admin-play-history?days=${encodeURIComponent(days)}&snapshotLimit=220&playLimit=360&search=${encodeURIComponent(query)}&t=${Date.now()}`);
+
+          // Client-side filter for the Today / Yesterday chips so the
+          // dashboard only shows the rows for the selected day.
+          if (currentQuickRange === "today" || currentQuickRange === "yesterday") {
+            const targetDay = currentQuickRange === "today" ? todayYesterdayKey(0) : todayYesterdayKey(-1);
+            const filteredPlays = (data.plays || []).filter((p) => {
+              const d = p.date || (p.startedAt || "").slice(0, 10);
+              return d === targetDay;
+            });
+            const filteredSnaps = (data.snapshots || []).filter((s) => {
+              const d = s.date || (s.at || "").slice(0, 10);
+              return d === targetDay;
+            });
+            data.plays = filteredPlays;
+            data.snapshots = filteredSnaps;
+            if (data.counts) {
+              data.counts.returnedPlays = filteredPlays.length;
+              data.counts.returnedSnapshots = filteredSnaps.length;
+            }
+          }
+
+          render(data);
+          const counts = data.counts || {};
+          const parts = [];
+          if (counts.matchedPlays !== undefined) parts.push(`${counts.returnedPlays ?? 0} of ${counts.matchedPlays} matched plays shown`);
+          if (counts.matchedSnapshots !== undefined) parts.push(`${counts.returnedSnapshots ?? 0} of ${counts.matchedSnapshots} matched raw snapshots shown`);
+          const warningText = Array.isArray(data.warnings) && data.warnings.length ? ` Warnings: ${data.warnings.join(" | ")}` : "";
+          setStatus(`History loaded. ${parts.join(" • ") || "Summary updated."}${warningText}`, warningText ? "warn" : "ok");
+        } catch (error) {
+          const message = String(error.message || "");
+          if (message.toLowerCase().includes("sign in") || message.includes("401")) {
+            setStatus("Your admin session may have expired. Go back to Station Admin, sign in again, then reopen History.", "err");
+          } else {
+            setStatus(message || "History could not be loaded. Try a shorter date range, then refresh.", "err");
+          }
+        }
+      }
+
+      function download(filename, content, type) {
+        const blob = new Blob([content], { type });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 500);
+      }
+
+      function csvEscape(value) {
+        return `"${String(value ?? "").replace(/"/g, '""')}"`;
+      }
+
+      function downloadCsv() {
+        if (!latestExport) return;
+        const rows = [["startedAt", "date", "localWeekday", "localTime", "broadcastStatus", "isJimLiveWindow", "isRepeatShowWindow", "artist", "title", "display", "timeShown", "durationSeconds", "listenersAtStart", "listenerPeakAtStart", "comingUpAtStart"]];
+        for (const item of latestExport.plays || []) {
+          rows.push([item.startedAt, item.date, item.localWeekday, item.localTime, statusLabel(item.showContext || item.programmeContext?.label), item.isJimLiveWindow, item.isRepeatShowWindow, item.artist, item.title, item.current, item.duration, item.durationSeconds, item.listenersAtStart, item.listenerPeakAtStart, item.comingUpAtStart]);
+        }
+        download(`coast-detected-song-plays-${new Date().toISOString().slice(0, 10)}.csv`, rows.map((row) => row.map(csvEscape).join(",")).join("\n"), "text/csv");
+      }
+
+      $("refresh-btn").addEventListener("click", collectAndLoad);
+      $("days-select").addEventListener("change", () => {
+        currentQuickRange = null;
+        document.querySelectorAll("[data-history-range]").forEach((b) => b.classList.remove("is-active"));
+        collectAndLoad();
+      });
+
+      document.querySelectorAll("[data-history-range]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const range = btn.dataset.historyRange;
+          if (range === "1") currentQuickRange = "today";
+          else if (range === "2") currentQuickRange = "yesterday";
+          else {
+            currentQuickRange = null;
+            $("days-select").value = range;
+          }
+          document.querySelectorAll("[data-history-range]").forEach((b) => b.classList.remove("is-active"));
+          btn.classList.add("is-active");
+          collectAndLoad();
+        });
+      });
+
+      let searchTimer = null;
+      $("search-input").addEventListener("input", () => {
+        clearTimeout(searchTimer);
+        searchTimer = setTimeout(collectAndLoad, 250);
+      });
+      $("download-json-btn").addEventListener("click", () => {
+        if (!latestExport) return;
+        download(`coast-playlist-history-${new Date().toISOString().slice(0, 10)}.json`, JSON.stringify(latestExport, null, 2), "application/json");
+      });
+      $("download-csv-btn").addEventListener("click", downloadCsv);
+
+      function setActiveHistoryTab(name) {
+        document.querySelectorAll("[data-history-tab]").forEach((btn) => {
+          const active = btn.dataset.historyTab === name;
+          btn.classList.toggle("is-active", active);
+          btn.setAttribute("aria-selected", active ? "true" : "false");
+        });
+        document.querySelectorAll("[data-history-panel]").forEach((panel) => {
+          const active = panel.dataset.historyPanel === name;
+          panel.hidden = !active;
+          panel.classList.toggle("is-active", active);
+        });
+      }
+
+      document.querySelectorAll("[data-history-tab]").forEach((btn) => {
+        btn.addEventListener("click", () => setActiveHistoryTab(btn.dataset.historyTab));
+      });
+
+      collectAndLoad();
+    })();
+  </script>
+</body>
+</html>

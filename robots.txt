@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /admin/analytics.html
+Disallow: /admin/feedback.html
+Disallow: /admin/history.html
+Disallow: /now-playing.json
+Disallow: /workers-reference/
+Disallow: /metadata-test.html
+Disallow: /metadata-source-finder.html
+Disallow: /tools/
+Disallow: /README.md
+Disallow: /TESTING_CHECKLIST.md
+Disallow: /CHANGELOG.md
+
+Sitemap: https://coastinternetradio.com/sitemap.xml
