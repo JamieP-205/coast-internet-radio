@@ -1,0 +1,52 @@
+﻿<svg width="1200" height="520" viewBox="0 0 1200 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Coast Internet Radio architecture</title>
+  <desc id="desc">High-level architecture showing listener browser, Netlify static site, Netlify Functions, Netlify Blobs and Cloudflare Workers.</desc>
+
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#2563eb"/>
+    </marker>
+    <style>
+      .bg { fill: #f8fafc; }
+      .title { font: 700 34px Segoe UI, Arial, sans-serif; fill: #0f172a; }
+      .label { font: 700 19px Segoe UI, Arial, sans-serif; fill: #0f172a; }
+      .small { font: 15px Segoe UI, Arial, sans-serif; fill: #475569; }
+      .box { fill: #ffffff; stroke: #cbd5e1; stroke-width: 2; rx: 18; }
+      .accent { fill: #eff6ff; stroke: #93c5fd; stroke-width: 2; rx: 18; }
+      .line { stroke: #2563eb; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+      .note { fill: #ecfdf5; stroke: #86efac; stroke-width: 2; rx: 14; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1200" height="520"/>
+  <text class="title" x="600" y="62" text-anchor="middle">Coast Internet Radio Architecture</text>
+
+  <rect class="box" x="60" y="170" width="190" height="110"/>
+  <text class="label" x="155" y="210" text-anchor="middle">Listener</text>
+  <text class="small" x="155" y="238" text-anchor="middle">Browser player</text>
+
+  <rect class="accent" x="330" y="170" width="210" height="110"/>
+  <text class="label" x="435" y="210" text-anchor="middle">Netlify</text>
+  <text class="small" x="435" y="238" text-anchor="middle">Static website</text>
+
+  <rect class="accent" x="620" y="170" width="220" height="110"/>
+  <text class="label" x="730" y="210" text-anchor="middle">Netlify Functions</text>
+  <text class="small" x="730" y="238" text-anchor="middle">API, auth, analytics</text>
+
+  <rect class="box" x="910" y="100" width="220" height="100"/>
+  <text class="label" x="1020" y="138" text-anchor="middle">Netlify Blobs</text>
+  <text class="small" x="1020" y="166" text-anchor="middle">Content and history</text>
+
+  <rect class="box" x="910" y="300" width="220" height="100"/>
+  <text class="label" x="1020" y="338" text-anchor="middle">Cloudflare Workers</text>
+  <text class="small" x="1020" y="366" text-anchor="middle">Stream metadata proxy</text>
+
+  <path class="line" d="M250 225 H330"/>
+  <path class="line" d="M540 225 H620"/>
+  <path class="line" d="M840 205 C875 170 880 150 910 150"/>
+  <path class="line" d="M840 245 C875 285 880 350 910 350"/>
+
+  <rect class="note" x="315" y="380" width="570" height="72"/>
+  <text class="label" x="600" y="410" text-anchor="middle">Built for reliability and simple maintenance</text>
+  <text class="small" x="600" y="438" text-anchor="middle">Static frontend, serverless backend, private admin tools and privacy-conscious analytics.</text>
+</svg>
