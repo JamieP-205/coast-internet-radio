@@ -20,7 +20,7 @@ Below is a simplified view of the production architecture. A listener’s browse
 
 | Coast architecture |
 | --- |
-| ![Coast Internet Radio architecture](../coast-architecture.png) |
+| ![Coast Internet Radio architecture](coast-architecture.png) |
 
 ## Demo note
 
@@ -30,7 +30,7 @@ The public site is fully accessible at the link above, but the admin area is pri
 
 - A responsive live‑radio player with now‑playing, coming‑up and recent‑track information
 - Programme‑aware presentation for live shows, repeats and automated music
-- A private admin area for content management, analytics, feedback and playlist history
+- A private admin area for content management, analytics, feedback, and playlist history
 - Netlify Functions for authentication, managed content, analytics, feedback, play history and live status
 - Netlify Blobs as the persistent store for playlists, listener events and content data
 - Cloudflare Workers that bridge the station’s existing stream and metadata services to HTTPS
