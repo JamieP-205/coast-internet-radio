@@ -4952,3 +4952,184 @@ html[data-theme="light"]:not([data-contrast="high"]) .hero-card {
     width: 62px;
   }
 }
+/* Coast line-only correction patch */
+:root {
+  --coast-line-only-correction: 1;
+}
+
+html,
+body,
+main,
+main.shell {
+  background: #050608 !important;
+}
+
+html[data-theme="light"]:not([data-contrast="high"]),
+html[data-theme="light"]:not([data-contrast="high"]) body,
+html[data-theme="light"]:not([data-contrast="high"]) main,
+html[data-theme="light"]:not([data-contrast="high"]) main.shell {
+  background: #f6efe3 !important;
+}
+
+/* Restore hero image after previous transparent override */
+.hero-card {
+  background:
+    linear-gradient(90deg,
+      rgba(5, 6, 8, .98) 0%,
+      rgba(5, 6, 8, .90) 32%,
+      rgba(5, 6, 8, .30) 58%,
+      rgba(5, 6, 8, .02) 100%),
+    url("assets/images/jim-hero-studio-v16-face-fix.webp") 72% center / cover no-repeat !important;
+}
+
+html[data-theme="light"]:not([data-contrast="high"]) .hero-card {
+  background:
+    linear-gradient(90deg,
+      rgba(246, 239, 227, .99) 0%,
+      rgba(246, 239, 227, .92) 32%,
+      rgba(246, 239, 227, .38) 58%,
+      rgba(246, 239, 227, .03) 100%),
+    url("assets/images/jim-hero-studio-v16-face-fix.webp") 72% center / cover no-repeat !important;
+}
+
+/* Kill card surfaces and side boxes properly */
+.hero-card,
+.player-card,
+.now-playing,
+.broadcast-status,
+.track-grid,
+.extra-playlist,
+.np-row,
+.queue-card,
+.action-row,
+.action-row > a,
+.action-row > .action-button,
+.schedule-card,
+.schedule-time,
+.news-card,
+.news-item,
+.about-strip,
+.how-panel,
+.how-panel li,
+.support-panel,
+.volume-line,
+#current-track-panel,
+#extra-playlist,
+#previous-panel,
+#coming-up-row {
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  background-color: transparent !important;
+  border-left: 0 !important;
+  border-right: 0 !important;
+}
+
+/* Keep only divider lines, not boxes */
+.player-top,
+.now-playing,
+.action-row,
+.schedule-card,
+.news-card,
+.about-strip,
+.how-panel,
+.support-panel {
+  border-left: 0 !important;
+  border-right: 0 !important;
+  border-bottom: 0 !important;
+  border-top: 1px solid var(--line) !important;
+}
+
+.broadcast-status,
+.np-row,
+.queue-card,
+.schedule-time,
+.how-panel li {
+  border-left: 0 !important;
+  border-right: 0 !important;
+  border-bottom: 0 !important;
+  border-top: 1px solid var(--line-soft) !important;
+}
+
+/* Remove fake button cards from the three action links */
+.action-row {
+  padding: 1rem 0 !important;
+  gap: 1.25rem !important;
+  border-bottom: 1px solid var(--line-soft) !important;
+}
+
+.action-row > a,
+.action-row > .action-button {
+  padding: 0 !important;
+  min-height: auto !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+
+.action-row strong {
+  color: var(--gold-light) !important;
+  border-bottom: 1px solid color-mix(in srgb, var(--gold-light) 45%, transparent);
+}
+
+.action-row > a:hover strong,
+.action-row > .action-button:hover strong {
+  border-bottom-color: var(--gold-light);
+}
+
+/* Remove shaded boxes in light mode specifically */
+html[data-theme="light"]:not([data-contrast="high"]) .broadcast-status,
+html[data-theme="light"]:not([data-contrast="high"]) .np-row,
+html[data-theme="light"]:not([data-contrast="high"]) .queue-card,
+html[data-theme="light"]:not([data-contrast="high"]) .schedule-time,
+html[data-theme="light"]:not([data-contrast="high"]) .how-panel li,
+html[data-theme="light"]:not([data-contrast="high"]) .action-row > a,
+html[data-theme="light"]:not([data-contrast="high"]) .action-row > .action-button {
+  background: transparent !important;
+}
+
+/* Make text sit away from divider lines without creating boxes */
+.broadcast-status,
+.np-row,
+.queue-card,
+.schedule-time,
+.how-panel li {
+  padding-top: .95rem !important;
+  padding-bottom: .95rem !important;
+}
+
+.volume-line {
+  padding: .8rem 0 !important;
+}
+
+/* Keep play button in scheme without looking like a toy */
+.play-button {
+  background: transparent !important;
+  color: var(--gold-light) !important;
+  border: 1px solid var(--line) !important;
+  box-shadow: none !important;
+}
+
+.play-button:hover {
+  background: color-mix(in srgb, var(--gold-bright) 10%, transparent) !important;
+}
+
+/* Support/listen buttons still need to look clickable */
+.support-header,
+.banner.lang a,
+.support-panel a {
+  background: transparent !important;
+  color: var(--gold-light) !important;
+  border: 1px solid var(--line) !important;
+}
+
+.support-header:hover,
+.banner.lang a:hover,
+.support-panel a:hover {
+  background: color-mix(in srgb, var(--gold-bright) 10%, transparent) !important;
+}
+
+/* Make light mode blend cleanly into the sides */
+html[data-theme="light"]:not([data-contrast="high"]) .site-header,
+html[data-theme="light"]:not([data-contrast="high"]) .shell,
+html[data-theme="light"]:not([data-contrast="high"]) main.shell {
+  background: #f6efe3 !important;
+}
