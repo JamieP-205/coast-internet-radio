@@ -1393,3 +1393,89 @@ html[data-theme="light"]:not([data-contrast="high"]) .shell,
 html[data-theme="light"]:not([data-contrast="high"]) main.shell {
   background: #f6efe3 !important;
 }
+/* Coast light mode blend patch */
+html[data-theme="light"]:not([data-contrast="high"]),
+html[data-theme="light"]:not([data-contrast="high"]) body,
+html[data-theme="light"]:not([data-contrast="high"]) main,
+html[data-theme="light"]:not([data-contrast="high"]) main.shell,
+html[data-theme="light"]:not([data-contrast="high"]) .site-main {
+  background: #f6efe3 !important;
+}
+
+/* In light mode, remove the obvious card/tone blocks but leave the 3 action buttons alone */
+html[data-theme="light"]:not([data-contrast="high"]) .player-card,
+html[data-theme="light"]:not([data-contrast="high"]) .now-playing,
+html[data-theme="light"]:not([data-contrast="high"]) .broadcast-status,
+html[data-theme="light"]:not([data-contrast="high"]) .track-grid,
+html[data-theme="light"]:not([data-contrast="high"]) .extra-playlist,
+html[data-theme="light"]:not([data-contrast="high"]) .np-row,
+html[data-theme="light"]:not([data-contrast="high"]) .queue-card,
+html[data-theme="light"]:not([data-contrast="high"]) .schedule-card,
+html[data-theme="light"]:not([data-contrast="high"]) .schedule-time,
+html[data-theme="light"]:not([data-contrast="high"]) .news-card,
+html[data-theme="light"]:not([data-contrast="high"]) .news-item,
+html[data-theme="light"]:not([data-contrast="high"]) .about-strip,
+html[data-theme="light"]:not([data-contrast="high"]) .how-panel,
+html[data-theme="light"]:not([data-contrast="high"]) .how-panel li,
+html[data-theme="light"]:not([data-contrast="high"]) .support-panel,
+html[data-theme="light"]:not([data-contrast="high"]) .volume-line {
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Remove the left/right edges that make sections look cut off */
+html[data-theme="light"]:not([data-contrast="high"]) .player-card,
+html[data-theme="light"]:not([data-contrast="high"]) .now-playing,
+html[data-theme="light"]:not([data-contrast="high"]) .broadcast-status,
+html[data-theme="light"]:not([data-contrast="high"]) .np-row,
+html[data-theme="light"]:not([data-contrast="high"]) .queue-card,
+html[data-theme="light"]:not([data-contrast="high"]) .schedule-card,
+html[data-theme="light"]:not([data-contrast="high"]) .schedule-time,
+html[data-theme="light"]:not([data-contrast="high"]) .about-strip,
+html[data-theme="light"]:not([data-contrast="high"]) .how-panel,
+html[data-theme="light"]:not([data-contrast="high"]) .how-panel li,
+html[data-theme="light"]:not([data-contrast="high"]) .support-panel {
+  border-left: 0 !important;
+  border-right: 0 !important;
+}
+
+/* Keep only soft horizontal divider lines in light mode */
+html[data-theme="light"]:not([data-contrast="high"]) .player-top,
+html[data-theme="light"]:not([data-contrast="high"]) .now-playing,
+html[data-theme="light"]:not([data-contrast="high"]) .schedule-card,
+html[data-theme="light"]:not([data-contrast="high"]) .about-strip,
+html[data-theme="light"]:not([data-contrast="high"]) .how-panel,
+html[data-theme="light"]:not([data-contrast="high"]) .support-panel {
+  border-top: 1px solid rgba(88, 60, 24, 0.22) !important;
+}
+
+html[data-theme="light"]:not([data-contrast="high"]) .broadcast-status,
+html[data-theme="light"]:not([data-contrast="high"]) .np-row,
+html[data-theme="light"]:not([data-contrast="high"]) .queue-card,
+html[data-theme="light"]:not([data-contrast="high"]) .schedule-time,
+html[data-theme="light"]:not([data-contrast="high"]) .how-panel li {
+  border-top: 1px solid rgba(88, 60, 24, 0.12) !important;
+  border-bottom: 0 !important;
+}
+
+/* Add breathing room without creating new boxes */
+html[data-theme="light"]:not([data-contrast="high"]) .broadcast-status,
+html[data-theme="light"]:not([data-contrast="high"]) .np-row,
+html[data-theme="light"]:not([data-contrast="high"]) .queue-card,
+html[data-theme="light"]:not([data-contrast="high"]) .schedule-time,
+html[data-theme="light"]:not([data-contrast="high"]) .how-panel li {
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+}
+
+/* Make sure the hero image stays visible */
+html[data-theme="light"]:not([data-contrast="high"]) .hero-card {
+  background:
+    linear-gradient(90deg,
+      rgba(246, 239, 227, .99) 0%,
+      rgba(246, 239, 227, .92) 32%,
+      rgba(246, 239, 227, .38) 58%,
+      rgba(246, 239, 227, .03) 100%),
+    url("assets/images/jim-hero-studio-v16-face-fix.webp") 72% center / cover no-repeat !important;
+}
