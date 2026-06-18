@@ -5219,3 +5219,100 @@ html[data-theme="light"]:not([data-contrast="high"]) .hero-card {
       rgba(246, 239, 227, .03) 100%),
     url("assets/images/jim-hero-studio-v16-face-fix.webp") 72% center / cover no-repeat !important;
 }
+/* Coast restore action buttons */
+:root {
+  --coast-action-buttons-restored: 1;
+}
+
+/* Restore the three main actions as real buttons again */
+.action-row {
+  margin-top: clamp(1.25rem, 3vw, 1.85rem) !important;
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 1rem !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+
+.action-row > a,
+.action-row > .action-button {
+  min-height: 82px !important;
+  padding: 1rem 1.08rem !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  text-align: left !important;
+  text-decoration: none !important;
+  border-radius: 18px !important;
+  border: 1px solid rgba(230, 189, 107, 0.34) !important;
+  background:
+    linear-gradient(180deg, rgba(230, 189, 107, 0.16), rgba(197, 139, 59, 0.08)) !important;
+  color: var(--cream) !important;
+  box-shadow: none !important;
+}
+
+.action-row > a:hover,
+.action-row > .action-button:hover {
+  transform: none !important;
+  text-decoration: none !important;
+  border-color: rgba(230, 189, 107, 0.58) !important;
+  background:
+    linear-gradient(180deg, rgba(230, 189, 107, 0.24), rgba(197, 139, 59, 0.12)) !important;
+}
+
+.action-row strong {
+  display: block !important;
+  color: var(--gold-light) !important;
+  font-size: .96rem !important;
+  line-height: 1.2 !important;
+  border-bottom: 0 !important;
+}
+
+.action-row .action-sub {
+  display: block !important;
+  margin-top: .24rem !important;
+  color: var(--muted) !important;
+  font-size: .8rem !important;
+  line-height: 1.35 !important;
+}
+
+.action-icon {
+  display: none !important;
+}
+
+/* Light mode version - warm, not black/white */
+html[data-theme="light"]:not([data-contrast="high"]) .action-row > a,
+html[data-theme="light"]:not([data-contrast="high"]) .action-row > .action-button {
+  background:
+    linear-gradient(180deg, rgba(255, 246, 226, 0.92), rgba(238, 219, 188, 0.52)) !important;
+  border-color: rgba(148, 97, 29, 0.26) !important;
+  color: #18120b !important;
+}
+
+html[data-theme="light"]:not([data-contrast="high"]) .action-row > a:hover,
+html[data-theme="light"]:not([data-contrast="high"]) .action-row > .action-button:hover {
+  background:
+    linear-gradient(180deg, rgba(255, 239, 205, 0.98), rgba(232, 205, 160, 0.62)) !important;
+  border-color: rgba(148, 97, 29, 0.42) !important;
+}
+
+html[data-theme="light"]:not([data-contrast="high"]) .action-row strong {
+  color: #68420f !important;
+}
+
+html[data-theme="light"]:not([data-contrast="high"]) .action-row .action-sub {
+  color: #5f5142 !important;
+}
+
+@media (max-width: 900px) {
+  .action-row {
+    grid-template-columns: 1fr !important;
+    gap: .75rem !important;
+  }
+
+  .action-row > a,
+  .action-row > .action-button {
+    min-height: 74px !important;
+  }
+}
