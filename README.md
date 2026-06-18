@@ -8,7 +8,7 @@ The production website is at [coastinternetradio.com](https://coastinternetradio
 
 ## Status
 
-**Live production project** � this site serves real listeners every day. Changes are tested thoroughly before deployment.
+**Live production project** - this site serves real listeners every day. Changes are tested thoroughly before deployment.
 
 ## Summary
 
@@ -16,7 +16,7 @@ I built and maintain this website for Coast Internet Radio. The project combines
 
 ## Architecture diagram
 
-Below is a simplified view of the production architecture. A listener�s browser requests the static site from Netlify. The UI calls Netlify Functions to fetch programme metadata, submit feedback, record analytics and manage content. Netlify Blobs persists playlists, feedback, analytics and page content. Cloudflare Workers act as HTTPS-friendly proxies to the station�s existing stream and metadata source.
+Below is a simplified view of the production architecture. A listener's browser requests the static site from Netlify. The UI calls Netlify Functions to fetch programme metadata, submit feedback, record analytics and manage content. Netlify Blobs persists playlists, feedback, analytics and page content. Cloudflare Workers act as HTTPS-friendly proxies to the station's existing stream and metadata source.
 
 | Coast architecture |
 | --- |
@@ -33,20 +33,20 @@ The public site is fully accessible at the link above, but the admin area is pri
 - A private admin area for content management, analytics, feedback, and playlist history
 - Netlify Functions for authentication, managed content, analytics, feedback, play history and live status
 - Netlify Blobs as the persistent store for playlists, listener events and content data
-- Cloudflare Workers that bridge the station�s existing stream and metadata services to HTTPS
-- A browser-based �Station Helper� to answer common listener questions
+- Cloudflare Workers that bridge the station's existing stream and metadata services to HTTPS
+- A browser-based "Station Helper" to answer common listener questions
 - Accessibility controls for colour theme, text size, contrast and reduced motion
 
 ## Key files
 
-- `index.html` � public listener homepage and player
-- `src/css/` and `styles.css` � maintainable CSS source and generated production stylesheet
-- `script.js` and `live-ui.js` � player controls, metadata polling, forms and shared rendering
-- `managed-content.js` � public managed-content loader
-- `admin/` � authenticated screens for content, history, analytics and feedback
-- `netlify/functions/` � serverless API and scheduled functions
-- `workers-reference/` � source references for the deployed Cloudflare Workers
-- `tools/` � build and validation scripts used in CI
+- `index.html` - public listener homepage and player
+- `src/css/` and `styles.css` - maintainable CSS source and generated production stylesheet
+- `script.js` and `live-ui.js` - player controls, metadata polling, forms and shared rendering
+- `managed-content.js` - public managed-content loader
+- `admin/` - authenticated screens for content, history, analytics and feedback
+- `netlify/functions/` - serverless API and scheduled functions
+- `workers-reference/` - source references for the deployed Cloudflare Workers
+- `tools/` - build and validation scripts used in CI
 
 ## Technical approach
 

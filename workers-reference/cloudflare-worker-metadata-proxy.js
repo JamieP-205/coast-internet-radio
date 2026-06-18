@@ -100,7 +100,7 @@ async function getMetadata() {
 function decodeBuffer(buffer) {
   let text = new TextDecoder("utf-8", { fatal: false }).decode(buffer);
 
-  if (text.includes("�")) {
+  if (text.includes("\uFFFD")) {
     try {
       text = new TextDecoder("windows-1252", { fatal: false }).decode(buffer);
     } catch (_) {}
