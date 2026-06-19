@@ -34,7 +34,6 @@ Run these checks after every production deploy.
 
 ## Technical checks
 
-- Visit `/.netlify/functions/admin-storage-test` while signed in and confirm storage write/read succeed.
 - Visit `/.netlify/functions/admin-diagnostics` while signed in and confirm required environment variables are present.
 - Check `https://coast-metadata.jamieparr05.workers.dev/debug` if Now Playing looks wrong.
 - Check Cloudflare Worker metrics for `coast-stream`, `coast-metadata`, and `coast-paypal-redirect`.

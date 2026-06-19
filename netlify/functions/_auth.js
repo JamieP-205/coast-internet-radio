@@ -2,7 +2,8 @@ const crypto = require("crypto");
 const { getStore } = require("@netlify/blobs");
 
 const COOKIE_NAME = "coast_admin_session";
-const SESSION_SECONDS = 90 * 24 * 60 * 60;
+// Long enough for normal editor use, short enough to limit a stolen admin cookie.
+const SESSION_SECONDS = 14 * 24 * 60 * 60;
 
 function json(statusCode, body, extraHeaders = {}) {
   return {
