@@ -117,7 +117,6 @@ function ipKey(event) {
 }
 
 async function checkLoginLimit(event) {
-  const opts = netlifyBlobOptions();
   const store = siteBlobStore("coast-admin-rate-limit");
   const key = `login-${ipKey(event)}`;
   const now = Date.now();

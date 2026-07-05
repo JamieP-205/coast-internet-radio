@@ -1,5 +1,5 @@
 
-/* Final accessibility and light-mode stability pass */
+/* Light-theme and accessibility overrides. Loaded last so these rules win over earlier partials. */
 
 /* Keep large text useful without allowing controls to force horizontal scrolling. */
 html,
@@ -357,7 +357,7 @@ html[data-theme="light"]:not([data-contrast="high"]) .hero-card {
       rgba(255, 246, 226, 0.55) 0%,
       rgba(255, 246, 226, 0.18) 35%,
       rgba(255, 246, 226, 0.0) 60%),
-    url("assets/images/jim-hero-studio-light-v1.webp") 70% center / cover no-repeat;
+    url("assets/images/jim-hero-studio-light.webp") 70% center / cover no-repeat;
   border-color: rgba(171, 111, 24, 0.32);
 }
 
@@ -390,7 +390,7 @@ html[data-theme="light"]:not([data-contrast="high"]) .hero-card .place {
         rgba(255, 246, 226, 0.15) 45%,
         rgba(255, 246, 226, 0.0) 75%,
         rgba(255, 246, 226, 0.0) 100%),
-      url("assets/images/jim-hero-studio-light-v1.webp") 70% center / cover no-repeat;
+      url("assets/images/jim-hero-studio-light.webp") 70% center / cover no-repeat;
   }
 }
 
@@ -533,7 +533,7 @@ html[data-theme="light"]:not([data-contrast="high"]) .programme-status span {
    Root cause analysis:
    1. .hero-card grows when #listener-panel un-hides because the previous
       rule .hero-card .listener-panel[hidden] { display: none !important }
-      in 07-now-playing-polish.css line 621 wins specificity over any non-
+      in 07-now-playing.css line 621 wins specificity over any non-
       important override. The status-pills row goes from 1 pill to 2 pills,
       sometimes wrapping to 2 lines on narrow phones, growing the card.
    2. .player-card shift is largely caused by the hero growing above it.
@@ -545,7 +545,7 @@ html[data-theme="light"]:not([data-contrast="high"]) .programme-status span {
    mobile widths so the cards do not grow once data arrives. */
 
 /* (1) Hero status-pills: reserve the listener-pill slot from first paint.
-       Higher specificity than 07-now-playing-polish.css line 621, and
+       Higher specificity than 07-now-playing.css line 621, and
        !important to match its !important.
        Note: visibility:hidden keeps a CSS slot but also removes the element
        from the accessibility tree, so this stays semantically equivalent to
@@ -743,7 +743,7 @@ main.shell {
       rgba(5, 6, 8, .90) 32%,
       rgba(5, 6, 8, .30) 58%,
       rgba(5, 6, 8, .02) 100%),
-    url("assets/images/jim-hero-studio-v16-face-fix.webp") 72% center / cover no-repeat;
+    url("assets/images/jim-hero-studio.webp") 72% center / cover no-repeat;
 }
 
 html[data-theme="light"]:not([data-contrast="high"]) .hero-card {
@@ -753,7 +753,7 @@ html[data-theme="light"]:not([data-contrast="high"]) .hero-card {
       rgba(246, 239, 227, .92) 32%,
       rgba(246, 239, 227, .38) 58%,
       rgba(246, 239, 227, .03) 100%),
-    url("assets/images/jim-hero-studio-v16-face-fix.webp") 72% center / cover no-repeat;
+    url("assets/images/jim-hero-studio.webp") 72% center / cover no-repeat;
 }
 
 .hero-card::before,
@@ -1113,7 +1113,7 @@ html[data-theme="light"]:not([data-contrast="high"]) .hero-card {
         rgba(5, 6, 8, .96) 0%,
         rgba(5, 6, 8, .84) 42%,
         rgba(5, 6, 8, .24) 100%),
-      url("assets/images/jim-hero-studio-v16-face-fix.webp") center bottom / cover no-repeat;
+      url("assets/images/jim-hero-studio.webp") center bottom / cover no-repeat;
   }
 
   html[data-theme="light"]:not([data-contrast="high"]) .hero-card {
@@ -1122,7 +1122,7 @@ html[data-theme="light"]:not([data-contrast="high"]) .hero-card {
         rgba(246, 239, 227, .97) 0%,
         rgba(246, 239, 227, .78) 42%,
         rgba(246, 239, 227, .18) 100%),
-      url("assets/images/jim-hero-studio-v16-face-fix.webp") center bottom / cover no-repeat;
+      url("assets/images/jim-hero-studio.webp") center bottom / cover no-repeat;
   }
 
   .hero-words {
@@ -1239,7 +1239,7 @@ html[data-theme="light"]:not([data-contrast="high"]) main.shell {
       rgba(5, 6, 8, .90) 32%,
       rgba(5, 6, 8, .30) 58%,
       rgba(5, 6, 8, .02) 100%),
-    url("assets/images/jim-hero-studio-v16-face-fix.webp") 72% center / cover no-repeat !important;
+    url("assets/images/jim-hero-studio.webp") 72% center / cover no-repeat !important;
 }
 
 html[data-theme="light"]:not([data-contrast="high"]) .hero-card {
@@ -1249,7 +1249,7 @@ html[data-theme="light"]:not([data-contrast="high"]) .hero-card {
       rgba(246, 239, 227, .92) 32%,
       rgba(246, 239, 227, .38) 58%,
       rgba(246, 239, 227, .03) 100%),
-    url("assets/images/jim-hero-studio-v16-face-fix.webp") 72% center / cover no-repeat !important;
+    url("assets/images/jim-hero-studio.webp") 72% center / cover no-repeat !important;
 }
 
 /* Kill card surfaces and side boxes properly */
@@ -1477,7 +1477,7 @@ html[data-theme="light"]:not([data-contrast="high"]) .hero-card {
       rgba(246, 239, 227, .92) 32%,
       rgba(246, 239, 227, .38) 58%,
       rgba(246, 239, 227, .03) 100%),
-    url("assets/images/jim-hero-studio-v16-face-fix.webp") 72% center / cover no-repeat !important;
+    url("assets/images/jim-hero-studio.webp") 72% center / cover no-repeat !important;
 }
 /* Coast restore action buttons */
 :root {

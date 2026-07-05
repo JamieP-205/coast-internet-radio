@@ -10,10 +10,10 @@ const parts = [
   "04-footer-info-pages.css",
   "05-overlays-forms.css",
   "06-responsive-print.css",
-  "07-now-playing-polish.css",
+  "07-now-playing.css",
   "08-station-helper.css",
-  "09-light-mode-polish.css",
-  "10-final-accessibility-light-fix.css"
+  "09-light-theme.css",
+  "10-light-theme-accessibility.css"
 ];
 
 const root = process.cwd();

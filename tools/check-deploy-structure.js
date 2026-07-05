@@ -19,9 +19,9 @@ const required = [
   "admin/admin.css",
   "assets/icons/icon-192.png",
   "assets/icons/icon-512.png",
-  "assets/images/jim-hero-studio-v16-face-fix.webp",
+  "assets/images/jim-hero-studio.webp",
   "assets/images/jim-portrait-500.webp",
-  "assets/images/coast-round-logo-192-v2.webp",
+  "assets/images/coast-round-logo-192.webp",
   "netlify/functions/_auth.js",
   "netlify/functions/admin-login.js",
   "netlify/functions/admin-content.js",
@@ -37,9 +37,9 @@ const required = [
   "admin/analytics.html",
   "admin/feedback.html",
   "src/css/00-base.css",
-  "src/css/07-now-playing-polish.css",
+  "src/css/07-now-playing.css",
   "src/css/08-station-helper.css",
-  "src/css/09-light-mode-polish.css",
+  "src/css/09-light-theme.css",
   "tools/build-css.js",
   "tools/check-js-syntax.js"
 ];
