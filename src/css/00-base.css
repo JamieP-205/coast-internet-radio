@@ -229,13 +229,10 @@ html[data-theme="dark"] .form-submit:hover {
 
 /* Banners (noscript warning, managed announcement) */
 .banner {
-  margin: 1rem 0;
-  padding: 0.8rem 1.1rem;
-  background: var(--surface);
-  border-left: 3px solid var(--brand);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-soft);
-  font-size: 0.95rem;
+  margin: 1.2rem 0 0.4rem;
+  font-size: 0.92rem;
+  color: var(--muted);
+  max-width: 62ch;
 }
 
 .banner p { margin: 0 0 0.25rem; }
@@ -243,9 +240,10 @@ html[data-theme="dark"] .form-submit:hover {
 .banner a { font-weight: 600; }
 
 .banner.no-js {
-  border-left-color: var(--live);
+  padding: 0.8rem 1.1rem;
   background: var(--warn-bg);
   color: var(--warn-text);
+  border-radius: var(--radius);
 }
 
 .banner .dismiss {

@@ -94,7 +94,6 @@ html[data-theme="dark"] .support-header:hover {
   margin-top: 1.1rem;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  box-shadow: var(--shadow-soft);
   background:
     linear-gradient(90deg, rgba(246, 241, 230, 0.75) 0%, rgba(246, 241, 230, 0.35) 36%, rgba(246, 241, 230, 0) 58%),
     url("assets/images/jim-hero-studio-light.webp") right center / cover no-repeat,
@@ -151,7 +150,6 @@ html[data-theme="dark"] .support-header:hover {
   font-size: 0.86rem;
   font-weight: 600;
   white-space: nowrap;
-  box-shadow: var(--shadow-soft);
 }
 
 .status-pill .dot {
