@@ -603,7 +603,7 @@ html[data-theme="dark"] .support-header:hover {
 }
 
 .action-row strong::after {
-  content: " 92" / "";
+  content: " →" / "";
   color: var(--brand);
   opacity: 0;
   transition: opacity 150ms ease;
