@@ -32,7 +32,8 @@
   --line-strong: #241c10;
   --brand: #8f5c10;
   --brand-deep: #6e4306;
-  --live: #a92e24;
+  --live: #a4700f;
+  --error: #a92e24;
   --ok: #226b3a;
   --warn-text: #7c2018;
   --warn-bg: #f5e2d9;
@@ -55,19 +56,20 @@
 html[data-theme="dark"] {
   color-scheme: dark;
   --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
-  --paper: #171310;
-  --surface: #201a13;
-  --surface-2: #2a2218;
-  --ink: #f0e7d4;
-  --muted: #b5a488;
-  --line: #453b2b;
-  --line-strong: #f0e7d4;
+  --paper: #0b0f15;
+  --surface: #151b23;
+  --surface-2: #1c242e;
+  --ink: #e9edf2;
+  --muted: #98a5b3;
+  --line: #2a3542;
+  --line-strong: #e9edf2;
   --brand: #d9a440;
-  --brand-deep: #eec065;
-  --live: #e0645a;
-  --ok: #63bd88;
+  --brand-deep: #e8bd66;
+  --live: #d9a440;
+  --error: #e0645a;
+  --ok: #5cb884;
   --warn-text: #f0b3aa;
-  --warn-bg: #3a201b;
+  --warn-bg: #331d20;
   --focus: #d9a440;
 }
 
@@ -84,13 +86,17 @@ html {
 
 body {
   margin: 0;
-  background:
-    radial-gradient(60rem 22rem at 75% -8rem, rgba(196, 141, 43, 0.10), transparent 70%)
-    var(--paper);
+  background: var(--paper);
   color: var(--ink);
   font-family: var(--font-body);
   font-size: 1rem;
   line-height: 1.55;
+}
+
+html:not([data-theme="dark"]):not([data-contrast="high"]) body {
+  background:
+    radial-gradient(60rem 22rem at 75% -8rem, rgba(196, 141, 43, 0.10), transparent 70%)
+    var(--paper);
 }
 
 img, svg { display: block; max-width: 100%; }
@@ -169,15 +175,13 @@ main.shell { padding-bottom: 3rem; }
 /* Shared label conventions */
 .section-title,
 .mini-label {
-  margin: 0 0 0.3rem;
-  font-family: var(--font-script);
-  font-size: 1.45rem;
-  font-weight: 600;
-  line-height: 1.15;
-  color: var(--brand);
+  margin: 0 0 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--live);
 }
-
-.mini-label { font-size: 1.25rem; }
 
 /* Shared buttons */
 .primary-button,
@@ -432,11 +436,11 @@ html[data-theme="dark"] .support-header:hover {
 }
 
 .status-pill[data-state="offline"] {
-  border-color: var(--live);
-  color: var(--live);
+  border-color: var(--error);
+  color: var(--error);
 }
 
-.status-pill[data-state="offline"] .dot { background: var(--live); }
+.status-pill[data-state="offline"] .dot { background: var(--error); }
 
 .status-pill[data-state="checking"] { color: var(--muted); }
 
@@ -495,8 +499,8 @@ html[data-theme="dark"] .support-header:hover {
   height: 78px;
   border: 0;
   border-radius: 50%;
-  background: var(--live);
-  color: #fff;
+  background: linear-gradient(160deg, #e3b04c, #b3781a);
+  color: #241a05;
   font-size: 1.7rem;
   display: grid;
   place-items: center;
@@ -535,7 +539,7 @@ html[data-theme="dark"] .support-header:hover {
   gap: 0.4rem;
   align-self: flex-start;
   padding: 0.32rem 0.75rem;
-  border: 1px solid var(--live);
+  border: 1px solid var(--brand);
   border-radius: 999px;
   color: var(--live);
   font-size: 0.82rem;
@@ -669,7 +673,7 @@ html[data-theme="dark"] .support-header:hover {
   gap: 0.5rem;
 }
 
-.news-flag { color: var(--live); }
+.news-flag { color: var(--brand); }
 
 .news-items { display: grid; gap: 0.9rem; }
 
@@ -1004,7 +1008,7 @@ body.modal-open { overflow: hidden; }
   font-size: 0.95rem;
 }
 
-.req { color: var(--live); }
+.req { color: var(--error); }
 
 .optional {
   color: var(--muted);
@@ -1046,7 +1050,7 @@ body.modal-open { overflow: hidden; }
 }
 
 .form-status[data-state="success"] { color: var(--ok); font-weight: 600; }
-.form-status[data-state="error"]   { color: var(--live); font-weight: 600; }
+.form-status[data-state="error"]   { color: var(--error); font-weight: 600; }
 
 .form-fallback {
   margin-top: 0.9rem;
@@ -1068,7 +1072,7 @@ body.modal-open { overflow: hidden; }
   min-height: 1.4em;
 }
 
-.status-box.warn { color: var(--live); font-weight: 600; }
+.status-box.warn { color: var(--error); font-weight: 600; }
 
 /* Listen options dialog */
 .listen-options-list {
@@ -1253,9 +1257,9 @@ html[data-theme="dark"] .a11y-close:hover { color: #171310; }
 
   html[data-theme="dark"] .hero-banner {
     background:
-      linear-gradient(90deg, rgba(20, 16, 12, 0.96) 30%, rgba(20, 16, 12, 0.82) 55%, rgba(20, 16, 12, 0.35) 85%),
+      linear-gradient(90deg, rgba(11, 15, 21, 0.96) 30%, rgba(11, 15, 21, 0.82) 55%, rgba(11, 15, 21, 0.35) 85%),
       url("assets/images/jim-studio-on-air.jpg") 78% center / cover no-repeat,
-      #14100c;
+      #0b0f15;
   }
 
   .schedule-card,
@@ -1404,7 +1408,7 @@ html[data-motion="reduced"] { scroll-behavior: auto; }
 
 .broadcast-status.is-jim-live-show strong,
 .broadcast-status.is-live-show strong {
-  color: var(--live);
+  color: var(--brand-deep);
 }
 
 /* Current track rows */
@@ -1537,15 +1541,22 @@ html[data-theme="dark"] .station-helper-toggle:hover { color: #171310; }
 .station-helper-panel {
   position: fixed;
   right: max(16px, env(safe-area-inset-right));
-  bottom: calc(max(16px, env(safe-area-inset-bottom)) + 56px);
-  width: min(24rem, calc(100vw - 32px));
-  max-height: min(70vh, 34rem);
+  bottom: calc(max(16px, env(safe-area-inset-bottom)) + 60px);
+  width: min(27rem, calc(100vw - 32px));
+  height: min(76vh, 38rem);
+  min-width: min(20rem, calc(100vw - 32px));
+  min-height: 18rem;
+  max-width: calc(100vw - 32px);
+  max-height: calc(100vh - 96px);
   display: flex;
   flex-direction: column;
   background: var(--surface);
+  border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   box-shadow: 0 12px 34px rgba(20, 14, 6, 0.24);
   overflow: hidden;
+  /* Drag the top-left corner to make the helper bigger or smaller. */
+  resize: both;
 }
 
 .station-helper-header {
@@ -1589,11 +1600,11 @@ html[data-theme="dark"] .station-helper-toggle:hover { color: #171310; }
 
 .station-helper-messages {
   flex: 1;
-  min-height: 8rem;
+  min-height: 6rem;
   overflow-y: auto;
-  padding: 0.9rem 1rem;
+  padding: 1rem 1.1rem;
   display: grid;
-  gap: 0.6rem;
+  gap: 0.7rem;
   align-content: start;
 }
 
@@ -1602,15 +1613,17 @@ html[data-theme="dark"] .station-helper-toggle:hover { color: #171310; }
 .station-helper-row-user { justify-content: flex-end; }
 
 .station-helper-bubble {
-  max-width: 92%;
-  padding: 0.6rem 0.8rem;
+  max-width: 94%;
+  padding: 0.7rem 0.9rem;
   border-radius: var(--radius);
-  font-size: 0.92rem;
+  font-size: 0.98rem;
+  line-height: 1.55;
 }
 
 .station-helper-bubble-bot {
   background: var(--paper);
   border: 1px solid var(--line);
+  color: var(--ink);
 }
 
 .station-helper-bubble-user {
@@ -1621,7 +1634,8 @@ html[data-theme="dark"] .station-helper-toggle:hover { color: #171310; }
 .station-helper-bubble strong {
   display: block;
   font-family: var(--font-display);
-  margin-bottom: 0.15rem;
+  font-size: 1.05rem;
+  margin-bottom: 0.25rem;
 }
 
 .station-helper-meta {
@@ -1641,14 +1655,15 @@ html[data-theme="dark"] .station-helper-toggle:hover { color: #171310; }
 .station-helper-action,
 .station-helper-related-button,
 .station-helper-chip {
-  min-height: 36px;
-  padding: 0.3rem 0.7rem;
+  min-height: 40px;
+  padding: 0.4rem 0.8rem;
   border: 1px solid var(--line-strong);
   border-radius: var(--radius);
   background: var(--surface);
   color: var(--ink);
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   font-weight: 600;
+  text-align: left;
 }
 
 .station-helper-action:hover,
@@ -1730,9 +1745,9 @@ html[data-theme="dark"] .station-helper-ask:hover { color: #171310; }
    where the title sits. */
 html[data-theme="dark"] .hero-banner {
   background:
-    linear-gradient(90deg, #14100c 40%, rgba(20, 16, 12, 0.94) 58%, rgba(20, 16, 12, 0.42) 74%, rgba(20, 16, 12, 0.1) 88%),
+    linear-gradient(90deg, #0b0f15 40%, rgba(11, 15, 21, 0.94) 58%, rgba(11, 15, 21, 0.42) 74%, rgba(11, 15, 21, 0.1) 88%),
     url("assets/images/jim-studio-on-air.jpg") right center / auto 100% no-repeat,
-    #14100c;
+    #0b0f15;
 }
 
 html[data-theme="dark"] .strapline,
@@ -1829,8 +1844,6 @@ html[data-font="dyslexic"] {
   --font-script: Verdana, Tahoma, "Trebuchet MS", Arial, sans-serif;
 }
 
-html[data-font="dyslexic"] .section-title { font-size: 1rem; font-weight: 700; }
-html[data-font="dyslexic"] .mini-label { font-size: 0.9rem; font-weight: 700; }
 html[data-font="dyslexic"] .strapline { font-size: 1.25rem; }
 html[data-font="dyslexic"] .signoff,
 html[data-font="dyslexic"] .support-thanks,

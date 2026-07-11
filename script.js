@@ -474,7 +474,7 @@
     });
     const themeMeta = document.querySelector('meta[name="theme-color"]');
     if (themeMeta) {
-      themeMeta.setAttribute("content", p.theme === "light" && p.contrast !== "high" ? "#f6f1e6" : "#171310");
+      themeMeta.setAttribute("content", p.theme === "light" && p.contrast !== "high" ? "#f6f1e6" : "#0b0f15");
     }
 
     // Update aria-pressed buttons
