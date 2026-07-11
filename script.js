@@ -452,8 +452,13 @@
 
   function readPrefs() {
     try {
-      return JSON.parse(localStorage.getItem(A11Y_KEY) || "{}");
-    } catch { return {}; }
+      const p = JSON.parse(localStorage.getItem(A11Y_KEY) || "{}");
+      // The site is light by default. Visitors who chose dark before the
+      // theme options were renamed have "default" stored; keep them dark.
+      if (p.theme === "default") p.theme = "dark";
+      if (!p.theme) p.theme = "light";
+      return p;
+    } catch { return { theme: "light" }; }
   }
   function writePrefs(p) {
     try { localStorage.setItem(A11Y_KEY, JSON.stringify(p)); } catch {}
@@ -469,7 +474,7 @@
     });
     const themeMeta = document.querySelector('meta[name="theme-color"]');
     if (themeMeta) {
-      themeMeta.setAttribute("content", p.theme === "light" && p.contrast !== "high" ? "#f6ead6" : "#02070d");
+      themeMeta.setAttribute("content", p.theme === "light" && p.contrast !== "high" ? "#f6f1e6" : "#171310");
     }
 
     // Update aria-pressed buttons
