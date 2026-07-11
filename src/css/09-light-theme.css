@@ -2,11 +2,20 @@
    Light is the default theme; its tokens live in 00-base.css.
    Only adjustments that cannot be expressed as tokens belong here. */
 
-/* Photos sit brighter on dark paper with a slightly stronger frame. */
-html[data-theme="dark"] .hero-portrait,
-html[data-theme="dark"] .about-strip img {
-  border-color: var(--line);
-  background: var(--surface-2);
+/* Dark hero: rebuild the banner composition from the studio photo
+   (which has no artwork text baked in) and a dark fade on the left
+   where the title sits. */
+html[data-theme="dark"] .hero-banner {
+  background:
+    linear-gradient(90deg, #14100c 40%, rgba(20, 16, 12, 0.94) 58%, rgba(20, 16, 12, 0.42) 74%, rgba(20, 16, 12, 0.1) 88%),
+    url("assets/images/jim-studio-on-air.jpg") right center / auto 100% no-repeat,
+    #14100c;
+}
+
+html[data-theme="dark"] .strapline,
+html[data-theme="dark"] .signoff,
+html[data-theme="dark"] .support-thanks {
+  color: var(--brand);
 }
 
 /* The overlay scrim needs more weight against a dark page. */

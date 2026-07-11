@@ -1,12 +1,10 @@
 /* Now-playing panel, track listings and live-show display */
 
 .now-playing {
-  margin-top: 1.2rem;
-  padding-top: 1.1rem;
-  border-top: 1px solid var(--line);
+  margin-top: 1.4rem;
   /* Reserve space before the first metadata fetch so the page does
      not jump when track details arrive (CLS). */
-  min-height: 14rem;
+  min-height: 13rem;
 }
 
 .now-playing-head {
@@ -27,11 +25,9 @@
   display: grid;
   gap: 0.15rem;
   margin: 0.9rem 0 0;
-  padding: 0.75rem 0.9rem;
-  border: 1px solid var(--line);
-  border-left: 3px solid var(--brand);
+  padding: 0.8rem 1rem;
   border-radius: var(--radius);
-  background: var(--paper);
+  background: var(--surface-2);
 }
 
 .broadcast-status strong {
@@ -44,11 +40,6 @@
   font-size: 0.88rem;
 }
 
-.broadcast-status.is-jim-live-show,
-.broadcast-status.is-live-show {
-  border-left-color: var(--live);
-}
-
 .broadcast-status.is-jim-live-show strong,
 .broadcast-status.is-live-show strong {
   color: var(--live);
@@ -57,32 +48,28 @@
 /* Current track rows */
 .track-grid {
   display: grid;
-  margin-top: 0.9rem;
+  gap: 0.55rem;
+  margin-top: 1rem;
 }
 
 .np-row {
   display: grid;
-  grid-template-columns: 5.5rem minmax(0, 1fr);
+  grid-template-columns: 4.5rem minmax(0, 1fr);
   gap: 0.2rem 1.2rem;
   align-items: baseline;
-  padding: 0.7rem 0;
-  border-top: 1px solid var(--line);
 }
 
-.np-row:first-child { border-top: 0; }
-
 .np-row strong {
-  font-family: var(--font-mono);
   font-size: 0.78rem;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   color: var(--muted);
 }
 
 .np-row span {
   font-family: var(--font-display);
-  font-size: 1.15rem;
+  font-size: 1.18rem;
   overflow-wrap: anywhere;
 }
 
@@ -94,44 +81,39 @@
 .queue-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 0.9rem;
-  margin-top: 0.9rem;
+  gap: 1rem 2.5rem;
+  margin-top: 1.3rem;
 }
 
-.queue-card {
-  padding: 0.85rem 1rem;
-  border: 1px solid var(--line);
-  border-top: 3px solid var(--line-strong);
-  border-radius: var(--radius);
-  background: var(--paper);
-}
-
-/* Until a next track is announced, the recent-tracks card has the row
-   to itself. */
+/* Until a next track is announced, the recent-tracks list has the
+   row to itself. */
 #coming-up-row[hidden] ~ .queue-card { grid-column: 1 / -1; }
 
-.queue-card > span { overflow-wrap: anywhere; }
+.queue-card > span {
+  display: block;
+  overflow-wrap: anywhere;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+}
 
 .queue-card ul {
   list-style: none;
   margin: 0;
   padding: 0;
+  display: grid;
+  gap: 0.45rem;
   /* Reserve room for five recent tracks (CLS). */
-  min-height: 9.5rem;
+  min-height: 8.5rem;
 }
 
 .queue-card li {
-  padding: 0.4rem 0;
-  border-top: 1px solid var(--line);
   font-size: 0.95rem;
+  color: var(--muted);
   overflow-wrap: anywhere;
 }
 
-.queue-card li:first-child { border-top: 0; }
-
 .queue-card li.placeholder,
 .queue-card li.is-empty {
-  color: var(--muted);
   font-style: italic;
 }
 
