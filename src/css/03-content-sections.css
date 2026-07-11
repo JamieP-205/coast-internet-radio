@@ -92,7 +92,7 @@
   gap: 0.5rem;
 }
 
-.news-flag { color: var(--live); }
+.news-flag { color: var(--brand); }
 
 .news-items { display: grid; gap: 0.9rem; }
 

@@ -173,11 +173,11 @@ html[data-theme="dark"] .support-header:hover {
 }
 
 .status-pill[data-state="offline"] {
-  border-color: var(--live);
-  color: var(--live);
+  border-color: var(--error);
+  color: var(--error);
 }
 
-.status-pill[data-state="offline"] .dot { background: var(--live); }
+.status-pill[data-state="offline"] .dot { background: var(--error); }
 
 .status-pill[data-state="checking"] { color: var(--muted); }
 

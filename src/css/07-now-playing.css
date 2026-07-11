@@ -42,7 +42,7 @@
 
 .broadcast-status.is-jim-live-show strong,
 .broadcast-status.is-live-show strong {
-  color: var(--live);
+  color: var(--brand-deep);
 }
 
 /* Current track rows */

@@ -12,9 +12,9 @@
 
   html[data-theme="dark"] .hero-banner {
     background:
-      linear-gradient(90deg, rgba(20, 16, 12, 0.96) 30%, rgba(20, 16, 12, 0.82) 55%, rgba(20, 16, 12, 0.35) 85%),
+      linear-gradient(90deg, rgba(11, 15, 21, 0.96) 30%, rgba(11, 15, 21, 0.82) 55%, rgba(11, 15, 21, 0.35) 85%),
       url("assets/images/jim-studio-on-air.jpg") 78% center / cover no-repeat,
-      #14100c;
+      #0b0f15;
   }
 
   .schedule-card,
