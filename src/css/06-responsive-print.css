@@ -281,7 +281,7 @@ html[data-text="xx-large"] .extra-playlist {
     box-shadow: none;
   }
 }
-/* Mobile accessibility-dialog polish: keep the settings panel centred and compact
+/* Mobile accessibility dialog: keep the settings panel centred and compact
    so the full control set is visible on typical phone screens without awkward
    starting positions or unnecessary scrolling. */
 @media (max-width: 640px) {
