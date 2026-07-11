@@ -2,9 +2,9 @@
 
 /* Footer */
 .site-footer {
-  margin-top: 2.4rem;
-  padding: 1.4rem 0 2.2rem;
-  border-top: 2px solid var(--line-strong);
+  margin-top: 3rem;
+  padding: 1.5rem 0 2.2rem;
+  border-top: 1px solid var(--line);
   background: var(--paper);
   font-size: 0.95rem;
 }
@@ -37,8 +37,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem 1.2rem;
-  padding-top: 0.9rem;
-  border-top: 1px solid var(--line);
+  padding-top: 0.4rem;
 }
 
 .site-footer nav a {
@@ -70,8 +69,7 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 0.6rem 1.1rem;
-  padding-top: 0.9rem;
-  border-top: 1px solid var(--line);
+  padding-top: 0.6rem;
 }
 
 .licensed-label {

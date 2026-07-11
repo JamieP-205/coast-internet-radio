@@ -24,9 +24,8 @@
   max-height: min(86vh, 46rem);
   overflow-y: auto;
   background: var(--surface);
-  border: 1px solid var(--line);
-  border-top: 4px solid var(--line-strong);
-  border-radius: var(--radius);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
   padding: clamp(1.1rem, 3vw, 1.6rem);
   position: relative;
   transform: translateY(8px);
@@ -157,8 +156,6 @@ body.modal-open { overflow: hidden; }
   gap: 0.2rem 1rem;
   align-items: center;
   padding: 0.75rem 0.9rem;
-  border: 1px solid var(--line);
-  border-left: 3px solid var(--line-strong);
   border-radius: var(--radius);
   background: var(--paper);
 }
@@ -286,9 +283,7 @@ html[data-theme="dark"] .a11y-close:hover { color: #171310; }
   pointer-events: auto;
   width: min(26rem, 100%);
   background: var(--surface);
-  border: 1px solid var(--line);
-  border-top: 4px solid var(--brand);
-  border-radius: var(--radius);
+  border-radius: var(--radius-lg);
   padding: 1.1rem 1.2rem;
   box-shadow: 0 10px 30px rgba(20, 14, 6, 0.18);
 }

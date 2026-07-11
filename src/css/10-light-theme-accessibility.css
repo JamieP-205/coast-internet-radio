@@ -31,6 +31,19 @@ html[data-contrast="high"] {
 
 html[data-contrast="high"] a { text-decoration: underline; }
 
+html[data-contrast="high"] .hero-banner {
+  background:
+    linear-gradient(90deg, #000000 46%, rgba(0, 0, 0, 0.94) 62%, rgba(0, 0, 0, 0.55) 78%, rgba(0, 0, 0, 0.25) 92%),
+    url("assets/images/jim-studio-on-air.jpg") right center / auto 100% no-repeat,
+    #000000;
+}
+
+html[data-contrast="high"] .strapline,
+html[data-contrast="high"] .signoff,
+html[data-contrast="high"] .support-thanks {
+  color: var(--brand);
+}
+
 html[data-contrast="high"] .primary-button,
 html[data-contrast="high"] .form-submit,
 html[data-contrast="high"] .a11y-close,
@@ -64,7 +77,15 @@ html[data-font="dyslexic"] {
   --font-display: Verdana, Tahoma, "Trebuchet MS", Arial, sans-serif;
   --font-body: Verdana, Tahoma, "Trebuchet MS", Arial, sans-serif;
   --font-mono: Verdana, Tahoma, "Trebuchet MS", Arial, sans-serif;
+  --font-script: Verdana, Tahoma, "Trebuchet MS", Arial, sans-serif;
 }
+
+html[data-font="dyslexic"] .section-title { font-size: 1rem; font-weight: 700; }
+html[data-font="dyslexic"] .mini-label { font-size: 0.9rem; font-weight: 700; }
+html[data-font="dyslexic"] .strapline { font-size: 1.25rem; }
+html[data-font="dyslexic"] .signoff,
+html[data-font="dyslexic"] .support-thanks,
+html[data-font="dyslexic"] .support-script { font-size: 1.05rem; }
 
 html[data-font="dyslexic"] body {
   letter-spacing: 0.02em;

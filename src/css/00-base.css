@@ -9,6 +9,17 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
+/* Handwritten accent face for the personal touches (strapline,
+   section titles, Jim's sign-off). Self-hosted; SIL OFL licence in
+   assets/fonts/OFL-caveat.txt. */
+@font-face {
+  font-family: "Caveat";
+  src: url("assets/fonts/caveat-latin.woff2") format("woff2");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Tokens: light (default) */
 :root {
   color-scheme: light;
@@ -30,8 +41,11 @@
   --font-display: "Charter", "Bitstream Charter", "Iowan Old Style", Cambria, Georgia, serif;
   --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono: ui-monospace, "Cascadia Code", Consolas, Menlo, monospace;
+  --font-script: "Caveat", "Segoe Script", "Bradley Hand", cursive;
 
-  --radius: 3px;
+  --shadow-soft: 0 1px 2px rgba(36, 28, 16, 0.05), 0 6px 20px rgba(36, 28, 16, 0.08);
+  --radius: 6px;
+  --radius-lg: 10px;
   --shell-max: 1120px;
   --shell-pad: 22px;
   --base-font-size: 17px;
@@ -40,6 +54,7 @@
 /* Tokens: dark */
 html[data-theme="dark"] {
   color-scheme: dark;
+  --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
   --paper: #171310;
   --surface: #201a13;
   --surface-2: #2a2218;
@@ -69,7 +84,9 @@ html {
 
 body {
   margin: 0;
-  background: var(--paper);
+  background:
+    radial-gradient(60rem 22rem at 75% -8rem, rgba(196, 141, 43, 0.10), transparent 70%)
+    var(--paper);
   color: var(--ink);
   font-family: var(--font-body);
   font-size: 1rem;
@@ -93,6 +110,14 @@ a { color: var(--brand); text-underline-offset: 0.2em; }
 a:hover { color: var(--brand-deep); }
 
 button { font: inherit; cursor: pointer; }
+
+a,
+button,
+.status-pill {
+  transition: background-color 150ms ease, color 150ms ease,
+              border-color 150ms ease, transform 150ms ease,
+              box-shadow 150ms ease;
+}
 input, select, textarea { font: inherit; }
 
 [hidden] { display: none !important; }
@@ -144,14 +169,15 @@ main.shell { padding-bottom: 3rem; }
 /* Shared label conventions */
 .section-title,
 .mini-label {
-  margin: 0 0 0.35rem;
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
+  margin: 0 0 0.3rem;
+  font-family: var(--font-script);
+  font-size: 1.45rem;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  line-height: 1.15;
   color: var(--brand);
 }
+
+.mini-label { font-size: 1.25rem; }
 
 /* Shared buttons */
 .primary-button,
@@ -200,11 +226,11 @@ html[data-theme="dark"] .form-submit:hover {
 /* Banners (noscript warning, managed announcement) */
 .banner {
   margin: 1rem 0;
-  padding: 0.8rem 1rem;
+  padding: 0.8rem 1.1rem;
   background: var(--surface);
-  border: 1px solid var(--line);
-  border-left: 4px solid var(--brand);
+  border-left: 3px solid var(--brand);
   border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
   font-size: 0.95rem;
 }
 
