@@ -1,4 +1,4 @@
-/* Light mode readability polish across public pages */
+/* Light-mode readability across public pages */
 html[data-theme="light"]:not([data-contrast="high"]) .player-card,
 html[data-theme="light"]:not([data-contrast="high"]) .about-strip,
 html[data-theme="light"]:not([data-contrast="high"]) .schedule-card,

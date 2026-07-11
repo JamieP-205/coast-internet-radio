@@ -1,4 +1,5 @@
-/* Now-playing, listener pill and live-show polish */
+/* Now-playing panel, listener count and live-show display */
+
 /* Live listener count */
 .listener-panel {
   margin-top: 1rem;
@@ -40,7 +41,7 @@
   }
 }
 
-/* Layout polish: now-playing and listener count */
+/* Now-playing panel layout */
 .now-playing {
   margin-top: 1rem;
   padding: 1rem;
@@ -162,7 +163,7 @@
   }
 }
 
-/* Final public now-playing tidy-up */
+/* Programme status line */
 .programme-status {
   margin: 0 0 0.85rem;
   padding: 0.7rem 0.8rem;
@@ -245,7 +246,7 @@
 }
 
 
-/* Final public Now Playing polish: clearer broadcast line, consistent cards */
+/* Broadcast status line and metadata cards */
 .broadcast-status {
   margin: 0 0 0.85rem;
   padding: 0.72rem 0.82rem;
@@ -327,7 +328,7 @@
   }
 }
 
-/* 2026-05-13 UI priority pass: make first screen listener-focused and consistent */
+/* Listener display preferences: panels hidden through body classes */
 body.hide-now-playing #now-playing-panel,
 body.hide-coming-up #coming-up-row,
 body.hide-previous-played #previous-panel {
@@ -582,8 +583,7 @@ body.hide-previous-played #previous-panel {
   }
 }
 
-/* 2026-05-13 final listener-first clean-up
-   Keep the big station banner first and make the live metadata easier for older listeners to scan. */
+/* Keep the station banner first and the live metadata easy to scan */
 .hero-card {
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -748,8 +748,7 @@ body.hide-previous-played #previous-panel {
 }
 
 
-/* 2026-05-14 header listener pill alignment
-   Keep the listener count beside the Radio is live pill and match its size. */
+/* The listener count sits beside the live pill at the same size */
 .hero-card .status-pills {
   flex-wrap: nowrap;
   align-items: center;
@@ -816,9 +815,7 @@ body.hide-previous-played #previous-panel {
 }
 
 
-/* 2026-05-14 listener pill size fix
-   Make the homepage listener pill match the Radio is live pill exactly,
-   with the dot beside the text rather than stacking above it. */
+/* The listener pill matches the live pill, with the dot inline beside the text */
 .hero-card .listener-panel,
 .hero-card .listener-hero-pill {
   display: inline-flex;
@@ -857,9 +854,7 @@ body.hide-previous-played #previous-panel {
   }
 }
 
-/* 2026-05-14 mobile listener pill final fix
-   Keep the homepage listener pill the same size as the Radio is live pill on mobile,
-   and force the green dot to stay beside the text rather than above it. */
+/* Pills keep their size on mobile and the dot stays inline */
 .hero-card #radio-pill,
 .hero-card #listener-panel {
   flex: 0 0 auto;
@@ -917,9 +912,8 @@ body.hide-previous-played #previous-panel {
   }
 }
 
-/* 2026-05-14 live show display refinement
-   When Jim is live, avoid showing the awkward Artist/Song metadata cards
-   because the metadata source reports the programme as “Live / Now On Air”. */
+/* During a live show the metadata source reports the programme as “Live / Now On Air”,
+   so the artist/song cards are hidden rather than showing placeholder text. */
 .now-playing.is-live-show .track-grid {
   display: none !important;
 }

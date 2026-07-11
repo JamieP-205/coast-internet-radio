@@ -409,7 +409,7 @@ html[data-theme="light"]:not([data-contrast="high"]) .listen-option-copy p {
   color: #604f3c !important;
 }
 
-/* === 2026-05-15 polish: targeted gaps in light mode === */
+/* Light-mode gaps: surfaces that otherwise had no visible boundary on cream */
 
 /* Volume slider row had no visible surface in light mode; on the cream page it
    read as a bare strip. Subtle cream surface + warm accent. */
@@ -461,7 +461,7 @@ html[data-theme="light"]:not([data-contrast="high"]) .programme-status span {
   }
 }
 
-/* === 2026-05-15 final: CLS / layout stability fixes ===
+/* Layout stability (CLS): dynamic panels reserve their space.
    Lighthouse reported CLS 0.286. Sources are dynamic panels that go from
    display:none to visible after the first metadata fetch and the first
    managed-content load. We use two patterns:
@@ -525,24 +525,12 @@ html[data-theme="light"]:not([data-contrast="high"]) .programme-status span {
   }
 }
 
-/* === 2026-05-15 final v2: targeted CLS fix for hero-card + player-card ===
-   Lighthouse identified two shifting sections at Moto G4 width:
-   - .hero-card  contribution 0.174
-   - .player-card contribution 0.111
-
-   Root cause analysis:
-   1. .hero-card grows when #listener-panel un-hides because the previous
-      rule .hero-card .listener-panel[hidden] { display: none !important }
-      in 07-now-playing.css line 621 wins specificity over any non-
-      important override. The status-pills row goes from 1 pill to 2 pills,
-      sometimes wrapping to 2 lines on narrow phones, growing the card.
-   2. .player-card shift is largely caused by the hero growing above it.
-      Defence-in-depth: explicit min-height on the player card.
-
-   Fix: same-specificity-or-higher !important override that keeps the
-   listener-panel slot reserved as visibility:hidden when [hidden]; and
-   a larger, more accurate min-height on .hero-card and .player-card at
-   mobile widths so the cards do not grow once data arrives. */
+/* CLS: keep the listener-panel slot reserved while it is hidden.
+   The hero card grows when #listener-panel un-hides, because the
+   display:none rule in 07-now-playing.css wins specificity and the
+   status-pills row can wrap to a second line on narrow phones. An
+   equal-specificity visibility:hidden override preserves the slot so
+   the card does not grow once listener data arrives. */
 
 /* (1) Hero status-pills: reserve the listener-pill slot from first paint.
        Higher specificity than 07-now-playing.css line 621, and
@@ -565,13 +553,6 @@ html[data-theme="light"]:not([data-contrast="high"]) .programme-status span {
   justify-content: flex-start;
 }
 
-/* (2) Removed: the .hero-card / .player-card min-height rules from the
-   previous failed attempt. Lighthouse confirmed those elements were not
-   growing in place — they were being displaced by a banner injected
-   above them in the DOM. Reserving height inside the cards did nothing.
-   Real fix is rendered in HTML (see static announcement banner in
-   index.html and the corresponding JS update in managed-content.js). */
-
 /* Light-mode tweaks for the consent banner. */
 html[data-theme="light"]:not([data-contrast="high"]) .consent-banner {
   background: rgba(255, 252, 242, 0.98) !important;
@@ -586,9 +567,8 @@ html[data-theme="light"]:not([data-contrast="high"]) .consent-banner-actions .se
   color: #21160c !important;
   border-color: rgba(143, 89, 14, 0.4) !important;
 }
-/* Coast line-only interface polish */
+/* Line-only interface: flat near-black panels with hairline gold borders */
 :root {
-  --coast-line-only-polish: 1;
   --bg: #050608;
   --panel-1: #050608;
   --panel-2: #050608;
