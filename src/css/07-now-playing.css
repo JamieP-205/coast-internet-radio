@@ -1,7 +1,7 @@
 /* Now-playing panel, track listings and live-show display */
 
 .now-playing {
-  margin-top: 1.4rem;
+  margin-top: clamp(1.8rem, 4vw, 2.4rem);
   /* Reserve space before the first metadata fetch so the page does
      not jump when track details arrive (CLS). */
   min-height: 13rem;
@@ -24,10 +24,7 @@
 .broadcast-status {
   display: grid;
   gap: 0.15rem;
-  margin: 0.9rem 0 0;
-  padding: 0.8rem 1rem;
-  border-radius: var(--radius);
-  background: var(--surface-2);
+  margin: 1rem 0 0;
 }
 
 .broadcast-status strong {

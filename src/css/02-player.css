@@ -1,11 +1,7 @@
 /* The live player */
 
 .player-card {
-  margin-top: 1.4rem;
-  padding: clamp(1.2rem, 2.5vw, 1.7rem);
-  background: var(--surface);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-soft);
+  margin-top: clamp(2rem, 4.5vw, 3rem);
   animation: rise-in 550ms 150ms ease-out backwards;
 }
 
