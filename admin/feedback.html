@@ -226,7 +226,7 @@
           const parts = [];
           if (item.name) parts.push("From: " + item.name);
           if (item.contact) parts.push("Contact: " + item.contact);
-          meta.textContent = parts.join(" — ");
+          meta.textContent = parts.join(" · ");
           card.appendChild(meta);
         }
 

@@ -1,5 +1,5 @@
 /**
- * Coast Internet Radio — public analytics client.
+ * Coast Internet Radio public analytics client.
  *
  * Goals:
  *   - Lightweight, privacy-first, no cookies, no fingerprinting.

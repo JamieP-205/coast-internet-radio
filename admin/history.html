@@ -407,11 +407,11 @@
         grid.appendChild(insightTile("Tracks logged today", todayCount));
         grid.appendChild(insightTile("Tracks in range", s.detectedPlays || 0));
         grid.appendChild(insightTile("Unique artists", s.uniqueArtists || 0));
-        const peak = s.peakListeners == null ? "—" : String(s.peakListeners);
+        const peak = s.peakListeners == null ? "-" : String(s.peakListeners);
         grid.appendChild(insightTile("Peak listeners", peak));
-        const topSong = s.topSongs && s.topSongs[0] ? s.topSongs[0].song : "—";
+        const topSong = s.topSongs && s.topSongs[0] ? s.topSongs[0].song : "-";
         grid.appendChild(insightTile("Most played track", topSong));
-        const topArtist = s.topArtists && s.topArtists[0] ? s.topArtists[0].artist : "—";
+        const topArtist = s.topArtists && s.topArtists[0] ? s.topArtists[0].artist : "-";
         grid.appendChild(insightTile("Most played artist", topArtist));
         card.hidden = false;
       }
@@ -457,10 +457,10 @@
         const s = data.summary || {};
         const lines = [];
         if (s.busiestHour && s.busiestHour.label) {
-          lines.push("The busiest listening hour was " + s.busiestHour.label + " with up to " + (s.busiestHour.peak ?? "—") + " listeners.");
+          lines.push("The busiest listening hour was " + s.busiestHour.label + " with up to " + (s.busiestHour.peak ?? "-") + " listeners.");
         }
         if (s.topArtists && s.topArtists[0]) {
-          lines.push(s.topArtists[0].artist + " appeared " + s.topArtists[0].count + " times in this range — the most of any artist.");
+          lines.push(s.topArtists[0].artist + " appeared " + s.topArtists[0].count + " times in this range, more than any other artist.");
         }
         if (s.topSongs && s.topSongs[0]) {
           lines.push("The most-played track was " + s.topSongs[0].song + " (" + s.topSongs[0].count + " plays).");

@@ -1,5 +1,5 @@
 /**
- * Coast Internet Radio — admin feedback endpoint.
+ * Coast Internet Radio admin feedback endpoint.
  *
  *  GET: list feedback for ?days=N (default 31, max 180), optional ?type=, ?status=, ?search=.
  *  POST: mutate. Body { id, date, action } where action ∈ mark_read/mark_unread/archive/delete.

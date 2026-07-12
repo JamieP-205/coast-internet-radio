@@ -1,5 +1,5 @@
 /**
- * Coast Internet Radio — public feedback modal handler.
+ * Coast Internet Radio public feedback modal handler.
  *
  *  - Open/close + Escape-to-close + focus management.
  *  - Submit posts JSON to /.netlify/functions/submit-feedback.
@@ -103,7 +103,7 @@
       return res.json().then(function (data) { return { ok: res.ok && data && data.ok !== false, data: data || {}, status: res.status }; });
     }).then(function (result) {
       if (result.ok) {
-        setStatus("Thanks — your feedback has been sent.", "ok");
+        setStatus("Thanks, your feedback has been sent.", "ok");
         var form = getForm();
         if (form) form.reset();
         try { document.dispatchEvent(new CustomEvent("coast:feedback-result", { detail: { result: "success" } })); } catch (_) {}

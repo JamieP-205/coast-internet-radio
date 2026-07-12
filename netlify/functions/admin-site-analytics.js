@@ -1,5 +1,5 @@
 /**
- * Coast Internet Radio — admin analytics read endpoint.
+ * Coast Internet Radio admin analytics read endpoint.
  *
  *  Auth-protected via the existing requireAdmin().
  *  Reads shard or summary blobs for the requested day range, aggregates

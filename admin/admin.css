@@ -1237,7 +1237,7 @@ html[data-theme="light"]:not([data-contrast="high"]) .listen-admin-summary-statu
 
 /* === 2026-05-16 analytics + feedback + admin nav additions ============== */
 
-/* Admin section nav strip — links between admin pages */
+/* Admin section nav strip: links between admin pages */
 .admin-section-nav {
   background: rgba(2, 9, 16, 0.96);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
