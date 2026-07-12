@@ -10,7 +10,7 @@
   "scripts": {
     "build": "npm run build:css",
     "build:css": "node tools/build-css.js",
-    "check": "npm run build:css && node tools/check-deploy-structure.js && node tools/check-js-syntax.js && node tools/check-site.js",
+    "check": "npm run build:css && node tools/check-deploy-structure.js && node tools/check-js-syntax.js && node tools/check-csp-hashes.js && node tools/check-site.js",
     "test:unit": "node --test test/*.test.js",
     "test": "npm run check && npm run test:unit"
   },
