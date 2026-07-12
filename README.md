@@ -50,6 +50,10 @@ The public site is fully accessible at the link above, but the admin area is pri
 
 The listener experience uses semantic HTML, modular CSS and vanilla JavaScript to keep the UI fast and dependable. Netlify Functions own the server-side work: signed admin sessions and password verification, managed homepage content, playlist and listener history, first-party anonymous analytics, visitor feedback and safe public live-status responses. Data lives in Netlify Blobs and Cloudflare Workers provide HTTPS-compatible routes for the existing radio stream and metadata source. CI runs build, syntax and deployment-structure checks on every push.
 
+## Development note
+
+I used AI-assisted coding tools as a pair-programming and review aid for parts of the security-sensitive backend, particularly signed admin sessions, password verification, CSRF and same-origin checks, and their focused tests. The automated tests document the expected behaviour, and I remain responsible for the code I deploy.
+
 ## Local development
 
 ```bash
@@ -76,4 +80,3 @@ Building a production site for a real radio station taught me how important it i
 - Continue refining analytics dashboards to highlight listener trends while respecting privacy
 
 Dated change history is in [CHANGELOG.md](CHANGELOG.md), the manual release checks are in [TESTING_CHECKLIST.md](TESTING_CHECKLIST.md), and project rules are in [CONTRIBUTING.md](CONTRIBUTING.md).
-

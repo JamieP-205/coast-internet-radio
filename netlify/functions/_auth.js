@@ -2,8 +2,9 @@ const crypto = require("crypto");
 const { getStore } = require("@netlify/blobs");
 
 const COOKIE_NAME = "coast_admin_session";
-// Two weeks keeps the station editor signed in on their own devices. A stolen
-// cookie is still limited by HttpOnly, SameSite=Strict and the CSRF token on writes.
+// Two weeks avoids frequent sign-ins for the station editor. HttpOnly and
+// SameSite=Strict reduce browser-based theft and cross-site requests, while
+// expiry limits how long a copied cookie remains usable.
 const SESSION_SECONDS = 14 * 24 * 60 * 60;
 
 function json(statusCode, body, extraHeaders = {}) {
