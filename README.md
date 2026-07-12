@@ -1,4 +1,4 @@
-﻿# Coast Internet Radio
+# Coast Internet Radio
 
 [![CI](https://github.com/JamieP-205/coast-internet-radio/actions/workflows/ci.yml/badge.svg)](https://github.com/JamieP-205/coast-internet-radio/actions/workflows/ci.yml)
 
@@ -18,9 +18,7 @@ I built and maintain this website for Coast Internet Radio. The project combines
 
 Below is a simplified view of the production architecture. A listener's browser requests the static site from Netlify. The UI calls Netlify Functions to fetch programme metadata, submit feedback, record analytics and manage content. Netlify Blobs persists playlists, feedback, analytics and page content. Cloudflare Workers act as HTTPS-friendly proxies to the station's existing stream and metadata source.
 
-| Coast architecture |
-| --- |
-| ![Coast Internet Radio architecture](coast-architecture.svg) |
+![Coast Internet Radio architecture](coast-architecture.svg)
 
 ## Demo note
 
@@ -52,6 +50,10 @@ The public site is fully accessible at the link above, but the admin area is pri
 
 The listener experience uses semantic HTML, modular CSS and vanilla JavaScript to keep the UI fast and dependable. Netlify Functions own the server-side work: signed admin sessions and password verification, managed homepage content, playlist and listener history, first-party anonymous analytics, visitor feedback and safe public live-status responses. Data lives in Netlify Blobs and Cloudflare Workers provide HTTPS-compatible routes for the existing radio stream and metadata source. CI runs build, syntax and deployment-structure checks on every push.
 
+## Development note
+
+I used AI-assisted coding tools as a pair-programming and review aid for parts of the security-sensitive backend, particularly signed admin sessions, password verification, CSRF and same-origin checks, and their focused tests. The automated tests document the expected behaviour, and I remain responsible for the code I deploy.
+
 ## Local development
 
 ```bash
@@ -77,5 +79,4 @@ Building a production site for a real radio station taught me how important it i
 - Explore exposing limited public playlists via RSS or JSON feeds
 - Continue refining analytics dashboards to highlight listener trends while respecting privacy
 
-For changelog entries, testing checklists and contribution guidance, see the other documentation in this repository.
-
+Dated change history is in [CHANGELOG.md](CHANGELOG.md), the manual release checks are in [TESTING_CHECKLIST.md](TESTING_CHECKLIST.md), and project rules are in [CONTRIBUTING.md](CONTRIBUTING.md).

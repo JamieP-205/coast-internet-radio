@@ -2,7 +2,9 @@ const crypto = require("crypto");
 const { getStore } = require("@netlify/blobs");
 
 const COOKIE_NAME = "coast_admin_session";
-// Long enough for normal editor use, short enough to limit a stolen admin cookie.
+// Two weeks avoids frequent sign-ins for the station editor. HttpOnly and
+// SameSite=Strict reduce browser-based theft and cross-site requests, while
+// expiry limits how long a copied cookie remains usable.
 const SESSION_SECONDS = 14 * 24 * 60 * 60;
 
 function json(statusCode, body, extraHeaders = {}) {
@@ -19,12 +21,11 @@ function json(statusCode, body, extraHeaders = {}) {
 }
 
 function base64url(input) {
-  return Buffer.from(input).toString("base64").replace(/=/g, "").replace(/\+/g, "-").replace(/\//g, "_");
+  return Buffer.from(input).toString("base64url");
 }
 
 function fromBase64url(input) {
-  const b64 = String(input).replace(/-/g, "+").replace(/_/g, "/");
-  return Buffer.from(b64 + "=".repeat((4 - b64.length % 4) % 4), "base64");
+  return Buffer.from(String(input), "base64url");
 }
 
 function sign(value) {
@@ -358,7 +359,7 @@ function shortStorageError(error) {
     .slice(0, 240);
 }
 
-async function readFromAnyStore() {
+async function readSavedContent() {
   try {
     const saved = await siteStore().get("content", { type: "json", consistency: "strong" });
     if (saved && typeof saved === "object") return saved;
@@ -366,23 +367,23 @@ async function readFromAnyStore() {
   return null;
 }
 
-async function writeToAnyStore(clean) {
+async function writeSavedContent(clean) {
   try {
     await siteStore().setJSON("content", clean);
     return "site store";
   } catch (error) {
-    throw new Error(`Netlify storage refused the save. site store: ${shortStorageError(error)}`);
+    throw new Error(`Netlify storage refused the save: ${shortStorageError(error)}`);
   }
 }
 
 async function readContent() {
-  const saved = await readFromAnyStore();
+  const saved = await readSavedContent();
   return mergeWithDefaults(saved);
 }
 
 async function writeContent(content) {
   const clean = sanitiseContent(content);
-  const storageMode = await writeToAnyStore(clean);
+  const storageMode = await writeSavedContent(clean);
   return { ...clean, storageMode };
 }
 

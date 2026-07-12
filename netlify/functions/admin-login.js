@@ -50,6 +50,7 @@ exports.handler = async (event) => {
     const session = makeSession(username);
     return json(200, { ok: true, csrf: session.payload.csrf, username }, { "Set-Cookie": sessionCookie(session.token) });
   } catch (err) {
-    return json(500, { ok: false, error: "Login server error: " + (err && err.message ? err.message : "Unknown error") });
+    console.error("admin-login failure:", err);
+    return json(500, { ok: false, error: "Login failed because of a server error. Try again shortly." });
   }
 };

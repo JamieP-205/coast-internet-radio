@@ -87,7 +87,7 @@ function dateKey(now) {
 }
 
 function hourKey(now) {
-  return now.toISOString().slice(0, 13).replace(":", "").replace("T", "T");
+  return now.toISOString().slice(0, 13);
 }
 
 function pickField(value, allowed) {
