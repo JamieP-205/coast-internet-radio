@@ -48,11 +48,11 @@ The public site is fully accessible at the link above, but the admin area is pri
 
 ## Technical approach
 
-The listener experience uses semantic HTML, modular CSS and vanilla JavaScript to keep the UI fast and dependable. Netlify Functions own the server-side work: signed admin sessions and password verification, managed homepage content, playlist and listener history, first-party anonymous analytics, visitor feedback and safe public live-status responses. Data lives in Netlify Blobs and Cloudflare Workers provide HTTPS-compatible routes for the existing radio stream and metadata source. CI runs build, syntax and deployment-structure checks on every push.
+The listener experience uses semantic HTML, modular CSS and vanilla JavaScript to keep the UI fast and dependable. Netlify Functions own the server-side work: signed admin sessions and password verification, managed homepage content, playlist and listener history, first-party anonymous analytics, visitor feedback and safe public live-status responses. Data lives in Netlify Blobs and Cloudflare Workers provide HTTPS-compatible routes for the existing radio stream and metadata source. CI runs the build, syntax, deployment-structure, CSP-hash and site checks plus the authentication unit tests on every push.
 
 ## Development note
 
-I used AI-assisted coding tools as a pair-programming and review aid for parts of the security-sensitive backend, particularly signed admin sessions, password verification, CSRF and same-origin checks, and their focused tests. The automated tests document the expected behaviour, and I remain responsible for the code I deploy.
+I used AI-assisted coding tools as a pair-programming and review aid for parts of the security-sensitive backend, particularly signed admin sessions, password verification, CSRF and same-origin checks, the Content-Security-Policy hash setup, and their focused tests. The automated tests and checks document the expected behaviour, and I remain responsible for the code I deploy.
 
 ## Local development
 
