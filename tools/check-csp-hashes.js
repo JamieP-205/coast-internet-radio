@@ -9,7 +9,7 @@ const path = require("path");
 const root = process.cwd();
 const ignoredDirectories = new Set([".git", "node_modules"]);
 const nonExecutableType = /type\s*=\s*["'](?:application\/(?:ld\+)?json|text\/(?:template|plain))["']/i;
-const inlineScript = /<script(?![^>]*\ssrc=)([^>]*)>([\s\S]*?)<\/script>/gi;
+const inlineScript = /<script(?![^>]*\ssrc\s*=)([^>]*)>([\s\S]*?)<\/script>/gi;
 
 function findHtmlFiles(directory) {
   return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {

@@ -120,3 +120,41 @@ body.hide-coming-up #coming-up-row,
 body.hide-previous-played #previous-panel {
   display: none;
 }
+
+/* On a wide screen the track details sat in a narrow left column with the
+   rest of the row empty, so from tablet up the panel splits into three:
+   what is on air, what is next, what has just played. */
+@media (min-width: 900px) {
+  .now-playing {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: 2.5rem;
+    align-items: start;
+  }
+
+  .now-playing-head { grid-column: 1 / -1; }
+
+  .broadcast-status {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .track-grid {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .queue-grid {
+    grid-column: 2 / -1;
+    grid-row: 2 / 4;
+    margin-top: 1rem;
+  }
+
+  body.hide-previous-played #coming-up-row {
+    grid-column: 1 / -1;
+  }
+
+  body.hide-coming-up #previous-panel {
+    grid-column: 1 / -1;
+  }
+}

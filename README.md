@@ -19,7 +19,7 @@ Two Cloudflare Workers sit in front of the station's source and re-serve the str
 - A live player with now playing, coming up and recently played, polled every ten seconds
 - Media Session support, so the phone lock screen controls work like a radio app
 - An admin area where Jim edits the homepage, reads listener feedback and looks at play history, without needing me
-- First-party analytics, written rather than installed, with allowlisted events, hashed addresses and a real opt out
+- First-party analytics, written rather than installed. Basic events are anonymous; opting in adds a random returning-visitor ID. Raw IP addresses are not stored
 - A Station Helper that answers common listener questions from a JSON knowledge base
 - Display preferences for theme, text size, contrast and motion, applied before first paint
 
@@ -57,9 +57,9 @@ npx netlify dev
 
 Admin sessions are signed HttpOnly cookies, passwords are hashed with scrypt, writes carry a CSRF token, requests are same-origin checked, and repeated failed logins lock the address out. Analytics never store a raw IP address. Secrets live in Netlify environment variables and are not in this repo. Reporting is in [SECURITY.md](SECURITY.md).
 
-## Development note
+## AI-assisted security work
 
-I used AI-assisted coding tools as a pair-programming and review aid for parts of the security-sensitive backend, particularly signed admin sessions, password verification, CSRF and same-origin checks, the Content-Security-Policy hash setup, and their focused tests. The automated tests and checks document the expected behaviour, and I remain responsible for the code I deploy.
+I used AI tooling while working through the security-sensitive parts of this site: signed admin sessions, scrypt password hashing, CSRF and same-origin checks, CSP hashes, and the focused tests around them. I reviewed the behaviour against those tests before deploying it.
 
 ## Known limitations
 

@@ -84,9 +84,8 @@ html[data-theme="dark"] .support-header:hover {
   transform: translateY(-1px);
 }
 
-/* Hero: the station banner. The light artwork keeps its left side
-   clear for the title; in dark mode the same composition is built
-   from the studio photo and a dark fade (09-light-theme.css). */
+/* Hero: both themes use the same photo and position. Only the fade changes,
+   so switching theme does not move Jim or put the title over his face. */
 .hero-banner {
   display: flex;
   align-items: center;
@@ -95,8 +94,8 @@ html[data-theme="dark"] .support-header:hover {
   border-radius: var(--radius-lg);
   overflow: hidden;
   background:
-    linear-gradient(90deg, rgba(246, 241, 230, 0.75) 0%, rgba(246, 241, 230, 0.35) 36%, rgba(246, 241, 230, 0) 58%),
-    url("assets/images/jim-hero-studio-light.webp") right center / cover no-repeat,
+    linear-gradient(90deg, rgba(246, 241, 230, 0.98) 0%, rgba(246, 241, 230, 0.92) 46%, rgba(246, 241, 230, 0.45) 68%, rgba(246, 241, 230, 0) 82%),
+    url("assets/images/jim-studio-on-air.jpg") right center / auto 100% no-repeat,
     var(--surface-2);
 }
 

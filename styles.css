@@ -345,9 +345,8 @@ html[data-theme="dark"] .support-header:hover {
   transform: translateY(-1px);
 }
 
-/* Hero: the station banner. The light artwork keeps its left side
-   clear for the title; in dark mode the same composition is built
-   from the studio photo and a dark fade (09-light-theme.css). */
+/* Hero: both themes use the same photo and position. Only the fade changes,
+   so switching theme does not move Jim or put the title over his face. */
 .hero-banner {
   display: flex;
   align-items: center;
@@ -356,8 +355,8 @@ html[data-theme="dark"] .support-header:hover {
   border-radius: var(--radius-lg);
   overflow: hidden;
   background:
-    linear-gradient(90deg, rgba(246, 241, 230, 0.75) 0%, rgba(246, 241, 230, 0.35) 36%, rgba(246, 241, 230, 0) 58%),
-    url("assets/images/jim-hero-studio-light.webp") right center / cover no-repeat,
+    linear-gradient(90deg, rgba(246, 241, 230, 0.98) 0%, rgba(246, 241, 230, 0.92) 46%, rgba(246, 241, 230, 0.45) 68%, rgba(246, 241, 230, 0) 82%),
+    url("assets/images/jim-studio-on-air.jpg") right center / auto 100% no-repeat,
     var(--surface-2);
 }
 
@@ -1247,17 +1246,12 @@ html[data-theme="dark"] .a11y-close:hover { color: #171310; }
      readable over the middle of the artwork. */
   .hero-banner {
     background:
-      linear-gradient(90deg, rgba(246, 241, 230, 0.9) 0%, rgba(246, 241, 230, 0.72) 48%, rgba(246, 241, 230, 0.25) 78%),
-      url("assets/images/jim-hero-studio-light.webp") 72% center / cover no-repeat,
+      linear-gradient(90deg, rgba(246, 241, 230, 0.98) 0%, rgba(246, 241, 230, 0.92) 56%, rgba(246, 241, 230, 0.4) 82%),
+      url("assets/images/jim-studio-on-air.jpg") right center / auto 100% no-repeat,
       var(--surface-2);
   }
 
-  html[data-theme="dark"] .hero-banner {
-    background:
-      linear-gradient(90deg, rgba(11, 15, 21, 0.96) 30%, rgba(11, 15, 21, 0.82) 55%, rgba(11, 15, 21, 0.35) 85%),
-      url("assets/images/jim-studio-on-air.jpg") 78% center / cover no-repeat,
-      #0b0f15;
-  }
+  .hero-words { max-width: 58%; }
 
   .schedule-card,
   .about-strip,
@@ -1286,6 +1280,15 @@ html[data-theme="dark"] .a11y-close:hover { color: #171310; }
 
 @media (max-width: 560px) {
   :root { --shell-pad: 14px; }
+
+  .hero-banner {
+    background:
+      linear-gradient(90deg, rgba(246, 241, 230, 0.98) 0%, rgba(246, 241, 230, 0.95) 72%, rgba(246, 241, 230, 0.7) 100%),
+      url("assets/images/jim-studio-on-air.jpg") right center / auto 100% no-repeat,
+      var(--surface-2);
+  }
+
+  .hero-words { max-width: 100%; }
 
   .wordmark-text { display: none; }
 
@@ -1482,6 +1485,44 @@ body.hide-now-playing #now-playing-panel,
 body.hide-coming-up #coming-up-row,
 body.hide-previous-played #previous-panel {
   display: none;
+}
+
+/* On a wide screen the track details sat in a narrow left column with the
+   rest of the row empty, so from tablet up the panel splits into three:
+   what is on air, what is next, what has just played. */
+@media (min-width: 900px) {
+  .now-playing {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: 2.5rem;
+    align-items: start;
+  }
+
+  .now-playing-head { grid-column: 1 / -1; }
+
+  .broadcast-status {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .track-grid {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .queue-grid {
+    grid-column: 2 / -1;
+    grid-row: 2 / 4;
+    margin-top: 1rem;
+  }
+
+  body.hide-previous-played #coming-up-row {
+    grid-column: 1 / -1;
+  }
+
+  body.hide-coming-up #previous-panel {
+    grid-column: 1 / -1;
+  }
 }
 
 /* Station helper: compact guided help widget */
@@ -1734,14 +1775,30 @@ html[data-theme="dark"] .station-helper-ask:hover { color: #171310; }
    Light is the default theme; its tokens live in 00-base.css.
    Only adjustments that cannot be expressed as tokens belong here. */
 
-/* Dark hero: rebuild the banner composition from the studio photo
-   (which has no artwork text baked in) and a dark fade on the left
-   where the title sits. */
+/* Dark hero: same photo and position as light mode, with a darker fade. */
 html[data-theme="dark"] .hero-banner {
   background:
     linear-gradient(90deg, #0b0f15 40%, rgba(11, 15, 21, 0.94) 58%, rgba(11, 15, 21, 0.42) 74%, rgba(11, 15, 21, 0.1) 88%),
     url("assets/images/jim-studio-on-air.jpg") right center / auto 100% no-repeat,
     #0b0f15;
+}
+
+@media (max-width: 940px) {
+  html[data-theme="dark"] .hero-banner {
+    background:
+      linear-gradient(90deg, rgba(11, 15, 21, 0.98) 0%, rgba(11, 15, 21, 0.92) 56%, rgba(11, 15, 21, 0.45) 82%),
+      url("assets/images/jim-studio-on-air.jpg") right center / auto 100% no-repeat,
+      #0b0f15;
+  }
+}
+
+@media (max-width: 560px) {
+  html[data-theme="dark"] .hero-banner {
+    background:
+      linear-gradient(90deg, rgba(11, 15, 21, 0.99) 0%, rgba(11, 15, 21, 0.96) 72%, rgba(11, 15, 21, 0.75) 100%),
+      url("assets/images/jim-studio-on-air.jpg") right center / auto 100% no-repeat,
+      #0b0f15;
+  }
 }
 
 html[data-theme="dark"] .strapline,
