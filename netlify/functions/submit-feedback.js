@@ -1,5 +1,5 @@
 /**
- * Coast Internet Radio — public feedback submission endpoint.
+ * Coast Internet Radio public feedback submission endpoint.
  *
  *  - POST JSON only, 4 KB body cap.
  *  - Honeypot field must be empty.

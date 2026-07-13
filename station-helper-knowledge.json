@@ -2555,7 +2555,7 @@
         "is it hifi",
         "is it hd"
       ],
-      "answer": "The Coast Internet Radio stream is delivered at a standard internet-radio bitrate suitable for music playback. Audio quality depends on your connection and device, not the website. If audio sounds choppy, your connection may be slow — try the Listen Elsewhere options or refresh the page.",
+      "answer": "The Coast Internet Radio stream is delivered at a standard internet-radio bitrate suitable for music playback. Audio quality depends on your connection and device, not the website. If audio sounds choppy, your connection may be slow. Try the Listen Elsewhere options or refresh the page.",
       "related": [
         "stream_help",
         "open_stream"
@@ -2584,7 +2584,7 @@
         "how do i share",
         "share link"
       ],
-      "answer": "Thanks for thinking of it. The website address is coastinternetradio.com — share that link with friends, on social media, by message, or by email. There's no special share button on the site, just copy the link.",
+      "answer": "Thanks for thinking of it. The website address is coastinternetradio.com. Share that link with friends, on social media, by message, or by email. There's no special share button on the site, just copy the link.",
       "related": [
         "social_links",
         "contact_station"
@@ -2652,7 +2652,7 @@
         "leave a comment",
         "comments"
       ],
-      "answer": "Tap the \"Feedback\" link at the bottom of the homepage. A small form will open. You can write what you want to say, choose what it's about (website, audio, song idea, accessibility, or general). Your name and contact details are optional — only add them if you'd like Jim to reply.",
+      "answer": "Tap the \"Feedback\" link at the bottom of the homepage. A small form will open. You can write what you want to say, choose what it's about (website, audio, song idea, accessibility, or general). Your name and contact details are optional, so only add them if you'd like Jim to reply.",
       "related": [
         "contact_station",
         "song_request"
@@ -2683,7 +2683,7 @@
         "do you have commercials",
         "any commercials"
       ],
-      "answer": "Coast Internet Radio is an independent music station and does not run commercial radio adverts. Outside the live shows, music plays around the clock without ad breaks. The station is supported by listeners — there's a Donate option on the homepage if you'd like to help.",
+      "answer": "Coast Internet Radio is an independent music station and does not run commercial radio adverts. Outside the live shows, music plays around the clock without ad breaks. The station is supported by listeners, and there's a Donate option on the homepage if you'd like to help.",
       "related": [
         "support_station"
       ]
@@ -2713,7 +2713,7 @@
         "do i have to pay",
         "any cost"
       ],
-      "answer": "Yes, Coast Internet Radio is completely free to listen to. There's no subscription, no account, no paywall. The station is supported by Jim and by listener donations — if you'd like to help, there's a Donate option, but it's optional.",
+      "answer": "Yes, Coast Internet Radio is completely free to listen to. There's no subscription, no account, no paywall. The station is supported by Jim and by listener donations. If you'd like to help, there's a Donate option, but it's optional.",
       "related": [
         "support_station"
       ]
@@ -2904,7 +2904,7 @@
         "bandwidth",
         "is it heavy"
       ],
-      "answer": "An internet radio stream uses roughly 30-60 MB per hour at typical bitrates. Over a long listening session on mobile data this can add up — if you're on a limited mobile data plan, listening on Wi-Fi is more economical. The website itself uses very little data once loaded.",
+      "answer": "An internet radio stream uses roughly 30-60 MB per hour at typical bitrates. Over a long listening session on mobile data this can add up, so if you're on a limited mobile data plan, listening on Wi-Fi is more economical. The website itself uses very little data once loaded.",
       "related": [
         "stream_help"
       ]

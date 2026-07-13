@@ -1,5 +1,5 @@
 /**
- * Coast Internet Radio — analytics collection endpoint.
+ * Coast Internet Radio analytics collection endpoint.
  *
  * Design notes:
  *  - Writes a small batch shard per request (no read-modify-write race).
@@ -192,7 +192,7 @@ exports.handler = async (event) => {
       hour: now.getUTCHours(),
       events: cleaned
     });
-  } catch (_) { /* swallow — analytics must never break the public site */ }
+  } catch (_) { /* swallow: analytics must never break the public site */ }
 
   // Update the recent ring buffer (debug only, capped at 200).
   // Read-modify-write: under concurrent load some entries may be lost

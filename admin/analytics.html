@@ -207,7 +207,7 @@
           const reasons = Object.keys(errors).map((k) => k + ": " + errors[k]).join(" · ");
           const p = document.createElement("p");
           p.className = "help-text";
-          p.textContent = "Failure reasons — " + reasons;
+          p.textContent = "Failure reasons: " + reasons;
           el.appendChild(p);
         }
       }

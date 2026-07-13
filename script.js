@@ -307,15 +307,6 @@
           return fallbackData;
         }
       } catch { /* ignore */ }
-
-      const island = document.querySelector("#inline-now-playing-fallback");
-      if (island) {
-        try {
-          const d = JSON.parse(island.textContent);
-          if (d.online === undefined) d.online = true;
-          return d;
-        } catch { /* ignore */ }
-      }
     }
 
     return null;
@@ -429,13 +420,6 @@
       const items = await r.json();
       renderNews(items);
     } catch {
-      const island = document.querySelector("#inline-news-fallback");
-      if (island) {
-        try {
-          renderNews(JSON.parse(island.textContent));
-          return;
-        } catch { /* ignore */ }
-      }
       renderNews([]);
     }
   }

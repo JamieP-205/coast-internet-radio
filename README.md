@@ -2,59 +2,41 @@
 
 [![CI](https://github.com/JamieP-205/coast-internet-radio/actions/workflows/ci.yml/badge.svg)](https://github.com/JamieP-205/coast-internet-radio/actions/workflows/ci.yml)
 
-## Live site
+Live at [coastinternetradio.com](https://coastinternetradio.com/).
 
-The production website is at [coastinternetradio.com](https://coastinternetradio.com/). The public site provides the player, metadata and listener-facing pages. A separate admin area is protected behind authentication and is not part of the public demo.
+The website for Coast Internet Radio, a small station in Newry run by Jim Parr. It has real listeners every day, so this repo is not a demo. I build it, I maintain it, and if I break it somebody rings me.
 
-## Status
+## The thing that shapes everything else
 
-**Live production project** - this site serves real listeners every day. Changes are tested thoroughly before deployment.
+The station's audio stream and its now-playing feed are both served over plain HTTP. The website is HTTPS. Browsers block that as mixed content, so the player will not play, and no amount of front-end work changes it.
 
-## Summary
-
-I built and maintain this website for Coast Internet Radio. The project combines a listener-focused public site with a private content editor, live programme information, first-party analytics, feedback management and playlist history. It is designed for reliability: no client framework, minimal dependencies, and a serverless backend built around Netlify Functions and Cloudflare Workers.
-
-## Architecture diagram
-
-Below is a simplified view of the production architecture. A listener's browser requests the static site from Netlify. The UI calls Netlify Functions to fetch programme metadata, submit feedback, record analytics and manage content. Netlify Blobs persists playlists, feedback, analytics and page content. Cloudflare Workers act as HTTPS-friendly proxies to the station's existing stream and metadata source.
+Two Cloudflare Workers sit in front of the station's source and re-serve the stream and the metadata over HTTPS. The site only ever talks to the workers. The source for both is in [`workers-reference/`](workers-reference/), which is a copy for review, not what is deployed.
 
 ![Coast Internet Radio architecture](coast-architecture.svg)
 
-## Demo note
+## What is in it
 
-The public site is fully accessible at the link above, but the admin area is private because it manages real station content, analytics and feedback. The repository includes reference implementations of the serverless functions and workers for review.
+- A live player with now playing, coming up and recently played, polled every ten seconds
+- Media Session support, so the phone lock screen controls work like a radio app
+- An admin area where Jim edits the homepage, reads listener feedback and looks at play history, without needing me
+- First-party analytics, written rather than installed. Basic events are anonymous; opting in adds a random returning-visitor ID. Raw IP addresses are not stored
+- A Station Helper that answers common listener questions from a JSON knowledge base
+- Display preferences for theme, text size, contrast and motion, applied before first paint
 
-## What I built
+The admin area is not public, because it manages a real station's content and a real audience's feedback. The functions behind it are all in this repo if you want to read them.
 
-- A responsive live-radio player with now-playing, coming-up and recent-track information
-- Programme-aware presentation for live shows, repeats and automated music
-- A private admin area for content management, analytics, feedback, and playlist history
-- Netlify Functions for authentication, managed content, analytics, feedback, play history and live status
-- Netlify Blobs as the persistent store for playlists, listener events and content data
-- Cloudflare Workers that bridge the station's existing stream and metadata services to HTTPS
-- A browser-based "Station Helper" to answer common listener questions
-- Accessibility controls for colour theme, text size, contrast and reduced motion
+## Files
 
-## Key files
+- `index.html` the listener homepage
+- `src/css/*.css` the actual stylesheet source
+- `styles.css` **generated**, do not edit it by hand
+- `script.js` player, metadata polling, preferences, request form
+- `netlify/functions/` the API, admin auth, analytics, feedback, play history
+- `workers-reference/` copies of the two Cloudflare Workers
+- `tools/` everything CI runs
+- `admin/` the private screens
 
-- `index.html` - public listener homepage and player
-- `src/css/` and `styles.css` - maintainable CSS source and generated production stylesheet
-- `script.js` and `live-ui.js` - player controls, metadata polling, forms and shared rendering
-- `managed-content.js` - public managed-content loader
-- `admin/` - authenticated screens for content, history, analytics and feedback
-- `netlify/functions/` - serverless API and scheduled functions
-- `workers-reference/` - source references for the deployed Cloudflare Workers
-- `tools/` - build and validation scripts used in CI
-
-## Technical approach
-
-The listener experience uses semantic HTML, modular CSS and vanilla JavaScript to keep the UI fast and dependable. Netlify Functions own the server-side work: signed admin sessions and password verification, managed homepage content, playlist and listener history, first-party anonymous analytics, visitor feedback and safe public live-status responses. Data lives in Netlify Blobs and Cloudflare Workers provide HTTPS-compatible routes for the existing radio stream and metadata source. CI runs build, syntax and deployment-structure checks on every push.
-
-## Development note
-
-I used AI-assisted coding tools as a pair-programming and review aid for parts of the security-sensitive backend, particularly signed admin sessions, password verification, CSRF and same-origin checks, and their focused tests. The automated tests document the expected behaviour, and I remain responsible for the code I deploy.
-
-## Local development
+## Running it
 
 ```bash
 npm ci
@@ -62,21 +44,27 @@ npm run check
 npx netlify dev
 ```
 
-`npm run check` rebuilds the CSS bundle, validates the deployment structure, checks JavaScript syntax, validates JSON and verifies local HTML references with exact filename casing.
+`npm test` runs those checks plus the unit tests.
 
-## Privacy & security notes
+## Gotchas
 
-I designed the analytics system to avoid third-party tracking. It uses allowlisted events, does not store raw IP addresses and keeps detailed data retention rules in the application logic. The admin area uses signed `HttpOnly` sessions, same-origin checks, CSRF protection for sensitive actions, environment-based secrets and protected diagnostic routes. Credentials and production data are never stored in this repository. See [SECURITY.md](SECURITY.md) for the full security policy.
+- **`styles.css` is generated** from `src/css/*.css` by `tools/build-css.js`. Edit a partial, not the bundle, or your change disappears on the next build.
+- **Inline scripts are allowed by sha256 hash** in `_headers`, not by `unsafe-inline`. If you edit one, its hash changes and the browser will silently block it in production. `npm run check` recomputes every hash and fails the build with the value you need, which is the whole reason that check exists: it had already drifted once, and the theme script was being blocked live before I caught it.
+- **`now-playing.json` is a local preview file only.** It is never used on the deployed site. If you wire it in, listeners get stale song titles.
+- **Do not point the player at the station's origin.** It is HTTP, and it will fail on HTTPS.
 
-## What I learned
+## Security and privacy
 
-Building a production site for a real radio station taught me how important it is to keep things simple, reliable and easy to maintain. I learned more about admin logins, live programme data, playlist history, listener feedback, analytics, Netlify Functions and Cloudflare Workers, while also getting used to maintaining a project that real people use every day.
+Admin sessions are signed HttpOnly cookies, passwords are hashed with scrypt, writes carry a CSRF token, requests are same-origin checked, and repeated failed logins lock the address out. Analytics never store a raw IP address. Secrets live in Netlify environment variables and are not in this repo. Reporting is in [SECURITY.md](SECURITY.md).
 
-## Future improvements
+## AI-assisted security work
 
-- Improve the player experience on low-bandwidth connections
-- Add automated end-to-end tests for the admin area
-- Explore exposing limited public playlists via RSS or JSON feeds
-- Continue refining analytics dashboards to highlight listener trends while respecting privacy
+I used AI tooling while working through the security-sensitive parts of this site: signed admin sessions, scrypt password hashing, CSRF and same-origin checks, CSP hashes, and the focused tests around them. I reviewed the behaviour against those tests before deploying it.
+
+## Known limitations
+
+- No end-to-end tests for the admin area, so I still click through it by hand before a deploy, which is exactly the kind of thing that gets skipped when I am tired
+- Analytics aggregate on read. Fine at this size, will not stay fine if the station grows
+- The site depends on the two workers being up, and they are outside this repo
 
 Dated change history is in [CHANGELOG.md](CHANGELOG.md), the manual release checks are in [TESTING_CHECKLIST.md](TESTING_CHECKLIST.md), and project rules are in [CONTRIBUTING.md](CONTRIBUTING.md).
