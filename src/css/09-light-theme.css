@@ -2,7 +2,7 @@
    Light is the default theme; its tokens live in 00-base.css.
    Only adjustments that cannot be expressed as tokens belong here. */
 
-/* The artwork stays fixed; only this overlay changes with the theme. */
+/* Crossfade to the paired dark artwork without disturbing the hero layout. */
 html[data-theme="dark"] .hero-banner::after { opacity: 1; }
 
 html[data-theme="dark"] .strapline,

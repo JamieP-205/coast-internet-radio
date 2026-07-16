@@ -84,11 +84,14 @@ html[data-theme="dark"] .support-header:hover {
   transform: translateY(-1px);
 }
 
-/* Keep one artwork and crop across themes so switching theme never moves Jim,
-   the microphone or the On Air sign. Dark mode fades in the overlay below. */
+/* The light and dark banners are a matched pair. Their focal points differ
+   slightly, so the dark layer is nudged into place before it crossfades. */
 .hero-banner {
-  --hero-night-overlay:
-    linear-gradient(90deg, #0b0f15 0%, rgba(11, 15, 21, 0.98) 36%, rgba(11, 15, 21, 0.65) 68%, rgba(11, 15, 21, 0.35) 100%);
+  --hero-dark-position:
+    calc(100% + clamp(22px, 4vw, 46px))
+    calc(50% - clamp(11px, 2vw, 22px));
+  --hero-dark-scrim:
+    linear-gradient(90deg, #0b0f15 0%, #0b0f15 38%, rgba(11, 15, 21, 0.98) 47%, rgba(11, 15, 21, 0.45) 58%, rgba(11, 15, 21, 0.12) 72%, rgba(11, 15, 21, 0.02) 100%);
   position: relative;
   isolation: isolate;
   display: flex;
@@ -109,7 +112,10 @@ html[data-theme="dark"] .support-header:hover {
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background: var(--hero-night-overlay);
+  background:
+    var(--hero-dark-scrim),
+    url("assets/images/jim-hero-studio.webp") var(--hero-dark-position) / cover no-repeat,
+    #0b0f15;
   opacity: 0;
   transition: opacity 220ms ease;
 }
