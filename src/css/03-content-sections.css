@@ -2,11 +2,11 @@
    Sections sit directly on the paper and take their rhythm from
    spacing and the handwritten section titles, not boxes and rules. */
 
-/* Action row: three plain links */
+/* Action row: three quiet buttons */
 .action-row {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem 2.5rem;
+  gap: 1rem;
   margin-top: clamp(2.2rem, 5vw, 3.2rem);
 }
 
@@ -16,9 +16,11 @@
   gap: 0.15rem;
   align-content: start;
   justify-items: start;
-  padding: 0;
-  background: none;
-  border: 0;
+  min-height: 4.5rem;
+  padding: 0.8rem 0.9rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
   color: var(--ink);
   text-align: left;
   text-decoration: none;
@@ -32,18 +34,13 @@
 .action-row strong::after {
   content: " →" / "";
   color: var(--brand);
-  opacity: 0;
-  transition: opacity 150ms ease;
 }
 
 .action-row > a:hover,
 .action-button:hover {
+  background: var(--surface-2);
+  border-color: var(--line-strong);
   color: var(--ink);
-}
-
-.action-row > a:hover strong::after,
-.action-button:hover strong::after {
-  opacity: 1;
 }
 
 .action-sub {
