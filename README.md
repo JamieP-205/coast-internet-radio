@@ -4,7 +4,18 @@
 
 Live at [coastinternetradio.com](https://coastinternetradio.com/).
 
-The website for Coast Internet Radio, a small station in Newry run by Jim Parr. It has real listeners every day, so this repo is not a demo. I build it, I maintain it, and if I break it somebody rings me.
+The website for Coast Internet Radio, a small station in Newry run by Jim Parr. It has real listeners every day, so this repo is not a demo. I redeveloped and maintain it in collaboration with the station owner: he brings the station's operational and listener needs, I turn them into technical decisions and working releases, and his feedback shapes what changes next.
+
+## Stakeholder collaboration
+
+This is my clearest example of building for somebody other than myself. I worked with Jim to replace the older site with a more modern, mobile-friendly listener experience while keeping the station's identity and day-to-day needs intact. The collaboration includes:
+
+- understanding what listeners and the station owner needed from the replacement site
+- agreeing which content Jim should be able to update without developer help
+- explaining technical constraints, especially the legacy HTTP stream inside a modern HTTPS site
+- releasing changes to a live service, receiving operational feedback and maintaining it afterwards
+
+I am the sole developer in this repository, so I describe it as **stakeholder/client collaboration**, not shared-code collaboration.
 
 ## The thing that shapes everything else
 
