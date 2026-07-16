@@ -32,7 +32,7 @@ html[data-contrast="high"] {
 html[data-contrast="high"] a { text-decoration: underline; }
 
 html[data-contrast="high"] .hero-banner {
-  --hero-night-overlay:
+  --hero-dark-scrim:
     linear-gradient(90deg, #000000 0%, rgba(0, 0, 0, 0.99) 46%, rgba(0, 0, 0, 0.72) 78%, rgba(0, 0, 0, 0.5) 100%);
 }
 
