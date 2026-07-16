@@ -84,9 +84,13 @@ html[data-theme="dark"] .support-header:hover {
   transform: translateY(-1px);
 }
 
-/* Hero: the light artwork leaves room for the title. Dark mode rebuilds the
-   same layout from the studio photo in 09-light-theme.css. */
+/* Keep one artwork and crop across themes so switching theme never moves Jim,
+   the microphone or the On Air sign. Dark mode fades in the overlay below. */
 .hero-banner {
+  --hero-night-overlay:
+    linear-gradient(90deg, #0b0f15 0%, rgba(11, 15, 21, 0.98) 36%, rgba(11, 15, 21, 0.65) 68%, rgba(11, 15, 21, 0.35) 100%);
+  position: relative;
+  isolation: isolate;
   display: flex;
   align-items: center;
   min-height: clamp(300px, 34vw, 440px);
@@ -99,7 +103,20 @@ html[data-theme="dark"] .support-header:hover {
     var(--surface-2);
 }
 
+.hero-banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: var(--hero-night-overlay);
+  opacity: 0;
+  transition: opacity 220ms ease;
+}
+
 .hero-words {
+  position: relative;
+  z-index: 1;
   max-width: 33rem;
   padding: clamp(1.6rem, 4vw, 3rem);
 }
