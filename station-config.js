@@ -18,7 +18,7 @@ window.COAST_RADIO_CONFIG = {
   email: "coastradio@hotmail.com",
   requestPhoneDisplay: "07935 889228",
   requestPhoneHref: "sms:+447935889228",
-  paypalUrl: "https://coast-paypal-redirect.jamieparr05.workers.dev/",
+  paypalUrl: "/paypal-redirect.html",
 
   newsUrl: "news.json"
 };

@@ -219,7 +219,7 @@
     const facebook = config.facebookUrl || FACEBOOK_FALLBACK;
 
     setHref("facebook-link", facebook);
-    setHref("paypal-link", config.paypalUrl || "https://coast-paypal-redirect.jamieparr05.workers.dev/");
+    setHref("paypal-link", config.paypalUrl || "/paypal-redirect.html");
     setHref("footer-facebook", facebook);
     setHref("footer-email", `mailto:${email}`);
     setHref("footer-x", config.xUrl || "https://x.com/coast_radio");

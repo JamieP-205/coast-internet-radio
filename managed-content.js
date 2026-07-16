@@ -7,6 +7,7 @@
 
   const PUBLIC_CONTENT_URL = "/.netlify/functions/public-content";
   const LIVE_STATUS_URL = "/.netlify/functions/public-live-status";
+  const LEGACY_PAYPAL_REDIRECT = "https://coast-paypal-redirect.jamieparr05.workers.dev";
   const REFRESH_MS = 2 * 60 * 1000;
   const LIVE_REFRESH_MS = 60 * 1000;
   let latestContent = null;
@@ -25,6 +26,14 @@
     if (el && href) el.href = href;
   }
 
+  function supportUrl(href) {
+    const value = String(href || "").trim();
+    if (value.replace(/\/+$/, "") === LEGACY_PAYPAL_REDIRECT) {
+      return "/paypal-redirect.html";
+    }
+    return value;
+  }
+
   function updateContactLinks(content) {
     if (!content || !content.contact) return;
     const c = content.contact;
@@ -34,7 +43,7 @@
       setHref("footer-facebook", c.facebookUrl);
     }
     if (c.xUrl) setHref("footer-x", c.xUrl);
-    if (c.paypalUrl) setHref("paypal-link", c.paypalUrl);
+    if (c.paypalUrl) setHref("paypal-link", supportUrl(c.paypalUrl));
     window.CoastListenOptions?.setLinks?.(content.listenLinks);
     if (c.email) {
       setHref("footer-email", `mailto:${c.email}`);

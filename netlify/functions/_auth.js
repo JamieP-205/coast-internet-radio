@@ -195,7 +195,7 @@ const DEFAULT_CONTENT = {
     email: "coastradio@hotmail.com",
     facebookUrl: "https://www.facebook.com/share/1aN1Jtus5Y/",
     xUrl: "https://x.com/coast_radio",
-    paypalUrl: "https://coast-paypal-redirect.jamieparr05.workers.dev/",
+    paypalUrl: "https://coastinternetradio.com/paypal-redirect.html",
     tuneInUrl: "https://tunein.com/radio/coast-internet-Radio-C-I-R-s224937/"
   },
   listenLinks: DEFAULT_LISTEN_LINKS,

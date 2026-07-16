@@ -120,3 +120,43 @@
 }
 
 .back-link:hover { text-decoration: underline; }
+
+/* Same-origin handoff to the station's hosted PayPal form */
+.paypal-handoff-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.paypal-handoff-main {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  padding-top: clamp(2rem, 8vw, 5rem);
+}
+
+.paypal-handoff {
+  width: min(100%, 40rem);
+  padding: clamp(1.8rem, 6vw, 3rem);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  text-align: center;
+}
+
+.paypal-handoff h1 {
+  font-size: clamp(2rem, 6vw, 2.8rem);
+}
+
+.paypal-handoff .handoff-intro {
+  margin: 0.8rem auto 0;
+  color: var(--muted);
+}
+
+.paypal-handoff form { margin-top: 1.5rem; }
+
+.paypal-handoff .handoff-note {
+  margin: 1rem 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
