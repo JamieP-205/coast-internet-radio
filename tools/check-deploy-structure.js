@@ -4,6 +4,8 @@ const path = require("path");
 
 const required = [
   "index.html",
+  "paypal-redirect.html",
+  "paypal-redirect.js",
   "styles.css",
   "live-ui.js",
   "script.js",
@@ -20,6 +22,7 @@ const required = [
   "assets/icons/icon-192.png",
   "assets/icons/icon-512.png",
   "assets/images/jim-studio-on-air.jpg",
+  "assets/images/jim-hero-studio-light.webp",
   "assets/images/jim-portrait-500.webp",
   "assets/images/coast-round-logo-192.webp",
   "netlify/functions/_auth.js",

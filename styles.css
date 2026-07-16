@@ -345,8 +345,8 @@ html[data-theme="dark"] .support-header:hover {
   transform: translateY(-1px);
 }
 
-/* Hero: both themes use the same photo and position. Only the fade changes,
-   so switching theme does not move Jim or put the title over his face. */
+/* Hero: the light artwork leaves room for the title. Dark mode rebuilds the
+   same layout from the studio photo in 09-light-theme.css. */
 .hero-banner {
   display: flex;
   align-items: center;
@@ -355,8 +355,8 @@ html[data-theme="dark"] .support-header:hover {
   border-radius: var(--radius-lg);
   overflow: hidden;
   background:
-    linear-gradient(90deg, rgba(246, 241, 230, 0.98) 0%, rgba(246, 241, 230, 0.92) 46%, rgba(246, 241, 230, 0.45) 68%, rgba(246, 241, 230, 0) 82%),
-    url("assets/images/jim-studio-on-air.jpg") right center / auto 100% no-repeat,
+    linear-gradient(90deg, rgba(246, 241, 230, 0.75) 0%, rgba(246, 241, 230, 0.35) 36%, rgba(246, 241, 230, 0) 58%),
+    url("assets/images/jim-hero-studio-light.webp") right center / cover no-repeat,
     var(--surface-2);
 }
 
@@ -922,6 +922,46 @@ html[data-theme="dark"] .support-panel #paypal-link { color: #171310; }
 
 .back-link:hover { text-decoration: underline; }
 
+/* Same-origin handoff to the station's hosted PayPal form */
+.paypal-handoff-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.paypal-handoff-main {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  padding-top: clamp(2rem, 8vw, 5rem);
+}
+
+.paypal-handoff {
+  width: min(100%, 40rem);
+  padding: clamp(1.8rem, 6vw, 3rem);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  text-align: center;
+}
+
+.paypal-handoff h1 {
+  font-size: clamp(2rem, 6vw, 2.8rem);
+}
+
+.paypal-handoff .handoff-intro {
+  margin: 0.8rem auto 0;
+  color: var(--muted);
+}
+
+.paypal-handoff form { margin-top: 1.5rem; }
+
+.paypal-handoff .handoff-note {
+  margin: 1rem 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
 /* Dialogs, forms, accessibility panel, consent banner and listen options */
 
 /* Modal overlay and dialog */
@@ -1243,8 +1283,8 @@ html[data-theme="dark"] .a11y-close:hover { color: #171310; }
      readable over the middle of the artwork. */
   .hero-banner {
     background:
-      linear-gradient(90deg, rgba(246, 241, 230, 0.98) 0%, rgba(246, 241, 230, 0.92) 56%, rgba(246, 241, 230, 0.4) 82%),
-      url("assets/images/jim-studio-on-air.jpg") right center / auto 100% no-repeat,
+      linear-gradient(90deg, rgba(246, 241, 230, 0.9) 0%, rgba(246, 241, 230, 0.72) 48%, rgba(246, 241, 230, 0.25) 78%),
+      url("assets/images/jim-hero-studio-light.webp") 72% center / cover no-repeat,
       var(--surface-2);
   }
 
@@ -1281,7 +1321,7 @@ html[data-theme="dark"] .a11y-close:hover { color: #171310; }
   .hero-banner {
     background:
       linear-gradient(90deg, rgba(246, 241, 230, 0.98) 0%, rgba(246, 241, 230, 0.95) 72%, rgba(246, 241, 230, 0.7) 100%),
-      url("assets/images/jim-studio-on-air.jpg") right center / auto 100% no-repeat,
+      url("assets/images/jim-hero-studio-light.webp") 72% center / cover no-repeat,
       var(--surface-2);
   }
 
