@@ -2,31 +2,8 @@
    Light is the default theme; its tokens live in 00-base.css.
    Only adjustments that cannot be expressed as tokens belong here. */
 
-/* Dark hero: same photo and position as light mode, with a darker fade. */
-html[data-theme="dark"] .hero-banner {
-  background:
-    linear-gradient(90deg, #0b0f15 40%, rgba(11, 15, 21, 0.94) 58%, rgba(11, 15, 21, 0.42) 74%, rgba(11, 15, 21, 0.1) 88%),
-    url("assets/images/jim-studio-on-air.jpg") right center / auto 100% no-repeat,
-    #0b0f15;
-}
-
-@media (max-width: 940px) {
-  html[data-theme="dark"] .hero-banner {
-    background:
-      linear-gradient(90deg, rgba(11, 15, 21, 0.98) 0%, rgba(11, 15, 21, 0.92) 56%, rgba(11, 15, 21, 0.45) 82%),
-      url("assets/images/jim-studio-on-air.jpg") right center / auto 100% no-repeat,
-      #0b0f15;
-  }
-}
-
-@media (max-width: 560px) {
-  html[data-theme="dark"] .hero-banner {
-    background:
-      linear-gradient(90deg, rgba(11, 15, 21, 0.99) 0%, rgba(11, 15, 21, 0.96) 72%, rgba(11, 15, 21, 0.75) 100%),
-      url("assets/images/jim-studio-on-air.jpg") right center / auto 100% no-repeat,
-      #0b0f15;
-  }
-}
+/* The artwork stays fixed; only this overlay changes with the theme. */
+html[data-theme="dark"] .hero-banner::after { opacity: 1; }
 
 html[data-theme="dark"] .strapline,
 html[data-theme="dark"] .signoff,
