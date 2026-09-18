@@ -96,12 +96,16 @@ window.COAST_RADIO_CONFIG = {
   ];
 
   function originalPageUrl() {
+    const translatedHost = /(?:^|\.)translate\.goog$|^translate\.google\./i.test(window.location.hostname);
+    const configured = window.COAST_RADIO_CONFIG?.siteUrl;
+
+    if (translatedHost && configured && /^https?:/i.test(configured)) {
+      return configured;
+    }
+
     const canonical = document.querySelector('link[rel="canonical"]')?.href;
     if (canonical && /^https?:/i.test(canonical)) return canonical;
-
-    const configured = window.COAST_RADIO_CONFIG?.siteUrl;
     if (configured && /^https?:/i.test(configured)) return configured;
-
     return window.location.href;
   }
 
@@ -129,6 +133,23 @@ window.COAST_RADIO_CONFIG = {
       encodeURIComponent(originalUrl);
 
     window.location.assign(translatedUrl);
+  }
+
+  function suppressOldLanguageBanner() {
+    const banner = document.getElementById("lang-banner");
+    if (!banner) return;
+
+    const keepHidden = () => {
+      banner.hidden = true;
+      if (banner.childElementCount) banner.replaceChildren();
+    };
+
+    keepHidden();
+    new MutationObserver(keepHidden).observe(banner, {
+      attributes: true,
+      attributeFilter: ["hidden", "class"],
+      childList: true
+    });
   }
 
   function installLanguagePicker() {
@@ -175,13 +196,9 @@ window.COAST_RADIO_CONFIG = {
     field.append(label, select, help);
     group.append(heading, field);
     oldTranslateLink.replaceWith(group);
-
-    const oldBanner = document.getElementById("lang-banner");
-    if (oldBanner) {
-      oldBanner.hidden = true;
-      oldBanner.replaceChildren();
-    }
   }
+
+  suppressOldLanguageBanner();
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", installLanguagePicker, { once: true });
