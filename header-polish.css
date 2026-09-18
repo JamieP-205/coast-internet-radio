@@ -1,5 +1,3 @@
-@import url("/design-pass.css?v=20260918");
-
 /* Small visual cleanup for the two utility controls in the masthead. */
 .support-header,
 .a11y-toggle {
@@ -21,6 +19,9 @@
   border-bottom: 1px solid color-mix(in srgb, currentColor 45%, transparent);
 }
 
+/* The base stylesheet previously forced the dark-theme support link to a
+   near-black colour intended for the old filled button. Keep it readable now
+   that the control is a plain utility link. */
 html[data-theme="dark"] .support-header {
   color: var(--muted);
 }
@@ -52,6 +53,8 @@ html[data-theme="dark"] .support-header:hover {
   transform: none;
 }
 
+/* The hero status already reports whether the radio is online. Keep that
+   single real status instead of repeating a static LIVE badge beside it. */
 .live-badge {
   display: none;
 }
