@@ -53,6 +53,12 @@ html[data-theme="dark"] .support-header:hover {
   transform: none;
 }
 
+/* The hero status already reports whether the radio is online. Keep that
+   single real status instead of repeating a static LIVE badge beside it. */
+.live-badge {
+  display: none;
+}
+
 @media (max-width: 620px) {
   .support-header,
   .a11y-toggle {
