@@ -1,0 +1,59 @@
+/* Small visual cleanup for the two utility controls in the masthead. */
+.support-header,
+.a11y-toggle {
+  min-height: 0;
+  padding: .28rem .08rem;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  color: var(--muted);
+  font-size: .88rem;
+  font-weight: 650;
+  line-height: 1.2;
+  box-shadow: none;
+  transform: none;
+}
+
+.support-header {
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 45%, transparent);
+}
+
+.support-header:hover,
+html[data-theme="dark"] .support-header:hover {
+  background: none;
+  color: var(--ink);
+  transform: none;
+}
+
+.a11y-toggle {
+  gap: .38rem;
+  margin-left: .35rem;
+  padding-left: .8rem;
+  border-left: 1px solid var(--line);
+}
+
+.a11y-toggle > span:first-child {
+  font-family: var(--font-mono);
+  font-size: .72rem;
+  font-weight: 700;
+  color: var(--brand);
+}
+
+.a11y-toggle:hover {
+  background: none;
+  color: var(--ink);
+  transform: none;
+}
+
+@media (max-width: 620px) {
+  .support-header,
+  .a11y-toggle {
+    font-size: .82rem;
+  }
+
+  .a11y-toggle {
+    margin-left: .15rem;
+    padding-left: .55rem;
+  }
+}

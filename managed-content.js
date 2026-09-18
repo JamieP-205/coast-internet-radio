@@ -17,6 +17,17 @@
   const $ = (sel, ctx = document) => ctx.querySelector(sel);
   const liveUI = window.CoastLiveUI || {};
 
+  function ensureHeaderPolishStyles() {
+    if (document.querySelector('link[data-header-polish]')) return;
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = "/header-polish.css?v=20260918";
+    link.dataset.headerPolish = "true";
+    document.head.appendChild(link);
+  }
+
+  ensureHeaderPolishStyles();
+
   function cleanText(value) {
     return String(value || "").replace(/\s+/g, " ").trim();
   }
@@ -151,7 +162,7 @@
         a.target = "_blank";
         a.rel = "noopener noreferrer";
         a.className = "news-link";
-        a.textContent = cleanText(news.linkLabel);
+        a.textContent = cleanText(news.linkLabel || "Read more");
         article.appendChild(a);
       }
 
