@@ -4,50 +4,55 @@
 
 Live at [coastinternetradio.com](https://coastinternetradio.com/).
 
-The website for Coast Internet Radio, a small station in Newry run by Jim Parr. It has real listeners every day, so this repo is not a demo. I redeveloped and maintain it in collaboration with the station owner: he brings the station's operational and listener needs, I turn them into technical decisions and working releases, and his feedback shapes what changes next.
+This is the website I built and maintain for Coast Internet Radio, a small station in Newry run by Jim Parr. It is used by real listeners, so changes have to work on the live site rather than only in a local demo.
 
-## Stakeholder collaboration
+## Working with the station
 
-This is my clearest example of building for somebody other than myself. I worked with Jim to replace the older site with a more modern, mobile-friendly listener experience while keeping the station's identity and day-to-day needs intact. The collaboration includes:
+I worked with Jim on the replacement site and still handle the technical side. He tells me what the station and listeners need, I work out how to build it, and we adjust things from real use and feedback.
 
-- understanding what listeners and the station owner needed from the replacement site
-- agreeing which content Jim should be able to update without developer help
-- explaining technical constraints, especially the legacy HTTP stream inside a modern HTTPS site
-- releasing changes to a live service, receiving operational feedback and maintaining it afterwards
+That has included:
 
-I am the sole developer in this repository, so I describe it as **stakeholder/client collaboration**, not shared-code collaboration.
+- replacing the older site with a mobile-friendly listener experience
+- deciding which content Jim should be able to update himself
+- dealing with the station's older HTTP stream on a modern HTTPS website
+- deploying and maintaining changes without interrupting normal listening
 
-## The thing that shapes everything else
+I am the sole developer in this repository. Jim is the stakeholder and station owner rather than a code contributor.
 
-The station's audio stream and its now-playing feed are both served over plain HTTP. The website is HTTPS. Browsers block that as mixed content, so the player will not play, and no amount of front-end work changes it.
+## Main technical constraint
 
-Two Cloudflare Workers sit in front of the station's source and re-serve the stream and the metadata over HTTPS. The site only ever talks to the workers. The source for both is in [`workers-reference/`](workers-reference/), which is a copy for review, not what is deployed.
+The station's audio stream and now-playing feed are served over HTTP while the website is HTTPS. Browsers block that mixed content, so the site cannot use those sources directly.
+
+Two Cloudflare Workers sit in front of the station's sources and provide the audio stream and metadata over HTTPS. The site talks to those workers instead. Copies of both Worker scripts are kept in [`workers-reference/`](workers-reference/) for reference.
 
 ![Coast Internet Radio architecture](coast-architecture.svg)
 
-## What is in it
+## What is in the project
 
-- A live player with now playing, coming up and recently played, polled every ten seconds
-- Media Session support, so the phone lock screen controls work like a radio app
-- An admin area where Jim edits the homepage, reads listener feedback and looks at play history, without needing me
-- First-party analytics, written rather than installed. Basic events are anonymous; opting in adds a random returning-visitor ID. Raw IP addresses are not stored
-- A Station Helper that answers common listener questions from a JSON knowledge base
-- Display preferences for theme, text size, contrast and motion, applied before first paint
+- Live player with current, upcoming and recently played tracks
+- Media Session support for phone and lock-screen media controls
+- Admin area for homepage content, feedback, analytics and play history
+- First-party analytics without storing raw IP addresses
+- Station Helper for common listener questions
+- Light/dark themes, larger text, high contrast and reduced motion
+- Netlify Functions and Netlify Blobs for the server-side parts
+- Automated checks for the parts that are easiest to break during changes
 
-The admin area is not public, because it manages a real station's content and a real audience's feedback. The functions behind it are all in this repo if you want to read them.
+The admin screens manage real station data, so they are not linked from the public website. Their code is included in the repository.
 
-## Files
+## Main files
 
-- `index.html` the listener homepage
-- `src/css/*.css` the actual stylesheet source
-- `styles.css` **generated**, do not edit it by hand
-- `script.js` player, metadata polling, preferences, request form
-- `netlify/functions/` the API, admin auth, analytics, feedback, play history
-- `workers-reference/` copies of the two Cloudflare Workers
-- `tools/` everything CI runs
-- `admin/` the private screens
+- `index.html` - public listener page
+- `src/css/*.css` - stylesheet source
+- `styles.css` - generated CSS bundle
+- `script.js` - player, metadata, preferences and request form
+- `station-helper.js` and `station-helper-knowledge.json` - listener help
+- `netlify/functions/` - admin API, authentication, analytics, feedback and play history
+- `workers-reference/` - reference copies of the two Cloudflare Workers
+- `admin/` - private admin screens
+- `tools/` - build and validation scripts
 
-## Running it
+## Running it locally
 
 ```bash
 npm ci
@@ -55,27 +60,23 @@ npm run check
 npx netlify dev
 ```
 
-`npm test` runs those checks plus the unit tests.
+`npm test` runs the project checks and unit tests.
 
-## Gotchas
+## Things to know before editing
 
-- **`styles.css` is generated** from `src/css/*.css` by `tools/build-css.js`. Edit a partial, not the bundle, or your change disappears on the next build.
-- **Inline scripts are allowed by sha256 hash** in `_headers`, not by `unsafe-inline`. If you edit one, its hash changes and the browser will silently block it in production. `npm run check` recomputes every hash and fails the build with the value you need, which is the whole reason that check exists: it had already drifted once, and the theme script was being blocked live before I caught it.
-- **`now-playing.json` is a local preview file only.** It is never used on the deployed site. If you wire it in, listeners get stale song titles.
-- **Do not point the player at the station's origin.** It is HTTP, and it will fail on HTTPS.
+- `styles.css` is generated from `src/css/*.css` by `tools/build-css.js`, so the partials are the source of truth.
+- Inline scripts are allowed by SHA-256 hashes in `_headers`. `npm run check` verifies those hashes so an edited inline script cannot be silently blocked in production.
+- `now-playing.json` is only for local previews and is not used by the live website.
+- The public player must use the HTTPS Worker stream rather than the station's HTTP origin.
 
 ## Security and privacy
 
-Admin sessions are signed HttpOnly cookies, passwords are hashed with scrypt, writes carry a CSRF token, requests are same-origin checked, and repeated failed logins lock the address out. Analytics never store a raw IP address. Secrets live in Netlify environment variables and are not in this repo. Reporting is in [SECURITY.md](SECURITY.md).
-
-## AI-assisted security work
-
-I used AI tooling while working through the security-sensitive parts of this site: signed admin sessions, scrypt password hashing, CSRF and same-origin checks, CSP hashes, and the focused tests around them. I reviewed the behaviour against those tests before deploying it.
+Admin sessions are signed HttpOnly cookies. Passwords are verified against scrypt hashes. State-changing admin requests use a CSRF token and same-origin check, and repeated failed logins are rate limited. Analytics do not store raw IP addresses. Production secrets stay in Netlify environment variables rather than the repository. Reporting information is in [SECURITY.md](SECURITY.md).
 
 ## Known limitations
 
-- No end-to-end tests for the admin area, so I still click through it by hand before a deploy, which is exactly the kind of thing that gets skipped when I am tired
-- Analytics aggregate on read. Fine at this size, will not stay fine if the station grows
-- The site depends on the two workers being up, and they are outside this repo
+- There are focused automated tests for authentication and site checks, but the admin area does not yet have full end-to-end browser tests.
+- Analytics aggregate some data when it is read, which is acceptable for the station's current size but would need revisiting at a much larger scale.
+- The live site depends on the two Cloudflare Workers, which are deployed separately from this repository.
 
-Dated change history is in [CHANGELOG.md](CHANGELOG.md), the manual release checks are in [TESTING_CHECKLIST.md](TESTING_CHECKLIST.md), and project rules are in [CONTRIBUTING.md](CONTRIBUTING.md).
+Dated changes are in [CHANGELOG.md](CHANGELOG.md), manual release checks are in [TESTING_CHECKLIST.md](TESTING_CHECKLIST.md), and contribution notes are in [CONTRIBUTING.md](CONTRIBUTING.md).
