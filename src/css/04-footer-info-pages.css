@@ -89,6 +89,14 @@
   font-size: 0.88rem;
 }
 
+.site-footer .footer-inner > p::after {
+  content: "Created by Jamie Parr";
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.72rem;
+  opacity: 0.5;
+}
+
 /* Static information pages (privacy, terms, 404) */
 .info-page {
   max-width: 46rem;
